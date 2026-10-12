@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "source": "Maurya_Jan_Seva_Kendra/functions",
+    "runtime": "nodejs20"
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  }
+}

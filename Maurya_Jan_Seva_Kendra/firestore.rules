@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signedIn(){return request.auth != null;}
+  function profile(){return get(/databases/$(database)/documents/users/$(request.auth.uid));}
+  function active(){return signedIn() && profile().data.status == "active";}
+  function admin(){return active() && profile().data.role == "admin";}
+  function staff(){return admin() || (active() && profile().data.role == "worker");}
+  match /users/{uid} {
+   allow read: if signedIn() && (request.auth.uid == uid || staff());
+   allow create, update, delete: if false;
+  }
+  match /customers/{uid} {
+   allow read: if staff() || (active() && request.auth.uid == uid);
+   allow write: if false;
+  }
+  match /customerCounters/{id} { allow read, write: if false; }
+  match /bills/{id} {
+   allow read: if staff() || (active() && resource.data.customerUid == request.auth.uid);
+   allow write: if false;
+  }
+  match /auditLogs/{id} { allow read: if admin(); allow write: if false; }
+  match /{document=**} { allow read, write: if false; }
+ }
+}

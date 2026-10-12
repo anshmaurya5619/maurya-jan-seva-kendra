@@ -1,25 +1,98 @@
 rules_version = '2';
 service cloud.firestore {
- match /databases/{database}/documents {
-  function signedIn(){return request.auth != null;}
-  function profile(){return get(/databases/$(database)/documents/users/$(request.auth.uid));}
-  function active(){return signedIn() && profile().data.status == "active";}
-  function admin(){return active() && profile().data.role == "admin";}
-  function staff(){return admin() || (active() && profile().data.role == "worker");}
-  match /users/{uid} {
-   allow read: if signedIn() && (request.auth.uid == uid || staff());
-   allow create, update, delete: if false;
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function profile() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+    function active() {
+      return signedIn()
+        && profile().data.status == "active"
+        && profile().data.role in ["admin", "worker", "customer"];
+    }
+    function staff() {
+      return active() && profile().data.role in ["admin", "worker"];
+    }
+    function admin() {
+      return active() && profile().data.role == "admin";
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || staff());
+      // User roles and status are provisioned by an administrator through Firebase Console.
+      // Never allow a browser to grant itself Admin/Worker permissions.
+      allow create, update, delete: if false;
+    }
+
+    match /customers/{customerDoc} {
+      allow read: if staff();
+      allow create: if staff()
+        && request.resource.data.keys().hasOnly([
+          "customerId","name","phone","email","address","status",
+          "createdByUid","createdByEmail","createdAt"
+        ])
+        && request.resource.data.customerId is string
+        && request.resource.data.customerId.size() >= 8
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() >= 10
+        && request.resource.data.phone.size() <= 15
+        && request.resource.data.email is string
+        && request.resource.data.address is string
+        && request.resource.data.status == "active"
+        && request.resource.data.createdByUid == request.auth.uid
+        && request.resource.data.createdAt == request.time;
+      // Customer profile edits/deletes are intentionally disabled in this starter.
+      allow update, delete: if false;
+    }
+
+    match /bills/{billId} {
+      allow read: if staff()
+        || (active() && resource.data.customerUid == request.auth.uid);
+      allow create: if staff()
+        && request.resource.data.keys().hasOnly([
+          "invoiceId","customerDocId","customerUid","customerId",
+          "customerName","phone","service","total","paid","due",
+          "payments","createdByUid","createdByEmail","createdAt",
+          "updatedAt"
+        ])
+        && request.resource.data.invoiceId is string
+        && request.resource.data.customerDocId is string
+        && request.resource.data.customerId is string
+        && request.resource.data.customerName is string
+        && request.resource.data.phone is string
+        && request.resource.data.service is string
+        && request.resource.data.service.size() > 0
+        && request.resource.data.total is number
+        && request.resource.data.total > 0
+        && request.resource.data.paid is number
+        && request.resource.data.paid >= 0
+        && request.resource.data.paid <= request.resource.data.total
+        && request.resource.data.due == request.resource.data.total - request.resource.data.paid
+        && request.resource.data.payments is list
+        && request.resource.data.createdByUid == request.auth.uid
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+      allow update: if staff()
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(["paid","due","payments","updatedAt","updatedByUid"])
+        && request.resource.data.total == resource.data.total
+        && request.resource.data.customerDocId == resource.data.customerDocId
+        && request.resource.data.paid is number
+        && request.resource.data.paid >= resource.data.paid
+        && request.resource.data.paid <= resource.data.total
+        && request.resource.data.due == resource.data.total - request.resource.data.paid
+        && request.resource.data.payments is list
+        && request.resource.data.payments.size() == resource.data.payments.size() + 1
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedByUid == request.auth.uid;
+      allow delete: if false;
+    }
+
+    match /customerCounters/{id} { allow read, write: if false; }
+    match /auditLogs/{id} { allow read: if admin(); allow write: if false; }
+    match /{document=**} { allow read, write: if false; }
   }
-  match /customers/{uid} {
-   allow read: if staff() || (active() && request.auth.uid == uid);
-   allow write: if false;
-  }
-  match /customerCounters/{id} { allow read, write: if false; }
-  match /bills/{id} {
-   allow read: if staff() || (active() && resource.data.customerUid == request.auth.uid);
-   allow write: if false;
-  }
-  match /auditLogs/{id} { allow read: if admin(); allow write: if false; }
-  match /{document=**} { allow read, write: if false; }
- }
 }

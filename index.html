@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10182c">
+  <meta name="description" content="Maurya Jan Seva Kendra - ऑनलाइन आवेदन, डिजिटल सेवाएँ और ग्राहक सहायता।">
+  <title>Maurya Jan Seva Kendra | Digital Services</title>
+
+  <style>
+    :root {
+      --bg: #f5f7fc;
+      --ink: #17213b;
+      --muted: #778198;
+      --navy: #10182c;
+      --blue: #5267f5;
+      --cyan: #8ce8e0;
+      --white: #ffffff;
+      --line: #e8ebf4;
+      --shadow: 0 18px 50px rgba(26, 39, 76, .09);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { font: inherit; cursor: pointer; }
+
+    .container {
+      width: min(1160px, 91%);
+      margin: auto;
+    }
+
+    .topbar {
+      background: #0a1122;
+      color: #dce5ff;
+      font-size: 12px;
+      padding: 9px 0;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    header {
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--blue), #7d8cff);
+      color: white;
+      font-weight: 900;
+      font-size: 20px;
+      box-shadow: 0 8px 20px #5267f544;
+    }
+
+    .brand-name { font-weight: 800; font-size: 15px; line-height: 1.3; }
+    .brand-sub { color: var(--muted); font-size: 11px; margin-top: 4px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--blue); color: white; box-shadow: 0 9px 22px #5267f530; }
+    .btn-outline { background: white; color: var(--ink); border: 1px solid var(--line); }
+    .btn-light { background: white; color: var(--navy); }
+
+    .hero {
+      background:
+        radial-gradient(ellipse at 80% 15%, #5267f53b, transparent 35%),
+        radial-gradient(ellipse at 15% 90%, #8ce8e01f, transparent 35%),
+        var(--navy);
+      color: white;
+      padding: 76px 0 88px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow span {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 57px);
+      line-height: 1.12;
+      letter-spacing: -1.8px;
+      margin-bottom: 22px;
+    }
+
+    h1 em { color: var(--cyan); font-style: normal; }
+
+    .hero-copy {
+      max-width: 540px;
+      color: #bac5df;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 34px;
+      color: #cbd4ea;
+      font-size: 12px;
+    }
+
+    .trust-row span::before {
+      content: "✓";
+      color: var(--cyan);
+      margin-right: 7px;
+      font-weight: 900;
+    }
+
+    .dashboard {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 25px;
+      padding: 23px;
+      box-shadow: 0 30px 80px #0003;
+      backdrop-filter: blur(14px);
+    }
+
+    .dash-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .dash-head h3 { font-size: 16px; }
+    .dash-head p { font-size: 11px; color: #aab7d2; }
+
+    .live-dot {
+      background: #8ce8e01b;
+      color: var(--cyan);
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+    }
+
+    .dash-card {
+      background: #ffffff0e;
+      border: 1px solid #ffffff15;
+      border-radius: 16px;
+      padding: 17px;
+      margin-top: 12px;
+    }
+
+    .dash-label { color: #aab7d2; font-size: 11px; }
+    .dash-value { font-size: 25px; font-weight: 800; margin-top: 5px; }
+    .dash-note { font-size: 11px; color: var(--cyan); margin-top: 4px; }
+
+    .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .fake-chart {
+      height: 65px;
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .fake-chart i {
+      flex: 1;
+      display: block;
+      border-radius: 5px 5px 2px 2px;
+      background: linear-gradient(0deg, var(--blue), var(--cyan));
+      opacity: .85;
+    }
+
+    section { padding: 82px 0; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 34px;
+    }
+
+    .section-tag {
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: clamp(27px, 3vw, 37px);
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-top: 9px;
+    }
+
+    .section-copy {
+      max-width: 430px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 25px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      transition: .25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: #cdd3ff;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: #eef0ff;
+      font-size: 23px;
+      margin-bottom: 19px;
+    }
+
+    .service-card h3 { font-size: 16px; margin-bottom: 9px; }
+    .service-card p { color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .service-link { display: inline-block; color: var(--blue); font-size: 12px; font-weight: 800; margin-top: 18px; }
+
+    .feature-section { background: white; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .feature-panel {
+      padding: 31px;
+      background: var(--navy);
+      color: white;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-panel h3 { font-size: 23px; line-height: 1.35; }
+    .feature-panel p { color: #bdc7df; font-size: 13px; margin-top: 12px; }
+
+    .feature-list { display: grid; gap: 18px; margin-top: 27px; }
+
+    .feature-item { display: flex; gap: 13px; align-items: start; }
+    .feature-check {
+      flex-shrink: 0;
+      width: 30px; height: 30px;
+      display: grid; place-items: center;
+      background: #8ce8e01c;
+      color: var(--cyan);
+      border-radius: 10px;
+      font-weight: 900;
+    }
+
+    .feature-item h4 { font-size: 14px; margin-bottom: 3px; }
+    .feature-item p { font-size: 12px; color: var(--muted); }
+
+    .contact-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      padding: 36px;
+      border-radius: 24px;
+      background: linear-gradient(120deg, #edf0ff, #e6faf8);
+      border: 1px solid #e0e6ff;
+    }
+
+    .contact-box h2 { margin-bottom: 12px; }
+    .contact-box p { font-size: 13px; color: var(--muted); }
+
+    footer {
+      background: #0a1122;
+      color: white;
+      padding: 34px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer p { color: #9eabc7; font-size: 12px; }
+    .footer-links { display: flex; gap: 20px; font-size: 12px; color: #c6d0e8; }
+
+    .admin-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(7,13,30,.78);
+      backdrop-filter: blur(8px);
+    }
+
+    .admin-overlay.open { display: flex; }
+
+    .admin-box {
+      width: min(410px, 100%);
+      background: white;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 25px 90px #0005;
+    }
+
+    .admin-box h2 { font-size: 24px; margin: 12px 0 6px; }
+    .admin-box > p { color: var(--muted); font-size: 12px; margin-bottom: 20px; }
+
+    .admin-box label { display: block; font-size: 12px; font-weight: 700; margin: 13px 0 6px; }
+
+    .admin-box input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dfe3ef;
+      border-radius: 10px;
+      outline: none;
+      font: inherit;
+      font-size: 13px;
+    }
+
+    .admin-box input:focus { border-color: var(--blue); }
+    .admin-box .btn { width: 100%; margin-top: 18px; }
+    .close-modal { float: right; border: 0; background: #f1f3fa; border-radius: 9px; padding: 7px 11px; }
+
+    .notice { font-size: 11px; color: #b04c2c; margin-top: 13px; }
+    .mobile-menu { display: none; }
+
+    @media (max-width: 850px) {
+      .hero-grid, .feature-grid { grid-template-columns: 1fr; gap: 35px; }
+      .hero { padding: 57px 0 65px; }
+      .dashboard { max-width: 560px; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-head { align-items: start; flex-direction: column; }
+      .nav-links { gap: 14px; }
+    }
+
+    @media (max-width: 580px) {
+      .topbar-inner { justify-content: center; text-align: center; }
+      .nav { min-height: 68px; flex-wrap: wrap; padding: 12px 0; }
+      .brand-name { font-size: 13px; }
+      .brand-icon { width: 40px; height: 40px; }
+      .nav-links { width: 100%; justify-content: space-between; gap: 8px; font-size: 11px; }
+      .nav-links .btn { padding: 9px 10px; font-size: 11px; }
+      h1 { letter-spacing: -1px; }
+      .hero-copy { font-size: 13px; }
+      .trust-row { gap: 10px 15px; }
+      section { padding: 59px 0; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 22px; }
+      .contact-box { flex-direction: column; align-items: start; padding: 25px; }
+      .feature-panel { padding: 25px; }
+      .footer-inner { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>✦ डिजिटल सेवाएँ, एक ही जगह</span>
+      <span>आपकी सुविधा • आपका समय • हमारी सेवा</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="होम">
+        <div class="brand-icon">M</div>
+        <div>
+          <div class="brand-name">Maurya Jan Seva Kendra</div>
+          <div class="brand-sub">DIGITAL SERVICE CENTRE</div>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="मुख्य मेनू">
+        <a href="#home">होम</a>
+        <a href="#services">सेवाएँ</a>
+        <a href="#about">हमारे बारे में</a>
+        <button class="btn btn-primary" id="openAdmin">Admin Login ↗</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span></span> YOUR DIGITAL SERVICE PARTNER</div>
+          <h1>आपके डिजिटल काम,<br><em>अब आसान तरीके से।</em></h1>
+          <p class="hero-copy">
+            Maurya Jan Seva Kendra में ऑनलाइन सेवाओं की जानकारी,
+            आवेदन संबंधी सहायता और डिजिटल सुविधाओं के लिए संपर्क करें।
+            हमारी वेबसाइट को आपकी जरूरतों के अनुसार बेहतर बनाया जा रहा है।
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-light" href="#services">सेवाएँ देखें&nbsp; →</a>
+            <a class="btn btn-outline" id="contactHero" href="#contact">संपर्क करें&nbsp; ↗</a>
+          </div>
+
+          <div class="trust-row">
+            <span>मोबाइल फ्रेंडली</span>
+            <span>आसान जानकारी</span>
+            <span>ग्राहक सहायता</span>
+          </div>
+        </div>
+
+        <div class="dashboard" aria-label="डैशबोर्ड डिजाइन का नमूना">
+          <div class="dash-head">
+            <div>
+              <h3>Digital Service Overview</h3>
+              <p>दुकान के डिजिटल सिस्टम का नमूना</p>
+            </div>
+            <span class="live-dot">● UI PREVIEW</span>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-label">Customer Management</div>
+            <div class="dash-value">स्मार्ट रिकॉर्ड</div>
+            <div class="dash-note">नाम या मोबाइल से खोजने की योजना</div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="dash-card">
+              <div class="dash-label">Billing System</div>
+              <div class="dash-value">PDF</div>
+              <div class="dash-note">डिजिटल रसीद</div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-label">Daily Reports</div>
+              <div class="dash-value">Reports</div>
+              <div class="dash-note">दैनिक हिसाब</div>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-label">Dashboard Preview</div>
+            <div class="fake-chart" aria-hidden="true">
+              <i style="height:35%"></i>
+              <i style="height:58%"></i>
+              <i style="height:43%"></i>
+              <i style="height:78%"></i>
+              <i style="height:62%"></i>
+              <i style="height:95%"></i>
+              <i style="height:72%"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-tag">OUR SERVICES</div>
+            <h2>आपकी जरूरत की डिजिटल सेवाएँ</h2>
+          </div>
+          <p class="section-copy">
+            उपलब्ध सेवाओं की सही सूची दुकान के मालिक से जानकारी मिलने के बाद
+            अपडेट की जाएगी। सरकारी आवेदन संबंधित आधिकारिक पोर्टल के नियमों के अनुसार होंगे।
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-icon">📄</div>
+            <h3>ऑनलाइन फॉर्म</h3>
+            <p>विभिन्न आवेदन फॉर्म भरने की जानकारी और सहायता।</p>
+            <a class="service-link" href="#contact">जानकारी लें ↗</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🏛️</div>
+            <h3>सरकारी सेवाएँ</h3>
+            <p>उपलब्ध सरकारी योजनाओं और सेवाओं की जानकारी।</p>
+            <a class="service-link" href="#contact">जानकारी लें ↗</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🧾</div>
+            <h3>बिल एवं रसीद</h3>
+            <p>दुकान पर दी गई सेवाओं के बिल और रसीद संबंधी सुविधा।</p>
+            <a class="service-link" href="#contact">जानकारी लें ↗</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🖨️</div>
+            <h3>प्रिंट एवं दस्तावेज</h3>
+            <p>दस्तावेजों और प्रिंट से जुड़ी उपलब्ध सेवाओं की जानकारी।</p>
+            <a class="service-link" href="#contact">जानकारी लें ↗</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">👥</div>
+            <h3>ग्राहक सहायता</h3>
+            <p>सेवा के लिए संपर्क करें और जरूरी जानकारी प्राप्त करें।</p>
+            <a class="service-link" href="#contact">संपर्क करें ↗</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">📊</div>
+            <h3>डिजिटल रिकॉर्ड</h3>
+            <p>दुकान के आंतरिक ग्राहक रिकॉर्ड और बिलिंग सिस्टम की योजना।</p>
+            <a class="service-link" href="#contact">और जानें ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-section" id="about">
+      <div class="container feature-grid">
+        <div class="feature-panel">
+          <div class="eyebrow"><span></span> OUR COMMITMENT</div>
+          <h3>डिजिटल सुविधा को सरल और व्यवस्थित बनाना।</h3>
+          <p>
+            सही जानकारी, स्पष्ट सेवा विवरण और ग्राहक सहायता पर हमारा ध्यान है।
+          </p>
+          <div style="margin-top:24px">
+            <a class="btn btn-light" href="#contact">हमसे संपर्क करें ↗</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-tag">WHY CHOOSE US</div>
+          <h2>सरल अनुभव, व्यवस्थित सेवा</h2>
+          <p class="section-copy" style="margin-top:13px">
+            वेबसाइट का उद्देश्य ग्राहकों को सेवाओं की जानकारी आसानी से उपलब्ध
+            कराना और दुकान के काम को डिजिटल तरीके से व्यवस्थित करना है।
+          </p>
+
+          <div class="feature-list">
+            <div class="feature-item">
+              <div class="feature-check">✓</div>
+              <div>
+                <h4>आसान नेविगेशन</h4>
+                <p>मोबाइल और लैपटॉप पर सरल तथा स्पष्ट डिजाइन।</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-check">✓</div>
+              <div>
+                <h4>स्पष्ट बिलिंग</h4>
+                <p>सेवा और शुल्क का विवरण स्पष्ट रखने के लिए बिलिंग सिस्टम।</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-check">✓</div>
+              <div>
+                <h4>निजी रिकॉर्ड की सुरक्षा</h4>
+                <p>ग्राहक डेटा को सार्वजनिक पेज पर दिखाने के बजाय सुरक्षित Admin सिस्टम में रखने की योजना।</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <div class="section-tag">GET IN TOUCH</div>
+            <h2>किसी सेवा की जानकारी चाहिए?</h2>
+            <p>दुकान का असली पता, मोबाइल नंबर और WhatsApp लिंक मिलने पर यहाँ जोड़े जाएँगे।</p>
+          </div>
+          <button class="btn btn-primary" id="contactButton">संपर्क विवरण देखें ↗</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="brand">
+        <div class="brand-icon">M</div>
+        <div>
+          <div class="brand-name">Maurya Jan Seva Kendra</div>
+          <div class="brand-sub">DIGITAL SERVICE CENTRE</div>
+        </div>
+      </div>
+      <p>© <span id="year"></span> Maurya Jan Seva Kendra. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#home">होम</a>
+        <a href="#services">सेवाएँ</a>
+        <a href="#contact">संपर्क</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="admin-overlay" id="adminOverlay" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+    <div class="admin-box">
+      <button class="close-modal" id="closeAdmin" aria-label="बंद करें">✕</button>
+      <div class="brand-icon">M</div>
+      <h2 id="adminTitle">Admin Portal</h2>
+      <p>यह केवल लॉगिन स्क्रीन का डिजाइन है। सुरक्षित लॉगिन Firebase जोड़ने के बाद सक्रिय होगा।</p>
+
+      <form id="adminForm">
+        <label for="adminEmail">Admin Email</label>
+        <input id="adminEmail" type="email" placeholder="admin@example.com" autocomplete="username" required>
+
+        <label for="adminPassword">Password</label>
+        <input id="adminPassword" type="password" placeholder="अपना पासवर्ड" autocomplete="current-password" required>
+
+        <button class="btn btn-primary" type="submit">आगे बढ़ें →</button>
+      </form>
+      <p class="notice">सुरक्षा: यह डेमो अभी पासवर्ड सत्यापित नहीं करता और किसी भी खाते में लॉगिन नहीं करता।</p>
+    </div>
+  </div>
+
+  <script>
+    const overlay = document.getElementById("adminOverlay");
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("openAdmin").addEventListener("click", () => {
+      overlay.classList.add("open");
+      document.getElementById("adminEmail").focus();
+    });
+
+    document.getElementById("closeAdmin").addEventListener("click", () => {
+      overlay.classList.remove("open");
+    });
+
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) overlay.classList.remove("open");
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") overlay.classList.remove("open");
+    });
+
+    document.getElementById("adminForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      alert("Admin login अभी सक्रिय नहीं है। Firebase Authentication जोड़ने के बाद इसे चालू किया जाएगा।");
+    });
+
+    document.getElementById("contactButton").addEventListener("click", () => {
+      alert("दुकान का सही मोबाइल नंबर और पता मिलने पर संपर्क सुविधा जोड़ी जाएगी।");
+    });
+  </script>
+</body>
+</html>

@@ -6,16 +6,247 @@
 <style>
 :root{--bg:#0b1224;--panel:#142440;--panel2:#1b3151;--ink:#f5f7fb;--muted:#b7c4d8;--gold:#ffc96b;--gold2:#f5a93e;--teal:#5ce0c0;--line:#304665;--red:#ff8585;--shadow:0 18px 50px #02081766}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0,#203c60 0,transparent 42%),linear-gradient(135deg,#0b1224,#172341 55%,#211c3d);color:var(--ink);font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}a{color:var(--gold)}button,input,select,textarea{font:inherit}button{border:0;border-radius:10px;padding:10px 14px;font-weight:750;cursor:pointer;transition:.15s}button:hover{transform:translateY(-1px);filter:brightness(1.06)}button:disabled{opacity:.55;cursor:wait}.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#172039}.secondary{background:#213b5a;color:#f4f7fb;border:1px solid #3a5473}.outline{background:transparent;border:1px solid #4c6482;color:var(--ink)}.danger{background:#8d3346;color:white}.small{font-size:12px}.muted{color:var(--muted)}.hidden{display:none!important}.wrap{width:min(1180px,calc(100% - 36px));margin:auto}.topbar{position:sticky;top:0;z-index:10;background:#0b1426eF;backdrop-filter:blur(14px);border-bottom:1px solid #2b405e}.topinner{width:min(1180px,calc(100% - 36px));margin:auto;min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;color:var(--ink)}.logo{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:linear-gradient(140deg,#ffd88a,#f6a84b);color:#172039;font-weight:950;box-shadow:0 5px 18px #f6ad4a30}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1.4px}.nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.hero{padding:36px 0 24px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(310px,.8fr);gap:22px;align-items:stretch}.hero-copy,.login-card,.panel,.service,.contact-card,.stat{border:1px solid var(--line);background:linear-gradient(145deg,#1b3150ed,#14223ced);border-radius:20px;box-shadow:var(--shadow)}.hero-copy{padding:clamp(22px,4vw,42px);position:relative;overflow:hidden}.eyebrow{color:var(--teal);font-size:12px;font-weight:850;letter-spacing:1.4px;text-transform:uppercase}.hero h1{font-size:clamp(32px,5vw,54px);line-height:1.12;letter-spacing:-1.5px;margin:14px 0}.hero h1 span{color:var(--gold)}.lead{color:#d5dfed;max-width:650px;font-size:16px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.notice{padding:11px 13px;border-radius:10px;background:#352d1b;border:1px solid #6c5631;color:#ffe1a2;margin-top:18px;font-size:12px}.login-card{padding:24px;align-self:stretch}.login-card h2{margin:8px 0 4px;font-size:23px}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}.field label{font-size:12px;color:#c6d2e3;font-weight:700}.field input,.field select,.field textarea,.search-input{width:100%;background:#09172b;color:#f7f8fc;border:1px solid #38516f;border-radius:10px;padding:12px;outline:none}.field input:focus,.field select:focus,.field textarea:focus,.search-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px #5ce0c020}.login-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.msg{padding:10px 12px;border-radius:10px;margin:10px 0;font-size:13px;background:#32291b;border:1px solid #70532a;color:#ffe1a2;overflow-wrap:anywhere}.msg.ok{background:#12362f;border-color:#286d5b;color:#b8ffe8}.section{padding:24px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:16px}.section h2{margin:4px 0 8px;font-size:27px}.services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.service{padding:20px;border-radius:16px;box-shadow:none}.ico{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#294d66;color:var(--teal);font-size:22px}.service:nth-child(3n+2) .ico{background:#55432b;color:var(--gold)}.service:nth-child(3n) .ico{background:#43345c;color:#d7b7ff}.service h3{margin:12px 0 4px}.service p{margin:0;color:var(--muted);font-size:13px}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.contact-card{padding:22px}.contact-row{padding:10px 0;border-bottom:1px solid #304665}.contact-row:last-child{border:0}.contact-row span{display:block;font-size:12px;color:var(--muted)}.footer{padding:25px 0 34px;color:var(--muted);font-size:12px;border-top:1px solid #2c405e;margin-top:20px}.app-shell{display:grid;grid-template-columns:245px minmax(0,1fr);gap:18px;padding:22px 0 36px}.sidebar{background:#0b1428eF;border:1px solid var(--line);border-radius:18px;padding:16px;height:max-content;position:sticky;top:90px}.user-mini{display:flex;align-items:center;gap:10px;padding:7px 4px 16px;border-bottom:1px solid var(--line);margin-bottom:12px}.avatar{width:42px;height:42px;flex-shrink:0;border-radius:50%;object-fit:cover;background:linear-gradient(135deg,var(--gold),var(--teal));display:grid;place-items:center;color:#13203b;font-weight:900}.menu-label{font-size:10px;color:#8095b3;letter-spacing:1.4px;margin:15px 8px 7px}.menu{display:grid;gap:5px}.menu button{background:transparent;text-align:left;color:#d9e4f2;border:1px solid transparent;padding:11px 12px}.menu button.active{background:linear-gradient(90deg,#294766,#1d3451);border-color:#46627f;color:var(--gold)}.menu button.logout{color:#ffb0b0;margin-top:10px;border-color:#633746}.workspace{min-width:0}.page-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.page-head h1{font-size:clamp(24px,3vw,34px);margin:0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.stat{padding:17px;border-radius:15px;box-shadow:none}.stat span{color:var(--muted);font-size:12px}.stat strong{display:block;font-size:25px;color:var(--gold);margin-top:4px}.panel{padding:22px;margin-bottom:14px;box-shadow:none}.panel h2{margin:0 0 8px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}.full{grid-column:1/-1}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.search-row{display:flex;gap:8px;max-width:650px}.search-row input{flex:1;min-width:100px}.result{border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:10px;background:#101e34}.table-wrap{overflow:auto;margin-top:12px}table{border-collapse:collapse;width:100%;min-width:600px}th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);font-size:13px}th{color:var(--teal);font-weight:800}.pill{display:inline-block;border:1px solid #41607d;background:#1a3550;padding:4px 9px;border-radius:999px;font-size:11px;color:#dcecff}.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}.receipt{background:#fff;color:#1c2431;border-radius:12px;padding:22px;max-width:700px;margin:12px auto}.receipt h2,.receipt p{color:#1c2431}.receipt .stamp{border:2px solid #1a7560;color:#1a7560;display:inline-block;padding:5px 12px;border-radius:50%;transform:rotate(-8deg);font-weight:900}.receipt table{min-width:0}.receipt th{color:#344}.receipt td,.receipt th{border-color:#ddd}.receipt .muted{color:#566}.profile-top{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.profile-photo{width:88px;height:88px;object-fit:cover;border-radius:50%;border:3px solid var(--gold);background:#223b58}.toast{position:fixed;right:18px;bottom:18px;z-index:30;max-width:calc(100% - 36px);background:#12362f;border:1px solid #286d5b;color:#c5ffed;padding:13px 16px;border-radius:12px;box-shadow:var(--shadow)}@media(max-width:850px){.hero{grid-template-columns:1fr 1fr}.services{grid-template-columns:repeat(2,1fr)}.app-shell{grid-template-columns:1fr}.sidebar{position:static}.menu{grid-template-columns:repeat(2,minmax(0,1fr))}.menu-label{margin-top:10px}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:580px){.wrap,.topinner{width:calc(100% - 22px)}.topinner{min-height:64px}.brand small{display:none}.nav .nav-link{display:none}.hero{padding-top:14px;grid-template-columns:1fr;gap:12px}.hero-copy,.login-card{padding:20px}.hero h1{font-size:36px}.services,.contact-grid,.split{grid-template-columns:1fr}.services{gap:10px}.service{padding:16px}.section h2{font-size:23px}.app-shell{padding-top:12px}.panel{padding:16px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:21px}.page-head{align-items:flex-start}.menu{grid-template-columns:repeat(2,minmax(0,1fr))}.menu button{font-size:12px;padding:10px 8px}.search-row{flex-direction:column}.receipt{padding:14px}}
 @media print{body{background:white!important;color:#111}.topbar,.sidebar,.page-head,.stats,.no-print,.footer{display:none!important}.app-shell{display:block;padding:0}.workspace .page:not(#page-receipt){display:none!important}#page-receipt{display:block!important}.receipt{box-shadow:none;margin:0 auto}}
+
+/* MJK_PREMIUM_HOME_V1 */
+:root {
+  --mjk-navy: #101a35;
+  --mjk-blue: #203d69;
+  --mjk-gold: #f2bd59;
+  --mjk-green: #16776a;
+  --mjk-ink: #17243b;
+  --mjk-paper: #ffffff;
+}
+html { scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(ellipse at 8% 4%, rgba(115,72,180,.32), transparent 34%),
+    radial-gradient(ellipse at 92% 20%, rgba(20,145,148,.25), transparent 35%),
+    linear-gradient(135deg, #091225 0%, #15294b 48%, #241b3e 100%);
+  background-attachment: fixed;
+  color: #f5f7ff;
+}
+#publicSite {
+  background:
+    radial-gradient(ellipse at 5% 5%, rgba(242,189,89,.15), transparent 30%),
+    radial-gradient(ellipse at 95% 28%, rgba(92,224,192,.13), transparent 34%),
+    linear-gradient(135deg, rgba(9,18,37,.20), rgba(29,27,61,.24));
+}
+#publicSite .hero-copy,
+#publicSite .login-card {
+  background: linear-gradient(145deg, rgba(30,55,91,.96), rgba(20,29,57,.97));
+  border: 1px solid rgba(255,255,255,.15);
+  color: #f7f8ff;
+  box-shadow: 0 20px 48px rgba(0,0,0,.22);
+}
+#publicSite .lead { color: #d9e4f5; }
+#publicSite .service {
+  box-shadow: 0 12px 28px rgba(0,0,0,.20);
+}
+#publicSite .service:nth-child(6n + 1) {
+  background: linear-gradient(135deg, #214d80, #142642);
+}
+#publicSite .service:nth-child(6n + 2) {
+  background: linear-gradient(135deg, #98622b, #4c3025);
+}
+#publicSite .service:nth-child(6n + 3) {
+  background: linear-gradient(135deg, #168477, #103d48);
+}
+#publicSite .service:nth-child(6n + 4) {
+  background: linear-gradient(135deg, #754b98, #36244e);
+}
+#publicSite .service:nth-child(6n + 5) {
+  background: linear-gradient(135deg, #286e9d, #18324f);
+}
+#publicSite .service:nth-child(6n) {
+  background: linear-gradient(135deg, #a34f55, #4d283b);
+}
+#publicSite .section {
+  animation: mjkFadeUp .65s ease both;
+}
+#publicSite .section:nth-of-type(2) { animation-delay: .08s; }
+#publicSite .section:nth-of-type(3) { animation-delay: .14s; }
+#publicSite h1, #publicSite h2 {
+  letter-spacing: -.025em;
+}
+#publicSite .service {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 20px;
+  color: #fff;
+  background: linear-gradient(145deg, #173c65, #10223e);
+  box-shadow: 0 9px 24px rgba(16,26,53,.12);
+  transition: transform .24s ease, box-shadow .24s ease, filter .24s ease;
+  animation: mjkFadeUp .6s ease both;
+}
+#publicSite .service:nth-child(6n + 2) {
+  background: linear-gradient(145deg, #75502a, #402b24);
+}
+#publicSite .service:nth-child(6n + 3) {
+  background: linear-gradient(145deg, #17685e, #123d42);
+}
+#publicSite .service:nth-child(6n + 4) {
+  background: linear-gradient(145deg, #674078, #352448);
+}
+#publicSite .service:nth-child(6n + 5) {
+  background: linear-gradient(145deg, #285c86, #18334e);
+}
+#publicSite .service:nth-child(6n) {
+  background: linear-gradient(145deg, #82503c, #462b2b);
+}
+#publicSite .service h3,
+#publicSite .service p {
+  color: #fff;
+}
+#publicSite .service p {
+  color: rgba(255,255,255,.82);
+}
+#publicSite .service .ico {
+  border-radius: 13px;
+  background: rgba(255,255,255,.13);
+  color: #ffda91;
+  transition: transform .24s ease;
+}
+#publicSite .service:hover {
+  transform: translateY(-7px) scale(1.025);
+  box-shadow: 0 20px 38px rgba(0,0,0,.32);
+  filter: saturate(1.15) brightness(1.08);
+}
+#publicSite .service::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 25%, rgba(255,255,255,.12) 48%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .65s ease;
+}
+#publicSite .service:hover::after { transform: translateX(120%); }
+#publicSite .service:hover .ico {
+  transform: scale(1.08) rotate(-3deg);
+}
+#publicSite .contact-card {
+  border: 1px solid rgba(32,61,105,.1);
+  border-radius: 20px;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 10px 28px rgba(16,26,53,.07);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+#publicSite .contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 34px rgba(16,26,53,.11);
+}
+#publicSite button, #publicSite a {
+  transition: transform .18s ease, filter .18s ease;
+}
+#publicSite button:hover {
+  filter: brightness(1.04);
+}
+#publicSite button:active {
+  transform: scale(.98);
+}
+#publicSite :focus-visible {
+  outline: 3px solid #e2a83f;
+  outline-offset: 3px;
+}
+@keyframes mjkFadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  #publicSite .section, #publicSite .service {
+    animation: none !important;
+  }
+  #publicSite .service, #publicSite .contact-card,
+  #publicSite button, #publicSite a {
+    transition: none !important;
+  }
+}
+@media (max-width: 600px) {
+  #publicSite .service {
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(16,26,53,.12);
+  }
+  #publicSite .contact-card { border-radius: 16px; }
+}
+/* End MJK_PREMIUM_HOME_V1 */
+
+
+/* MJK_SERVICE_ANIMATION_V1 */
+.service {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  animation: mjkServiceEnter .65s cubic-bezier(.2,.75,.25,1) both;
+  transition: transform .28s ease, box-shadow .28s ease, filter .28s ease;
+  will-change: transform;
+}
+.service:nth-child(2) { animation-delay: .06s; }
+.service:nth-child(3) { animation-delay: .12s; }
+.service:nth-child(4) { animation-delay: .18s; }
+.service:nth-child(5) { animation-delay: .24s; }
+.service:nth-child(6) { animation-delay: .30s; }
+.service:nth-child(7) { animation-delay: .36s; }
+.service:nth-child(8) { animation-delay: .42s; }
+.service:nth-child(9) { animation-delay: .48s; }
+.service:nth-child(10) { animation-delay: .54s; }
+.service:nth-child(11) { animation-delay: .60s; }
+.service:nth-child(12) { animation-delay: .66s; }
+.service::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -60%;
+  left: -75%;
+  width: 45%;
+  height: 220%;
+  transform: rotate(22deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+  transition: left .6s ease;
+  pointer-events: none;
+}
+.service:hover {
+  transform: translateY(-7px) scale(1.025);
+  box-shadow: 0 16px 32px rgba(30,50,90,.16);
+  filter: saturate(1.08);
+}
+.service:hover::after { left: 140%; }
+.service:active { transform: translateY(-2px) scale(.99); }
+@keyframes mjkServiceEnter {
+  from { opacity: 0; transform: translateY(18px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service { animation: none !important; transition: none !important; }
+  .service::after { display: none; }
+}
+/* END MJK_SERVICE_ANIMATION_V1 */
+
+
+/* MJK_BILINGUAL_LANGUAGE_V1 */
+.language-toggle{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:7px 12px;border:1px solid rgba(255,255,255,.32);border-radius:999px;background:rgba(255,255,255,.10);color:inherit;font:inherit;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap}
+.language-toggle:hover{background:rgba(255,255,255,.18)}
+#publicSite .service{padding:17px;border-radius:17px}
+#publicSite .service .ico{width:48px;height:48px;min-width:48px;font-size:29px;display:grid;place-items:center}
+#publicSite .service h3{font-size:17px;line-height:1.35;margin:9px 0 3px}
+#publicSite .service-en{font-size:11px;line-height:1.35;opacity:.76;margin:0 0 7px;font-weight:700;letter-spacing:.2px}
+#publicSite .service p{font-size:13px;line-height:1.5}
+@media(max-width:580px){.topinner{gap:8px}.nav{gap:5px}.language-toggle{font-size:11px;min-height:32px;padding:6px 8px}#publicSite .service{padding:14px}#publicSite .service .ico{width:44px;height:44px;min-width:44px;font-size:26px}#publicSite .service h3{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.language-toggle{transition:none!important}}
+/* END MJK_BILINGUAL_LANGUAGE_V1 */
+
 </style></head><body>
-<header class="topbar"><div class="topinner"><a class="brand" href="#home" id="brandHome"><span class="logo">MJ</span><span>Maurya Jan Seva Kendra<small>DIGITAL SERVICE • TRUST • CARE</small></span></a><nav class="nav"><a class="nav-link" href="#services">सेवाएँ</a><a class="nav-link" href="#contact">संपर्क</a><button class="gold" id="openLogin">Admin Login</button></nav></div></header>
+<header class="topbar"><div class="topinner"><a class="brand" href="#home" id="brandHome"><span class="logo">MJ</span><span>Maurya Jan Seva Kendra<small>DIGITAL SERVICE • TRUST • CARE</small></span></a><nav class="nav"><a class="nav-link" href="#services">सेवाएँ</a><a class="nav-link" href="#contact">संपर्क</a><button class="gold" id="openLogin">Admin Login</button><button type="button" class="language-toggle" id="languageToggle" aria-label="Switch language">हिंदी | English</button></nav></div></header>
 <main id="publicSite">
 <section class="wrap hero" id="home"><div class="hero-copy"><div class="eyebrow">आपकी अपनी डिजिटल सेवा केंद्र</div><h1>हर ज़रूरी सेवा,<br><span>एक ही जगह।</span></h1><p class="lead">ऑनलाइन फॉर्म, दस्तावेज़ सहायता, प्रिंट, बिल और डिजिटल सेवाओं की जानकारी। साफ़ रिकॉर्ड और भरोसेमंद सहायता के लिए हमसे संपर्क करें।</p><div class="actions"><a href="https://wa.me/919076855003" target="_blank" rel="noopener"><button class="gold">WhatsApp संपर्क</button></a><a href="#services"><button class="secondary">सेवाएँ देखें</button></a></div><div class="notice">अपना Aadhaar नंबर, OTP, पासवर्ड या मूल दस्तावेज़ की फोटो सार्वजनिक वेबसाइट पर साझा न करें।</div><p class="small muted">यह एक निजी सेवा केंद्र है, सरकारी विभाग की आधिकारिक वेबसाइट नहीं। सेवा और शुल्क की पुष्टि केंद्र से करें।</p></div>
-<aside class="login-card" id="loginPanel"><div class="eyebrow">सुरक्षित प्रवेश</div><h2>Admin / Staff Login</h2><p class="muted small">केवल अधिकृत खाते से लॉगिन करें।</p><form id="loginForm"><div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required></div><div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div><div id="loginMsg" aria-live="polite"></div><div class="login-actions"><button class="gold" id="loginBtn" type="submit">Login करें</button><button class="outline" id="resetBtn" type="button">Password reset</button></div></form><div class="notice">खाता नहीं है? Admin से Firebase में Worker प्रोफ़ाइल बनवाएँ।</div></aside></section>
+<aside class="login-card" id="loginPanel"><div class="eyebrow">सुरक्षित प्रवेश</div><h2>Admin / Staff Login</h2><p class="muted small">केवल अधिकृत खाते से लॉगिन करें।</p><form id="loginForm"><div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required></div><div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div><div id="loginMsg" aria-live="polite"></div><div class="login-actions"><button class="gold" id="loginBtn" type="submit">Login करें</button><button class="outline" id="resetBtn" type="button">Password reset</button></div></form><div class="notice" data-hi="केवल अधिकृत कर्मचारी लॉगिन कर सकते हैं।" data-en="Login is available to authorized staff only.">केवल अधिकृत कर्मचारी लॉगिन कर सकते हैं।</div></aside></section>
 <section class="wrap section" id="services"><div class="section-head"><div><div class="eyebrow">Our services</div><h2>हमारी सेवाएँ</h2><p class="muted">अपनी जरूरत बताइए—सेवा उपलब्धता और शुल्क केंद्र से पुष्टि करें।</p></div></div><div class="services">
-<article class="service"><div class="ico">▣</div><h3>ऑनलाइन फॉर्म</h3><p>ऑनलाइन आवेदन और फॉर्म भरने में सहायता।</p></article><article class="service"><div class="ico">▤</div><h3>प्रिंट और स्कैन</h3><p>दस्तावेज़ प्रिंट, स्कैन और डिजिटल कॉपी।</p></article><article class="service"><div class="ico">▧</div><h3>दस्तावेज़ सहायता</h3><p>आवेदन के लिए जरूरी दस्तावेज़ों की सूची में मदद।</p></article><article class="service"><div class="ico">₹</div><h3>बिल और रसीद</h3><p>सेवा शुल्क, भुगतान और बाकी रकम का रिकॉर्ड।</p></article><article class="service"><div class="ico">⌕</div><h3>आवेदन मार्गदर्शन</h3><p>उपलब्ध ऑनलाइन सेवाओं की प्रक्रिया समझने में सहायता।</p></article><article class="service"><div class="ico">◎</div><h3>ग्राहक सहायता</h3><p>सेवा और स्थिति की जानकारी के लिए संपर्क करें।</p></article><article class="service"><div class="ico">▣</div><h3>आधार सहायता</h3><p>उपलब्ध आधार-संबंधित सेवाओं की जानकारी और मार्गदर्शन।</p></article><article class="service"><div class="ico">₹</div><h3>PAN और प्रमाणपत्र</h3><p>PAN कार्ड और उपलब्ध प्रमाणपत्र सेवाओं के लिए सहायता।</p></article><article class="service"><div class="ico">↗</div><h3>टिकट बुकिंग</h3><p>उपलब्ध टिकट बुकिंग सेवाओं की जानकारी।</p></article><article class="service"><div class="ico">▤</div><h3>बैंकिंग सहायता</h3><p>केंद्र पर उपलब्ध बैंकिंग-संबंधित सहायता की जानकारी।</p></article><article class="service"><div class="ico">▧</div><h3>स्कूल ID कार्ड</h3><p>स्कूल ID कार्ड सेवा की जानकारी के लिए संपर्क करें; यहाँ कोई ID कार्ड नमूना नहीं दिखाया जाता।</p></article></div></section>
-<section class="wrap section" id="contact"><div class="section-head"><div><div class="eyebrow">Get in touch</div><h2>केंद्र से संपर्क करें</h2></div></div><div class="contact-grid"><div class="contact-card"><h3>संपर्क विवरण</h3><div class="contact-row"><span>केंद्र संपर्क</span><b>Rajkumar Maurya</b></div><div class="contact-row"><span>फोन</span><a href="tel:9076855003">9076855003</a> · <a href="tel:6392526277">6392526277</a></div><div class="contact-row"><span>Email</span><a href="mailto:rajkumarmaurya7398@gmail.com">rajkumarmaurya7398@gmail.com</a></div><div class="contact-row"><span>पता</span>Hamjapur Patahan, Kadipur, Sultanpur, Uttar Pradesh — 228145</div><div class="actions"><a href="https://wa.me/919076855003" target="_blank" rel="noopener"><button class="gold">WhatsApp करें</button></a></div></div><div class="contact-card"><div class="eyebrow">Customer care</div><h3>अपनी जरूरत बताइए</h3><p class="muted">किस सेवा की जानकारी चाहिए? नीचे लिखकर WhatsApp पर भेजें।</p><div class="field"><label for="serviceChoice">सेवा चुनें</label><select id="serviceChoice"><option>ऑनलाइन फॉर्म</option><option>प्रिंट और स्कैन</option><option>दस्तावेज़ सहायता</option><option>बिल और रसीद</option><option>आवेदन मार्गदर्शन</option><option>अन्य</option></select></div><div class="field"><label for="serviceQuestion">आपका सवाल</label><textarea id="serviceQuestion" rows="3" maxlength="250" placeholder="अपनी जरूरत लिखें"></textarea></div><button class="gold" id="sendService">WhatsApp पर भेजें</button></div></div></section></main>
+<article class="service"><div class="ico" aria-hidden="true">📝</div><h3 data-hi="ऑनलाइन फॉर्म" data-en="Online Forms">ऑनलाइन फॉर्म</h3><div class="service-en" aria-hidden="true">Online Forms</div><p data-hi="ऑनलाइन आवेदन और फॉर्म भरने में सहायता।" data-en="Help with online forms and applications.">ऑनलाइन आवेदन और फॉर्म भरने में सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🖨️</div><h3 data-hi="प्रिंट और स्कैन" data-en="Print & Scan">प्रिंट और स्कैन</h3><div class="service-en" aria-hidden="true">Print & Scan</div><p data-hi="दस्तावेज़ प्रिंट, स्कैन और डिजिटल कॉपी।" data-en="Print, scan and digitize documents.">दस्तावेज़ प्रिंट, स्कैन और डिजिटल कॉपी।</p></article><article class="service"><div class="ico" aria-hidden="true">📄</div><h3 data-hi="दस्तावेज़ सहायता" data-en="Document Help">दस्तावेज़ सहायता</h3><div class="service-en" aria-hidden="true">Document Help</div><p data-hi="आवेदन के लिए जरूरी दस्तावेज़ों की सूची में मदद।" data-en="Guidance on documents needed for applications.">आवेदन के लिए जरूरी दस्तावेज़ों की सूची में मदद।</p></article><article class="service"><div class="ico" aria-hidden="true">🧾</div><h3 data-hi="बिल और रसीद" data-en="Bills & Receipts">बिल और रसीद</h3><div class="service-en" aria-hidden="true">Bills & Receipts</div><p data-hi="सेवा शुल्क, भुगतान और बाकी रकम का रिकॉर्ड।" data-en="Track service charges, payments and balances.">सेवा शुल्क, भुगतान और बाकी रकम का रिकॉर्ड।</p></article><article class="service"><div class="ico" aria-hidden="true">🔎</div><h3 data-hi="आवेदन मार्गदर्शन" data-en="Application Help">आवेदन मार्गदर्शन</h3><div class="service-en" aria-hidden="true">Application Help</div><p data-hi="उपलब्ध ऑनलाइन सेवाओं की प्रक्रिया समझने में सहायता।" data-en="Guidance on available online service procedures.">उपलब्ध ऑनलाइन सेवाओं की प्रक्रिया समझने में सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🤝</div><h3 data-hi="ग्राहक सहायता" data-en="Customer Support">ग्राहक सहायता</h3><div class="service-en" aria-hidden="true">Customer Support</div><p data-hi="सेवा और स्थिति की जानकारी के लिए संपर्क करें।" data-en="Contact us for service information and updates.">सेवा और स्थिति की जानकारी के लिए संपर्क करें।</p></article><article class="service"><div class="ico" aria-hidden="true">🪪</div><h3 data-hi="आधार सहायता" data-en="Aadhaar Help">आधार सहायता</h3><div class="service-en" aria-hidden="true">Aadhaar Help</div><p data-hi="उपलब्ध आधार-संबंधित सेवाओं की जानकारी और मार्गदर्शन।" data-en="Information about available Aadhaar services.">उपलब्ध आधार-संबंधित सेवाओं की जानकारी और मार्गदर्शन।</p></article><article class="service"><div class="ico" aria-hidden="true">📑</div><h3 data-hi="PAN और प्रमाणपत्र" data-en="PAN & Certificates">PAN और प्रमाणपत्र</h3><div class="service-en" aria-hidden="true">PAN & Certificates</div><p data-hi="PAN कार्ड और उपलब्ध प्रमाणपत्र सेवाओं के लिए सहायता।" data-en="Help with PAN cards and certificate services.">PAN कार्ड और उपलब्ध प्रमाणपत्र सेवाओं के लिए सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🎫</div><h3 data-hi="टिकट बुकिंग" data-en="Ticket Booking">टिकट बुकिंग</h3><div class="service-en" aria-hidden="true">Ticket Booking</div><p data-hi="उपलब्ध टिकट बुकिंग सेवाओं की जानकारी।" data-en="Information about available ticket-booking services.">उपलब्ध टिकट बुकिंग सेवाओं की जानकारी।</p></article><article class="service"><div class="ico" aria-hidden="true">🎓</div><h3 data-hi="स्कूल ID कार्ड" data-en="School ID Card">स्कूल ID कार्ड</h3><div class="service-en" aria-hidden="true">School ID Card</div><p data-hi="स्कूल ID कार्ड सेवा की जानकारी के लिए संपर्क करें।" data-en="Contact us for school ID card service information.">स्कूल ID कार्ड सेवा की जानकारी के लिए संपर्क करें।</p></article></div></section>
+<section class="wrap section" id="contact"><div class="section-head"><div><div class="eyebrow">Get in touch</div><h2>केंद्र से संपर्क करें</h2></div></div><div class="contact-grid"><div class="contact-card"><h3>संपर्क विवरण</h3><div class="contact-row"><span>केंद्र संपर्क</span><b>Rajkumar Maurya</b></div><div class="contact-row"><span>फोन</span><a href="tel:9076855003">9076855003</a> · <a href="tel:6392526277">6392526277</a></div><div class="contact-row"><span>Email</span><a href="mailto:mauryarajkumar7398@gmail.com">mauryarajkumar7398@gmail.com</a></div><div class="contact-row"><span>पता</span>Hamjapur Patahan, Kadipur, Sultanpur, Uttar Pradesh — 228145</div><div class="actions"><a href="https://wa.me/919076855003" target="_blank" rel="noopener"><button class="gold">WhatsApp करें</button></a></div></div><div class="contact-card"><div class="eyebrow">Customer care</div><h3>अपनी जरूरत बताइए</h3><p class="muted">किस सेवा की जानकारी चाहिए? नीचे लिखकर WhatsApp पर भेजें।</p><div class="field"><label for="serviceChoice">सेवा चुनें</label><select id="serviceChoice"><option>ऑनलाइन फॉर्म</option><option>प्रिंट और स्कैन</option><option>दस्तावेज़ सहायता</option><option>बिल और रसीद</option><option>आवेदन मार्गदर्शन</option><option>अन्य</option></select></div><div class="field"><label for="serviceQuestion">आपका सवाल</label><textarea id="serviceQuestion" rows="3" maxlength="250" placeholder="अपनी जरूरत लिखें"></textarea></div><button class="gold" id="sendService">WhatsApp पर भेजें</button></div></div></section></main>
 <section class="wrap app-shell hidden" id="appShell"><aside class="sidebar"><div class="user-mini"><img id="sidePhoto" class="avatar" alt="Profile photo" src="" onerror="this.style.display='none';document.getElementById('sideInitial').style.display='grid'"><div id="sideInitial" class="avatar" style="display:none">MJ</div><div style="min-width:0"><b id="sideName">User</b><div id="sideRole" class="muted small">ADMIN</div></div></div><div class="menu-label">WORKSPACE</div><div class="menu"><button class="active" data-page="dashboard">▦ Dashboard</button><button data-page="billing">▤ नया बिल</button><button data-page="bills">▣ बिल रिकॉर्ड</button><button data-page="customers">⌕ ग्राहक / बिल खोजें</button><button data-page="expenses">₹ खर्च दर्ज करें</button><button data-page="workers" id="workersMenu">♙ Worker जोड़ें</button></div><div class="menu-label">ACCOUNT</div><div class="menu"><button data-page="profile">◉ Profile</button><button data-page="settings">⚙ Settings</button><button class="logout" id="logoutBtn">↪ Logout</button></div></aside>
-<div class="workspace"><div class="page-head"><div><div class="eyebrow">Private workspace</div><h1 id="pageTitle">Dashboard</h1><div class="muted small" id="welcomeName"></div></div><button class="outline no-print" id="publicBtn">Home Page</button></div><div id="appMsg" aria-live="polite"></div>
+<div class="workspace"><div class="page-head"><div><div class="eyebrow">Private workspace</div><h1 id="pageTitle">Dashboard</h1><div class="muted small" id="welcomeName"></div></div><div class="row"><button type="button" class="language-toggle" id="appLanguageToggle">हिंदी | English</button><button class="outline no-print" id="publicBtn">Home Page</button></div></div><div id="appMsg" aria-live="polite"></div>
 <div class="stats" id="dashboardStats"><div class="stat"><span>कुल बिल</span><strong id="statBills">0</strong></div><div class="stat"><span>कुल बिल रकम</span><strong id="statTotal">₹0</strong></div><div class="stat"><span>प्राप्त भुगतान</span><strong id="statPaid">₹0</strong></div><div class="stat"><span>ग्राहकों से बाकी</span><strong id="statDue">₹0</strong></div><div class="stat"><span>इस महीने प्राप्त</span><strong id="monthPaid">₹0</strong></div><div class="stat"><span>इस महीने खर्च</span><strong id="monthExpense">₹0</strong></div><div class="stat"><span>इस महीने शुद्ध</span><strong id="monthNet">₹0</strong></div><div class="stat"><span>आज प्राप्त</span><strong id="todayPaid">₹0</strong></div></div>
 <section class="page" id="page-dashboard"><div class="panel"><div class="section-head"><div><h2>आज का काम</h2><p class="muted small">ग्राहक का नया रिकॉर्ड बनाने के बजाय बिल बनाकर उसका हिसाब रखें।</p></div><button class="gold" data-go="billing">+ नया बिल</button></div><div class="split"><div class="result"><div class="eyebrow">QUICK ACTION</div><h3>ग्राहक का बिल जोड़ें</h3><p class="muted small">नाम या मोबाइल से ग्राहक खोजें, सेवा और रकम भरें, फिर रसीद प्रिंट/WhatsApp करें।</p><button class="gold" data-go="billing">बिल बनाएँ</button></div><div class="result"><div class="eyebrow">PAYMENT TRACKING</div><h3>बाकी भुगतान</h3><p class="muted small">कुल, जमा और बाकी रकम की जाँच करें और भुगतान इतिहास रखें।</p><button class="secondary" data-go="bills">बिल रिकॉर्ड देखें</button></div></div></div><div class="panel"><h2>हाल के बिल</h2><div id="recentBills" class="muted small">लॉगिन के बाद बिल रिकॉर्ड लोड होंगे।</div></div>
 <div class="panel"><div class="section-head"><div><h2>बिल · भुगतान · खर्च</h2><p class="muted small">सभी गतिविधियाँ तारीख और भारतीय समय (IST) के अनुसार।</p></div><div class="field"><label for="activityDateFilter">तारीख से फ़िल्टर</label><input id="activityDateFilter" type="date"></div></div>
@@ -26,7 +257,7 @@
 <section class="page hidden" id="page-bills"><div class="panel"><div class="section-head"><div><h2>बिल रिकॉर्ड</h2><p class="muted small">नए बिल और भुगतान का इतिहास।</p></div><button class="secondary" id="refreshBills">Refresh</button></div><div class="field"><input class="search-input" id="billsFilter" placeholder="बिल ID, ग्राहक नाम या मोबाइल से खोजें"></div><div class="table-wrap"><table><thead><tr><th>बिल ID</th><th>ग्राहक</th><th>कुल</th><th>जमा</th><th>बाकी</th><th>कार्रवाई</th></tr></thead><tbody id="billsRows"><tr><td colspan="6">लोड हो रहा है…</td></tr></tbody></table></div></div></section>
 <section class="page hidden" id="page-customers"><div class="panel"><h2>ग्राहक खोजें</h2><p class="muted small">ग्राहक का अलग रजिस्ट्रेशन नहीं होता। खोज पुराने बिलों से होती है; नया काम नया बिल बनाकर दर्ज करें।</p><div class="search-row"><input class="search-input" id="customerSearch" placeholder="Customer ID / नाम / मोबाइल"><button class="gold" id="customerSearchBtn">खोजें</button></div><div id="customerResults"></div></div></section>
 <section class="page hidden" id="page-expenses"><div class="panel"><h2>दुकान का खर्च दर्ज करें</h2><p class="muted small">जैसे इंटरनेट, स्टेशनरी, प्रिंटिंग, किराया या अन्य खर्च।</p><form id="expenseForm" class="formgrid"><div class="field"><label>खर्च का कारण *</label><input id="expenseTitle" maxlength="120" required placeholder="जैसे स्टेशनरी"></div><div class="field"><label>रकम (₹) *</label><input id="expenseAmount" type="number" min="0.01" step="0.01" required></div><div class="field"><label>तारीख *</label><input id="expenseDate" type="date" required></div><div class="field"><label>नोट</label><input id="expenseNote" maxlength="200"></div><div class="field full"><button class="gold" type="submit">खर्च सेव करें</button></div></form><div class="table-wrap"><table><thead><tr><th>तारीख</th><th>कारण</th><th>नोट</th><th>रकम</th></tr></thead><tbody id="expenseRows"></tbody></table></div></div></section><section class="page hidden" id="page-workers"><div class="panel"><h2>Worker अकाउंट जोड़ें</h2><p class="muted small">केवल Admin Worker बना सकता है। Worker को Admin अधिकार नहीं मिलेंगे। अस्थायी पासवर्ड Worker को सुरक्षित तरीके से दें।</p><form id="workerForm" class="formgrid"><div class="field"><label for="workerName">Worker का नाम *</label><input id="workerName" required maxlength="100"></div><div class="field"><label for="workerEmail">Worker Email *</label><input id="workerEmail" type="email" required></div><div class="field"><label for="workerPassword">अस्थायी पासवर्ड *</label><input id="workerPassword" type="password" minlength="6" required autocomplete="new-password"></div><div class="field"><label for="workerPhone">मोबाइल (वैकल्पिक)</label><input id="workerPhone" maxlength="15"></div><div class="field full"><button class="gold" id="workerCreateBtn" type="submit">Worker अकाउंट बनाएँ</button></div></form><div id="workerMsg"></div></div></section>
-<section class="page hidden" id="page-profile"><div class="panel"><h2>आपकी Profile</h2><div class="profile-top"><img class="profile-photo" id="profilePhoto" alt="Profile photo" src=""><div><b id="profileEmail"></b><div id="profileRole" class="muted small"></div><div class="field"><label for="photoFile">अपनी फोटो चुनें</label><input type="file" id="photoFile" accept="image/*"></div></div></div><form id="profileForm" class="formgrid"><div class="field"><label for="profileName">नाम</label><input id="profileName" required maxlength="100"></div><div class="field"><label>Email (बदलने के लिए Firebase Auth की अलग प्रक्रिया चाहिए)</label><input id="profileEmailRead" readonly></div><div class="field full"><button class="gold" type="submit">Profile सेव करें</button></div></form><p class="muted small">फोटो को इस ब्राउज़र में छोटा करके प्रोफ़ाइल में सेव किया जाएगा। फोटो का बैकअप अलग से रखें।</p></div></section>
+<section class="page hidden" id="page-profile"><div class="panel"><h2>आपकी Profile</h2><div class="profile-top"><img class="profile-photo" id="profilePhoto" alt="Profile photo" src=""><div><b id="profileEmail"></b><div id="profileRole" class="muted small"></div><div class="field"><label for="photoFile">अपनी फोटो चुनें</label><input type="file" id="photoFile" accept="image/*"></div></div></div><form id="profileForm" class="formgrid"><div class="field"><label for="profileName">नाम</label><input id="profileName" required maxlength="100"></div><div class="field"><label for="profilePhone">मोबाइल नंबर</label><input id="profilePhone" type="tel" inputmode="tel" maxlength="15" placeholder="अपना मोबाइल नंबर"></div><div class="field"><label>Email (बदलने के लिए Firebase Auth की अलग प्रक्रिया चाहिए)</label><input id="profileEmailRead" readonly></div><div class="field full"><button class="gold" type="submit">Profile सेव करें</button></div></form><p class="muted small">फोटो को इस ब्राउज़र में छोटा करके प्रोफ़ाइल में सेव किया जाएगा। फोटो का बैकअप अलग से रखें।</p></div></section>
 <section class="page hidden" id="page-settings"><div class="panel"><h2>Settings</h2><p class="muted small">पासवर्ड बदलने के लिए Firebase सुरक्षित Password Reset Email भेजेगा।</p><div class="result"><b id="settingsEmail"></b><p class="muted small">Email inbox में दिए गए निर्देशों से नया पासवर्ड सेट करें।</p><button class="gold" id="settingsReset">Password reset email भेजें</button></div><div class="result"><h3>सुरक्षा</h3><p class="muted small">पासवर्ड किसी के साथ साझा न करें। काम पूरा होने पर Logout करें।</p><button class="danger" id="settingsLogout">Logout</button></div></div></section>
 <section class="page hidden" id="page-receipt"><div class="panel no-print"><div class="row"><button class="secondary" data-go="bills">← बिल रिकॉर्ड</button><button class="gold" id="printReceipt">Print / PDF</button><button class="secondary" id="shareReceipt">WhatsApp शेयर</button></div></div><div id="receiptContent"></div></section>
 </div></section>
@@ -39,19 +270,19 @@ const cfg={apiKey:'AIzaSyARVksls_K3TwXGIBcltzcUYbwgh3_dhYc',authDomain:'maurya-j
 const app=getApps().find(a=>a.name==='[DEFAULT]')||initializeApp(cfg),auth=getAuth(app),db=getFirestore(app),$=id=>document.getElementById(id),money=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:2}).format(Number(n||0)),escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let user=null,profile=null,bills=[],customers=[],chosenCustomer=null,receiptData=null,photoData='',expenses=[];$('year').textContent=new Date().getFullYear();$('billDate').value=new Date().toLocaleDateString('en-CA');$('expenseDate').value=new Date().toLocaleDateString('en-CA');
 function msg(id,t,ok=false){$(id).innerHTML=t?`<div class="msg ${ok?'ok':''}">${escapeHtml(t)}</div>`:''}function toast(t){$('toast').textContent=t;$('toast').classList.remove('hidden');setTimeout(()=> $('toast').classList.add('hidden'),3500)}function staff(){return !!profile&&profile.status==='active'&&['admin','worker'].includes(profile.role)}function admin(){return !!profile&&profile.status==='active'&&profile.role==='admin'}
-function setPublic(){ $('publicSite').classList.remove('hidden');$('appShell').classList.add('hidden');$('footer').classList.remove('hidden');window.scrollTo(0,0)}function setApp(){ $('publicSite').classList.add('hidden');$('appShell').classList.remove('hidden');$('footer').classList.add('hidden');showPage('dashboard');}
+function setPublic(){ $('publicSite').classList.remove('hidden');$('appShell').classList.add('hidden');$('footer').classList.remove('hidden');$('openLogin').classList.remove('hidden');window.scrollTo(0,0)}function setApp(){ $('publicSite').classList.add('hidden');$('appShell').classList.remove('hidden');$('footer').classList.add('hidden');$('openLogin').classList.add('hidden');showPage('dashboard');}
 function showPage(page){if(page==='workers'&&!admin())page='dashboard';document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));$('page-'+page)?.classList.remove('hidden');document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const titles={dashboard:'Dashboard',billing:'नया बिल',bills:'बिल रिकॉर्ड',customers:'ग्राहक खोजें',workers:'Worker जोड़ें',profile:'Profile',settings:'Settings',expenses:'दुकान का खर्च',receipt:'बिल / रसीद'};$('pageTitle').textContent=titles[page]||'Dashboard';if(page==='bills')loadBills();if(page==='dashboard')loadBills(true);if(page==='expenses')loadExpenses();window.scrollTo(0,0)}
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>showPage(b.dataset.page));document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>showPage(b.dataset.go));$('openLogin').onclick=()=>{$('email').focus();$('loginPanel').scrollIntoView({behavior:'smooth',block:'center'})};$('publicBtn').onclick=setPublic;$('brandHome').onclick=()=>{if(user&&profile){setApp();showPage('dashboard')}else setPublic()};
-$('loginForm').onsubmit=async e=>{e.preventDefault();$('loginBtn').disabled=true;msg('loginMsg','');try{await signInWithEmailAndPassword(auth,$('email').value.trim(),$('password').value)}catch(err){msg('loginMsg',err.code==='auth/invalid-credential'?'Email या password जाँचें।':err.message)}finally{$('loginBtn').disabled=false}};
-$('resetBtn').onclick=async()=>{const email=$('email').value.trim();if(!email)return msg('loginMsg','पहले Email लिखें।');try{await sendPasswordResetEmail(auth,email);msg('loginMsg','Password reset email भेजा गया। Inbox और Spam देखें।',true)}catch(e){msg('loginMsg',e.message)}};
-onAuthStateChanged(auth,async u=>{user=u;profile=null;if(!u){setPublic();return}try{const s=await getDoc(doc(db,'users',u.uid));if(!s.exists()||s.data().status!=='active'||!['admin','worker'].includes(s.data().role)){await signOut(auth);msg('loginMsg','Active Admin/Worker profile नहीं मिला। Admin से संपर्क करें।');return}profile={...s.data(),uid:u.uid,email:u.email||''};$('sideName').textContent=profile.name||u.email;$('sideRole').textContent=profile.role.toUpperCase();$('welcomeName').textContent=`स्वागत है, ${profile.name||u.email}`;$('sideInitial').textContent=(profile.name||'MJ').slice(0,2).toUpperCase();$('workersMenu').classList.toggle('hidden',!admin());$('profileName').value=profile.name||'';$('profileEmail').textContent=u.email;$('profileEmailRead').value=u.email;$('profileRole').textContent=`${profile.role.toUpperCase()} · ${profile.status}`;$('settingsEmail').textContent=u.email;photoData=profile.photoData||'';setPhoto(photoData);setApp();await loadBills(true)}catch(e){await signOut(auth);setPublic();msg('loginMsg','Profile पढ़ने में समस्या: '+e.message)}});
+$('loginForm').onsubmit=async e=>{e.preventDefault();$('loginBtn').disabled=true;msg('loginMsg','');try{await signInWithEmailAndPassword(auth,$('email').value.trim(),$('password').value)}catch(err){let m='अभी Login नहीं हो पाया। कृपया दोबारा कोशिश करें।';if(['auth/invalid-credential','auth/wrong-password','auth/user-not-found','auth/invalid-email'].includes(err.code))m=window.mjkLang==='en'?'Check your email and password.':'Email या Password जाँचें।';else if(err.code==='auth/network-request-failed')m=window.mjkLang==='en'?'Check your internet connection and try again.':'इंटरनेट कनेक्शन जाँचकर दोबारा कोशिश करें।';msg('loginMsg',m)}finally{$('loginBtn').disabled=false}};
+$('resetBtn').onclick=async()=>{const email=$('email').value.trim();if(!email)return msg('loginMsg',window.mjkLang==='en'?'Enter your email first.':'पहले Email लिखें।');try{await sendPasswordResetEmail(auth,email);msg('loginMsg',window.mjkLang==='en'?'Password reset email sent. Check Inbox and Spam.':'Password reset email भेजा गया। Inbox और Spam देखें।',true)}catch(e){msg('loginMsg',window.mjkLang==='en'?'Could not send the reset email. Check the email and try again.':'Reset email नहीं भेजा जा सका। Email जाँचकर दोबारा कोशिश करें।')}};
+onAuthStateChanged(auth,async u=>{user=u;profile=null;if(!u){setPublic();return}try{const s=await getDoc(doc(db,'users',u.uid));if(!s.exists()||s.data().status!=='active'||!['admin','worker'].includes(s.data().role)){await signOut(auth);msg('loginMsg','Active Admin/Worker profile नहीं मिला। Admin से संपर्क करें।');return}profile={...s.data(),uid:u.uid,email:u.email||''};$('sideName').textContent=profile.name||u.email;$('sideRole').textContent=profile.role.toUpperCase();$('welcomeName').textContent=`स्वागत है, ${profile.name||u.email}`;$('sideInitial').textContent=(profile.name||'MJ').slice(0,2).toUpperCase();$('workersMenu').classList.toggle('hidden',!admin());$('profileName').value=profile.name||'';$('profilePhone').value=profile.phone||'';$('profileEmail').textContent=u.email;$('profileEmailRead').value=u.email;$('profileRole').textContent=`${profile.role.toUpperCase()} · ${profile.status}`;$('settingsEmail').textContent=u.email;photoData=profile.photoData||'';setPhoto(photoData);setApp();await loadBills(true)}catch(e){await signOut(auth);setPublic();msg('loginMsg','Profile पढ़ने में समस्या: '+e.message)}});
 function setPhoto(src){$('profilePhoto').src=src||'';$('sidePhoto').src=src||'';$('sidePhoto').style.display=src?'block':'none';$('sideInitial').style.display=src?'none':'grid'}
 $('photoFile').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;if(!f.type.startsWith('image/'))return toast('Image file चुनें।');if(f.size>5*1024*1024)return toast('फोटो 5 MB से छोटी होनी चाहिए।');try{photoData=await new Promise((resolve,reject)=>{const img=new Image(),url=URL.createObjectURL(f);img.onload=()=>{const c=document.createElement('canvas'),scale=Math.min(1,360/Math.max(img.width,img.height));c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);resolve(c.toDataURL('image/jpeg',.72))};img.onerror=reject;img.src=url});setPhoto(photoData)}catch{toast('फोटो पढ़ नहीं पाए।')}};
-$('profileForm').onsubmit=async e=>{e.preventDefault();if(!user||!profile)return;try{const name=$('profileName').value.trim();if(!name)throw Error('नाम लिखें।');await setDoc(doc(db,'users',user.uid),{name,photoData,updatedAt:serverTimestamp()},{merge:true});profile.name=name;profile.photoData=photoData;$('sideName').textContent=name;$('welcomeName').textContent=`स्वागत है, ${name}`;toast('Profile सेव हो गई।')}catch(e){toast('Profile सेव नहीं हुई: '+e.message)}};
+$('profileForm').onsubmit=async e=>{e.preventDefault();if(!user||!profile)return;try{const name=$('profileName').value.trim(),phone=$( 'profilePhone').value.trim();if(!name)throw Error('नाम लिखें।');if(phone && !/^[0-9+() -]{7,15}$/.test(phone))throw Error('मोबाइल नंबर सही लिखें।');await setDoc(doc(db,'users',user.uid),{name,phone,photoData,updatedAt:serverTimestamp()},{merge:true});profile.name=name;profile.phone=phone;profile.photoData=photoData;$('sideName').textContent=name;$('welcomeName').textContent=`स्वागत है, ${name}`;toast('Profile सेव हो गई।')}catch(e){toast('Profile सेव नहीं हुई: '+e.message)}};
 async function searchCustomers(term,target){if(!staff())return;term=term.trim().toLowerCase();if(!term){$(target).innerHTML='';return}try{if(!bills.length)await loadBills();const found=bills.filter(b=>[b.invoiceId,b.customerName,b.phone,b.customerId].some(v=>String(v||'').toLowerCase().includes(term)));$(target).innerHTML='';const unique=new Map();found.forEach(b=>{const key=(String(b.phone||'').replace(/\D/g,'')||String(b.customerName||'').toLowerCase());if(!unique.has(key))unique.set(key,b)});if(!unique.size){$(target).innerHTML='<div class="result">पुराना रिकॉर्ड नहीं मिला। नीचे नाम और मोबाइल भरकर नया बिल बना सकते हैं।</div>';return}for(const b of unique.values()){const d=document.createElement('div');d.className='result';d.innerHTML=`<b>${escapeHtml(b.customerName||'')} · ${escapeHtml(b.phone||'')}</b><p class="muted small">पुराना बिल ${escapeHtml(b.invoiceId||b.id)} · कुल ${money(b.total)} · बाकी ${money(b.due)}</p><button class="gold">इसी ग्राहक का नया बिल</button> <button class="secondary">पुराना बिल देखें</button>`;const buttons=d.querySelectorAll('button');buttons[0].onclick=()=>{$('billCustomerName').value=b.customerName||'';$('billPhone').value=b.phone||'';$('billWorkNote').value='';$('billForm').scrollIntoView({behavior:'smooth',block:'center'});$('billService').focus()};buttons[1].onclick=()=>{receiptData=b;renderReceipt(b);showPage('receipt')};$(target).append(d)}}catch(e){$(target).innerHTML=`<div class="msg">खोज नहीं हो सकी: ${escapeHtml(e.message)}</div>`}}
 $('billSearchBtn').onclick=()=>searchCustomers($('billSearch').value,'billCustomerResults');$('billSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();searchCustomers($('billSearch').value,'billCustomerResults')}});$('customerSearchBtn').onclick=()=>searchCustomers($('customerSearch').value,'customerResults');
 $('billTotal').oninput=$('billPaid').oninput=()=>{$('billDuePreview').value=Math.max(0,(Number($('billTotal').value)||0)-(Number($('billPaid').value)||0)).toFixed(2)};
-$('billForm').onsubmit=async e=>{e.preventDefault();if(!staff())return;const customerName=$('billCustomerName').value.trim(),phone=$('billPhone').value.trim(),total=Number($('billTotal').value),paid=Number($('billPaid').value);if(!customerName||!phone)return toast('ग्राहक का नाम और मोबाइल भरें।');if(!(total>0)||paid<0||paid>total)return toast('रकम जाँचें: जमा रकम कुल से अधिक नहीं हो सकती।');const invoiceId='MJK-BILL-'+Date.now().toString().slice(-9),service=$('billService').value.trim(),due=Number((total-paid).toFixed(2)),now=new Date().toISOString();try{const ref=await addDoc(collection(db,'bills'),{invoiceId,customerDocId:'',customerUid:null,customerId:invoiceId,customerName,phone,address:'',service,workNote:$('billWorkNote').value.trim(),workStatus:$('billStatus').value,billDate:$('billDate').value,dueDate:$('billDueDate').value||'',paymentMode:$('billMode').value,total,paid,due,payments:paid?[{amount:paid,at:now,by:user.uid,mode:$('billMode').value}]:[],createdByUid:user.uid,createdByEmail:user.email,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});receiptData={id:ref.id,invoiceId,customerId:invoiceId,customerName,phone,service,workNote:$('billWorkNote').value.trim(),workStatus:$('billStatus').value,billDate:$('billDate').value,total,paid,due,payments:paid?[{amount:paid,at:now}]:[]};renderReceipt(receiptData);$('billForm').reset();$('billDate').value=new Date().toLocaleDateString('en-CA');$('billPaid').value='0';$('billDuePreview').value='0';await loadBills(true);showPage('receipt');toast('बिल सेव हो गया।')}catch(err){toast('बिल सेव नहीं हुआ: '+err.message)}};
+$('billForm').onsubmit=async e=>{e.preventDefault();if(!staff())return;const customerName=$('billCustomerName').value.trim(),phone=$('billPhone').value.trim(),total=Number($('billTotal').value),paid=Number($('billPaid').value);if(!customerName||!phone)return toast('ग्राहक का नाम और मोबाइल भरें।');if(!(total>0)||paid<0||paid>total)return toast('रकम जाँचें: जमा रकम कुल से अधिक नहीं हो सकती।');const invoiceId='MJK-BILL-'+Date.now().toString().slice(-9),service=$('billService').value.trim(),due=Number((total-paid).toFixed(2)),now=new Date().toISOString();try{const ref=await addDoc(collection(db,'bills'),{invoiceId,customerDocId:'',customerUid:null,customerId:invoiceId,customerName,phone,address:'',service,workNote:$('billWorkNote').value.trim(),workStatus:$('billStatus').value,billDate:$('billDate').value,dueDate:$('billDueDate').value||'',paymentMode:$('billMode').value,total,paid,due,payments:paid?[{amount:paid,at:now,by:user.uid,mode:$('billMode').value}]:[],createdByUid:user.uid,createdByEmail:user.email,createdByName:profile.name||user.email||'Staff',createdByPhone:profile.phone||'',createdAt:serverTimestamp(),updatedAt:serverTimestamp()});receiptData={id:ref.id,invoiceId,customerId:invoiceId,customerName,phone,service,createdByName:profile.name||user.email||'Staff',createdByEmail:user.email||'',createdByPhone:profile.phone||'',workNote:$('billWorkNote').value.trim(),workStatus:$('billStatus').value,billDate:$('billDate').value,total,paid,due,payments:paid?[{amount:paid,at:now}]:[]};renderReceipt(receiptData);$('billForm').reset();$('billDate').value=new Date().toLocaleDateString('en-CA');$('billPaid').value='0';$('billDuePreview').value='0';await loadBills(true);showPage('receipt');toast('बिल सेव हो गया।')}catch(err){toast('बिल सेव नहीं हुआ: '+err.message)}};
 
 function activityDateTime(value){
  if(!value)return null;
@@ -108,11 +339,71 @@ async function recordPayment(id){const b=bills.find(x=>x.id===id);if(!b||Number(
 async function loadExpenses(){if(!staff())return;try{const snap=await getDocs(query(collection(db,'expenses'),orderBy('createdAt','desc'),limit(300)));expenses=snap.docs.map(d=>({id:d.id,...d.data()}));$('expenseRows').innerHTML=expenses.map(x=>`<tr><td>${escapeHtml(x.date||'')}</td><td>${escapeHtml(x.title||'')}</td><td>${escapeHtml(x.note||'')}</td><td>${money(x.amount)}</td></tr>`).join('')||'<tr><td colspan="4">अभी कोई खर्च दर्ज नहीं है।</td></tr>'}catch(e){$('expenseRows').innerHTML=`<tr><td colspan="4">खर्च नहीं पढ़ पाए: ${escapeHtml(e.message)}</td></tr>`}}
 $('expenseForm').onsubmit=async e=>{e.preventDefault();if(!staff())return;const amount=Number($('expenseAmount').value);if(!(amount>0))return toast('खर्च की रकम सही लिखें।');try{await addDoc(collection(db,'expenses'),{title:$('expenseTitle').value.trim(),amount,date:$('expenseDate').value,note:$('expenseNote').value.trim(),createdByUid:user.uid,createdByEmail:user.email,createdAt:serverTimestamp()});$('expenseForm').reset();$('expenseDate').value=new Date().toLocaleDateString('en-CA');await loadExpenses();await loadBills(true);toast('खर्च सेव हो गया।')}catch(e){toast('खर्च सेव नहीं हुआ: '+e.message)}};
 function renderReceipt(b){
-const payments=(b.payments||[]).map(p=>`<tr><td>${escapeHtml(new Date(p.at||Date.now()).toLocaleString('hi-IN'))}</td><td>${money(p.amount)}</td></tr>`).join('');
-$('receiptContent').innerHTML=`<article class="receipt"><div style="display:flex;justify-content:space-between;gap:12px;align-items:start"><div><h2 style="margin:0">Maurya Jan Seva Kendra</h2><p class="muted">Hamjapur Patahan, Kadipur, Sultanpur, UP 228145<br>9076855003 · 6392526277</p></div><span class="stamp">PAID / RECEIPT</span></div><hr><p><b>बिल ID:</b> ${escapeHtml(b.invoiceId||b.id)}<br><b>ग्राहक:</b> ${escapeHtml(b.customerName)} (${escapeHtml(b.customerId||'')})<br><b>मोबाइल:</b> ${escapeHtml(b.phone||'')}<br><b>पता:</b> ${escapeHtml(b.address||'—')}<br><b>दिनांक:</b> ${escapeHtml(b.billDate||new Date().toLocaleDateString('hi-IN'))}<br><b>काम की स्थिति:</b> ${escapeHtml(b.workStatus||'—')}<br><b>काम का नोट:</b> ${escapeHtml(b.workNote||'—')}</p><table><thead><tr><th>सेवा</th><th>कुल रकम</th><th>जमा</th><th>बाकी</th></tr></thead><tbody><tr><td>${escapeHtml(b.service||'सेवा')}</td><td>${money(b.total)}</td><td>${money(b.paid)}</td><td>${money(b.due)}</td></tr></tbody></table><h3>भुगतान इतिहास</h3><table><thead><tr><th>दिनांक</th><th>जमा रकम</th></tr></thead><tbody>${payments||'<tr><td colspan="2">अभी भुगतान दर्ज नहीं है।</td></tr>'}</tbody></table><p style="margin-top:30px;text-align:right"><span class="stamp">Maurya Jan Seva Kendra</span></p><p class="muted small">यह सेवा केंद्र की रसीद है। किसी सरकारी शुल्क/आवेदन की स्वीकृति का प्रमाण नहीं।</p></article>`;
+const payments=(b.payments||[]).map(p=>{
+  const raw=p.at;
+  let when='समय उपलब्ध नहीं';
+  if(raw){
+    const d=new Date(raw);
+    if(!Number.isNaN(d.getTime())) when=d.toLocaleString('hi-IN');
+  }
+  return `<tr><td>${escapeHtml(when)}</td><td>${money(p.amount)}</td></tr>`;
+}).join('');
+const due=Number(b.due)||0;
+const status=due<=0?'पूरा भुगतान':'आंशिक भुगतान / बकाया';
+const billDate=b.billDate||'उपलब्ध नहीं';
+$('receiptContent').innerHTML=`<article class="receipt" style="max-width:760px;margin:12px auto;padding:22px;background:#fff;color:#182b49;border:1px solid #d8e3f2;border-top:6px solid #244b85;border-radius:14px;box-shadow:0 8px 28px #152b4912">
+<header style="display:grid;grid-template-columns:76px 1fr auto;gap:14px;align-items:center">
+<div style="width:72px;height:72px;border-radius:12px;background:#eef4ff;display:grid;place-items:center;overflow:hidden">
+<img src="assets/mjk-logo.jpg" alt="Maurya Jan Seva Kendra logo" style="width:100%;height:100%;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<strong style="display:none;color:#244b85;text-align:center">MJK</strong>
+</div>
+<div><h2 style="margin:0;color:#244b85;font-size:clamp(18px,3vw,25px)">Maurya Jan Seva Kendra</h2>
+<p style="margin:6px 0;color:#53647d;font-size:13px">Hamjapur Patahan, Kadipur, Sultanpur, UP 228145<br>9076855003 · 6392526277</p></div>
+<div style="text-align:right;font-size:12px;overflow-wrap:anywhere"><strong>रसीद / RECEIPT</strong><br><span>${escapeHtml(status)}</span><br><span>बिल ID: ${escapeHtml(b.invoiceId||b.id||'—')}</span></div>
+</header>
+<hr style="border:0;border-top:1px solid #d8e3f2;margin:18px 0">
+<h3 style="color:#244b85;margin:0 0 10px">बिल बनाने वाले का विवरण / Bill Created By</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-bottom:18px"><div style="background:#f3f7fd;padding:12px;border-radius:9px"><b>कर्मचारी का नाम</b><br>${escapeHtml(b.createdByName||b.createdByEmail||'—')}</div><div style="background:#f3f7fd;padding:12px;border-radius:9px"><b>कर्मचारी मोबाइल</b><br>${escapeHtml(b.createdByPhone||'—')}</div></div>
+<h3 style="color:#244b85;margin:0 0 10px">ग्राहक विवरण / Customer Details</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px">
+<div style="background:#f3f7fd;padding:12px;border-radius:9px"><b>ग्राहक</b><br>${escapeHtml(b.customerName||'—')}</div>
+<div style="background:#f3f7fd;padding:12px;border-radius:9px"><b>ग्राहक ID</b><br>${escapeHtml(b.customerId||'—')}</div>
+<div style="background:#f3f7fd;padding:12px;border-radius:9px"><b>मोबाइल</b><br>${escapeHtml(b.phone||'—')}</div>
+<div style="background:#f3f7fd;padding:12px;border-radius:9px"><b>दिनांक</b><br>${escapeHtml(billDate)}</div>
+</div>
+<p><b>पता:</b> ${escapeHtml(b.address||'—')}<br><b>काम की स्थिति:</b> ${escapeHtml(b.workStatus||'—')}<br><b>काम का नोट:</b> ${escapeHtml(b.workNote||'—')}</p>
+<h3 style="color:#244b85">सेवा और भुगतान / Service & Payment</h3>
+<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;min-width:300px"><thead><tr style="background:#eaf1fc"><th style="padding:10px;text-align:left">सेवा</th><th style="padding:10px;text-align:right">कुल रकम</th><th style="padding:10px;text-align:right">जमा</th><th style="padding:10px;text-align:right">बाकी</th></tr></thead><tbody><tr><td style="padding:10px;border-bottom:1px solid #d8e3f2">${escapeHtml(b.service||'सेवा')}</td><td style="padding:10px;text-align:right;border-bottom:1px solid #d8e3f2">${money(b.total)}</td><td style="padding:10px;text-align:right;border-bottom:1px solid #d8e3f2">${money(b.paid)}</td><td style="padding:10px;text-align:right;border-bottom:1px solid #d8e3f2;color:${due>0?'#b42332':'#18704e'};font-weight:700">${money(b.due)}</td></tr></tbody></table></div>
+<h3 style="color:#244b85;margin-top:22px">भुगतान इतिहास / Payment History</h3>
+<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;min-width:250px"><thead><tr style="background:#eaf1fc"><th style="padding:10px;text-align:left">दिनांक और समय</th><th style="padding:10px;text-align:right">जमा रकम</th></tr></thead><tbody>${payments||'<tr><td colspan="2" style="padding:12px">अभी भुगतान दर्ज नहीं है।</td></tr>'}</tbody></table></div>
+<div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-top:32px">
+<div style="text-align:center;border:2px solid #244b85;color:#244b85;border-radius:50%;width:104px;height:104px;display:flex;align-items:center;justify-content:center;transform:rotate(-8deg);font-weight:800;font-size:12px">MAURYA<br>JAN SEVA<br>KENDRA</div>
+<div style="min-width:170px;text-align:center;padding-top:34px;border-bottom:1px solid #53647d">अधिकृत हस्ताक्षर / Signature</div>
+</div>
+<p style="margin:24px 0 0;text-align:center;color:#244b85;font-weight:700">धन्यवाद! फिर सेवा का अवसर दें।</p>
+<p style="margin:5px 0 0;text-align:center;color:#53647d;font-size:12px">Thank you for choosing Maurya Jan Seva Kendra.</p>
+<p style="margin-top:14px;color:#6b7789;font-size:11px">यह सेवा केंद्र की रसीद है। किसी सरकारी शुल्क या आवेदन की स्वीकृति का प्रमाण नहीं है।</p>
+</article>`;
 }
 $('printReceipt').onclick=()=>window.print();$('shareReceipt').onclick=()=>{const b=receiptData;if(!b)return;const t=`Maurya Jan Seva Kendra\nबिल: ${b.invoiceId||b.id}\nग्राहक: ${b.customerName}\nसेवा: ${b.service}\nकुल: ${money(b.total)}\nजमा: ${money(b.paid)}\nबाकी: ${money(b.due)}`;window.open('https://wa.me/91'+String(b.phone||'').replace(/\D/g,'').slice(-10)+'?text='+encodeURIComponent(t),'_blank','noopener')};
 $('workerForm').onsubmit=async e=>{e.preventDefault();if(!admin())return toast('केवल Admin Worker बना सकता है।');const name=$('workerName').value.trim(),email=$('workerEmail').value.trim().toLowerCase(),password=$('workerPassword').value,phone=$('workerPhone').value.trim();if(password.length<6)return msg('workerMsg','पासवर्ड कम से कम 6 अक्षर का हो।');$('workerCreateBtn').disabled=true;let secondary=null;try{secondary=initializeApp(cfg,'worker-creation-'+Date.now());const secondaryAuth=getAuth(secondary);const cred=await createUserWithEmailAndPassword(secondaryAuth,email,password);await setDoc(doc(db,'users',cred.user.uid),{uid:cred.user.uid,name,email,phone,role:'worker',status:'active',createdByUid:user.uid,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});await signOut(secondaryAuth);await deleteApp(secondary);msg('workerMsg',`Worker बनाया गया: ${email}. अस्थायी पासवर्ड सुरक्षित तरीके से दें।` ,true);$('workerForm').reset()}catch(e){msg('workerMsg','Worker नहीं बना: '+e.message)}finally{$('workerCreateBtn').disabled=false}}
 $('settingsReset').onclick=async()=>{if(!user)return;try{await sendPasswordResetEmail(auth,user.email);toast('Password reset email भेजा गया। Inbox/Spam देखें।')}catch(e){toast('Email नहीं भेजा: '+e.message)}};$('settingsLogout').onclick=$('logoutBtn').onclick=async()=>{await signOut(auth);setPublic();toast('Logout हो गया।')};
 $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Kendra से मुझे इस सेवा की जानकारी चाहिए: ${$('serviceChoice').value}\nसवाल: ${$('serviceQuestion').value.trim()||'कृपया जानकारी दें।'}`;window.open('https://wa.me/919076855003?text='+encodeURIComponent(text),'_blank','noopener')};
-</script></body></html>
+</script><script>
+/* MJK_BILINGUAL_LANGUAGE_V1 */
+(function(){
+ const dict={"सेवाएँ":"Services","संपर्क":"Contact","आपकी अपनी डिजिटल सेवा केंद्र":"Your Local Digital Service Centre","हर ज़रूरी सेवा,":"Every essential service,","एक ही जगह।":"all in one place.","WhatsApp संपर्क":"Contact on WhatsApp","सेवाएँ देखें":"View Services","सुरक्षित प्रवेश":"Secure Login","केवल अधिकृत खाते से लॉगिन करें।":"Sign in only with an authorized account.","Login करें":"Login","Password reset":"Password reset","खाता नहीं है? Admin से Firebase में Worker प्रोफ़ाइल बनवाएँ।":"No account? Ask the Admin to create a Worker profile.","Our services":"Our Services","हमारी सेवाएँ":"Our Services","अपनी जरूरत बताइए—सेवा उपलब्धता और शुल्क केंद्र से पुष्टि करें।":"Tell us what you need. Confirm availability and fees with the centre.","केंद्र से संपर्क करें":"Contact the Centre","संपर्क विवरण":"Contact Details","केंद्र संपर्क":"Centre Contact","फोन":"Phone","पता":"Address","WhatsApp करें":"WhatsApp Us","Customer care":"Customer Care","अपनी जरूरत बताइए":"Tell Us What You Need","सेवा चुनें":"Choose a Service","आपका सवाल":"Your Question","अपनी जरूरत लिखें":"Describe what you need","WhatsApp पर भेजें":"Send on WhatsApp","नया बिल":"New Bill","बिल रिकॉर्ड":"Bill Records","ग्राहक / बिल खोजें":"Find Customer / Bill","खर्च दर्ज करें":"Record Expense","Worker जोड़ें":"Add Worker","Profile":"Profile","Settings":"Settings","Logout":"Logout","Private workspace":"Private Workspace","Home Page":"Home Page","कुल बिल":"Total Bills","कुल बिल रकम":"Total Bill Amount","प्राप्त भुगतान":"Payments Received","ग्राहकों से बाकी":"Customer Dues","इस महीने प्राप्त":"Received This Month","इस महीने खर्च":"Expenses This Month","इस महीने शुद्ध":"Net This Month","आज प्राप्त":"Received Today","आज का काम":"Today's Work","ग्राहक का बिल जोड़ें":"Add Customer Bill","बिल बनाएँ":"Create Bill","बाकी भुगतान":"Outstanding Payments","बिल रिकॉर्ड देखें":"View Bill Records","हाल के बिल":"Recent Bills","बिल · भुगतान · खर्च":"Bills · Payments · Expenses","तारीख से फ़िल्टर":"Filter by Date","आज की वसूली":"Collected Today","आज का खर्च":"Today's Expenses","गतिविधि":"Activity","विवरण":"Details","रकम":"Amount","नया बिल बनाएँ":"Create New Bill","खोजें":"Search","ग्राहक का नाम *":"Customer Name *","मोबाइल नंबर *":"Mobile Number *","क्या काम किया / सेवा *":"Work Done / Service *","काम की स्थिति":"Work Status","बाकी / Pending":"Pending","काम चल रहा है":"In Progress","काम पूरा":"Completed","काम का विवरण / नोट":"Work Details / Note","बिल की तारीख":"Bill Date","कुल रकम (₹) *":"Total Amount (₹) *","अभी जमा (₹)":"Paid Now (₹)","बाकी रकम (₹)":"Amount Due (₹)","भुगतान तरीका":"Payment Method","बिल सेव करें और रसीद बनाएँ":"Save Bill & Create Receipt","Cash":"Cash","UPI":"UPI","Bank transfer":"Bank Transfer","Other":"Other","Refresh":"Refresh","बिल ID":"Bill ID","ग्राहक":"Customer","कुल":"Total","जमा":"Paid","बाकी":"Due","कार्रवाई":"Actions","ग्राहक खोजें":"Find Customers","दुकान का खर्च दर्ज करें":"Record Shop Expenses","खर्च का कारण *":"Expense Reason *","तारीख *":"Date *","नोट":"Note","खर्च सेव करें":"Save Expense","Worker अकाउंट जोड़ें":"Add Worker Account","Worker का नाम *":"Worker Name *","Worker Email *":"Worker Email *","अस्थायी पासवर्ड *":"Temporary Password *","मोबाइल (वैकल्पिक)":"Phone (Optional)","Worker अकाउंट बनाएँ":"Create Worker Account","आपकी Profile":"Your Profile","अपनी फोटो चुनें":"Choose Your Photo","नाम":"Name","Profile सेव करें":"Save Profile","सुरक्षा":"Security","Password reset email भेजें":"Send Password Reset Email","← बिल रिकॉर्ड":"← Bill Records","Print / PDF":"Print / PDF","WhatsApp शेयर":"Share on WhatsApp","बिल बना":"Bill Created","भुगतान जमा":"Payment Received","खर्च दर्ज":"Expense Recorded","समय उपलब्ध नहीं":"Time unavailable","इसी ग्राहक का नया बिल":"New Bill for This Customer","पुराना बिल देखें":"View Previous Bill","बिल सेव हो गया।":"Bill saved.","बिल नहीं मिला":"Bill not found","भुगतान सेव हो गया।":"Payment saved.","बिल की जानकारी अपडेट हो गई।":"Bill details updated.","कोई बिल नहीं मिला।":"No bills found.","स्वागत है,":"Welcome,","सेवा और भुगतान / Service & Payment":"Service & Payment","ग्राहक विवरण / Customer Details":"Customer Details","भुगतान इतिहास / Payment History":"Payment History","बिल बनाने वाले का विवरण / Bill Created By":"Bill Created By","ऑनलाइन फॉर्म":"Online Forms","ऑनलाइन आवेदन और फॉर्म भरने में सहायता।":"Help with online forms and applications.","प्रिंट और स्कैन":"Print & Scan","दस्तावेज़ प्रिंट, स्कैन और डिजिटल कॉपी।":"Print, scan and digitize documents.","दस्तावेज़ सहायता":"Document Help","आवेदन के लिए जरूरी दस्तावेज़ों की सूची में मदद।":"Guidance on documents needed for applications.","बिल और रसीद":"Bills & Receipts","सेवा शुल्क, भुगतान और बाकी रकम का रिकॉर्ड।":"Track service charges, payments and balances.","आवेदन मार्गदर्शन":"Application Help","उपलब्ध ऑनलाइन सेवाओं की प्रक्रिया समझने में सहायता।":"Guidance on available online service procedures.","ग्राहक सहायता":"Customer Support","सेवा और स्थिति की जानकारी के लिए संपर्क करें।":"Contact us for service information and updates.","आधार सहायता":"Aadhaar Help","उपलब्ध आधार-संबंधित सेवाओं की जानकारी और मार्गदर्शन।":"Information about available Aadhaar services.","PAN और प्रमाणपत्र":"PAN & Certificates","PAN कार्ड और उपलब्ध प्रमाणपत्र सेवाओं के लिए सहायता।":"Help with PAN cards and certificate services.","टिकट बुकिंग":"Ticket Booking","उपलब्ध टिकट बुकिंग सेवाओं की जानकारी।":"Information about available ticket-booking services.","स्कूल ID कार्ड":"School ID Card","स्कूल ID कार्ड सेवा की जानकारी के लिए संपर्क करें।":"Contact us for school ID card service information."};
+ const reverse=Object.create(null);
+ Object.keys(dict).forEach(k=>{if(!reverse[dict[k]])reverse[dict[k]]=k;});
+ let lang="hi";try{lang=localStorage.getItem("mjk-language")||"hi"}catch(e){}if(lang!=="en")lang="hi";
+ const skip=new Set(["SCRIPT","STYLE","NOSCRIPT"]);
+ function swap(text,table){let out=text;Object.keys(table).sort((a,b)=>b.length-a.length).forEach(k=>{if(k&&out.includes(k))out=out.split(k).join(table[k])});return out}
+ function textNode(n){if(!n||n.nodeType!==Node.TEXT_NODE)return;const p=n.parentElement;if(!p||skip.has(p.tagName)||p.closest("[data-no-translate]"))return;const before=n.nodeValue;const after=swap(before,lang==="en"?dict:reverse);if(after!==before)n.nodeValue=after}
+ function walk(el){if(!el||el.nodeType!==Node.ELEMENT_NODE||skip.has(el.tagName))return;if(el.hasAttribute("data-hi")&&el.hasAttribute("data-en"))el.textContent=lang==="en"?el.dataset.en:el.dataset.hi;["placeholder","title","aria-label"].forEach(a=>{if(el.hasAttribute(a)){const v=el.getAttribute(a),n=swap(v,lang==="en"?dict:reverse);if(n!==v)el.setAttribute(a,n)}});Array.from(el.childNodes).forEach(n=>{if(n.nodeType===Node.TEXT_NODE)textNode(n);else if(n.nodeType===Node.ELEMENT_NODE)walk(n)})}
+ function apply(){window.mjkLang=lang;document.documentElement.lang=lang==="en"?"en":"hi";walk(document.body);document.querySelectorAll("[data-hi][data-en]").forEach(el=>el.textContent=lang==="en"?el.dataset.en:el.dataset.hi);document.querySelectorAll("#languageToggle,#appLanguageToggle").forEach(b=>{b.textContent=lang==="en"?"English | हिंदी":"हिंदी | English";b.setAttribute("aria-label",lang==="en"?"Switch to Hindi":"Switch to English")})}
+ document.addEventListener("click",e=>{const b=e.target.closest("#languageToggle,#appLanguageToggle");if(!b)return;lang=lang==="hi"?"en":"hi";try{localStorage.setItem("mjk-language",lang)}catch(e){}apply()});
+ const obs=new MutationObserver(records=>records.forEach(r=>{if(r.type==="childList")r.addedNodes.forEach(n=>{if(n.nodeType===Node.TEXT_NODE)textNode(n);else if(n.nodeType===Node.ELEMENT_NODE)walk(n)});else if(r.type==="characterData")textNode(r.target)}));
+ document.addEventListener("DOMContentLoaded",apply);if(document.readyState!=="loading")apply();obs.observe(document.body,{subtree:true,childList:true,characterData:true});
+})();
+</script>
+</body></html>

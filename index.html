@@ -402,8 +402,8 @@ $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Ke
  function walk(el){if(!el||el.nodeType!==Node.ELEMENT_NODE||skip.has(el.tagName))return;if(el.hasAttribute("data-hi")&&el.hasAttribute("data-en"))el.textContent=lang==="en"?el.dataset.en:el.dataset.hi;["placeholder","title","aria-label"].forEach(a=>{if(el.hasAttribute(a)){const v=el.getAttribute(a),n=swap(v,lang==="en"?dict:reverse);if(n!==v)el.setAttribute(a,n)}});Array.from(el.childNodes).forEach(n=>{if(n.nodeType===Node.TEXT_NODE)textNode(n);else if(n.nodeType===Node.ELEMENT_NODE)walk(n)})}
  function apply(){window.mjkLang=lang;document.documentElement.lang=lang==="en"?"en":"hi";walk(document.body);document.querySelectorAll("[data-hi][data-en]").forEach(el=>el.textContent=lang==="en"?el.dataset.en:el.dataset.hi);document.querySelectorAll("#languageToggle,#appLanguageToggle").forEach(b=>{b.textContent=lang==="en"?"English | हिंदी":"हिंदी | English";b.setAttribute("aria-label",lang==="en"?"Switch to Hindi":"Switch to English")})}
  document.addEventListener("click",e=>{const b=e.target.closest("#languageToggle,#appLanguageToggle");if(!b)return;lang=lang==="hi"?"en":"hi";try{localStorage.setItem("mjk-language",lang)}catch(e){}apply()});
- const obs=new MutationObserver(records=>records.forEach(r=>{if(r.type==="childList")r.addedNodes.forEach(n=>{if(n.nodeType===Node.TEXT_NODE)textNode(n);else if(n.nodeType===Node.ELEMENT_NODE)walk(n)});else if(r.type==="characterData")textNode(r.target)}));
- document.addEventListener("DOMContentLoaded",apply);if(document.readyState!=="loading")apply();obs.observe(document.body,{subtree:true,childList:true,characterData:true});
+ const obs=new MutationObserver(records=>records.forEach(r=>{if(r.type==="childList")r.addedNodes.forEach(n=>{if(n.nodeType===Node.TEXT_NODE)textNode(n);else if(n.nodeType===Node.ELEMENT_NODE)walk(n)})}));
+ document.addEventListener("DOMContentLoaded",apply);if(document.readyState!=="loading")apply();obs.observe(document.body,{subtree:true,childList:true});
 })();
 </script>
 </body></html>

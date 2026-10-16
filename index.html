@@ -298,19 +298,8 @@ body {
 <section class="page hidden" id="page-bills"><div class="panel"><div class="section-head"><div><h2>बिल रिकॉर्ड</h2><p class="muted small">नए बिल और भुगतान का इतिहास।</p></div><button class="secondary" id="refreshBills">Refresh</button></div><div class="field"><input class="search-input" id="billsFilter" placeholder="बिल ID, ग्राहक नाम या मोबाइल से खोजें"></div><div class="table-wrap"><table><thead><tr><th>बिल ID</th><th>ग्राहक</th><th>कुल</th><th>जमा</th><th>बाकी</th><th>कार्रवाई</th></tr></thead><tbody id="billsRows"><tr><td colspan="6">लोड हो रहा है…</td></tr></tbody></table></div></div></section>
 <section class="page hidden" id="page-deleted-history"><div class="panel"><div class="section-head"><div><h2>Deleted Bills History</h2><p class="muted small">हटाए गए बिलों का इतिहास। History साफ करने से मूल बिल और भुगतान डेटा नहीं मिटेगा।</p></div><button class="danger" id="clearAllDeletedHistory">Delete All Permanently</button></div><div class="table-wrap"><table><thead><tr><th>बिल ID</th><th>ग्राहक</th><th>रकम</th><th>हटाने वाले</th><th>समय</th><th>कार्रवाई</th></tr></thead><tbody id="deletedHistoryRows"><tr><td colspan="6">History लोड होने की प्रतीक्षा है।</td></tr></tbody></table></div></div></section>
 <section class="page hidden" id="page-customers"><div class="panel"><h2>ग्राहक खोजें</h2><p class="muted small">ग्राहक का अलग रजिस्ट्रेशन नहीं होता। खोज पुराने बिलों से होती है; नया काम नया बिल बनाकर दर्ज करें।</p><div class="search-row"><input class="search-input" id="customerSearch" placeholder="Customer ID / नाम / मोबाइल"><button class="gold" id="customerSearchBtn">खोजें</button></div><div id="customerResults"></div></div></section>
-<section class="page hidden" id="page-expenses"><div class="panel"><h2>दुकान का खर्च दर्ज करें</h2><p class="muted small">जैसे इंटरनेट, स्टेशनरी, प्रिंटिंग, किराया या अन्य खर्च।</p><form id="expenseForm" class="formgrid"><div class="field"><label>खर्च का कारण *</label><input id="expenseTitle" maxlength="120" required placeholder="जैसे स्टेशनरी"></div><div class="field"><label>रकम (₹) *</label><input id="expenseAmount" type="number" min="0.01" step="0.01" required></div><div class="field"><label>तारीख *</label><input id="expenseDate" type="date" required></div><div class="field"><label>नोट</label><input id="expenseNote" maxlength="200"></div><div class="field full"><button class="gold" type="submit">खर्च सेव करें</button></div></form><div class="table-wrap"><table><thead><tr><th>तारीख</th><th>कारण</th><th>नोट</th><th>रकम</th></tr></thead><tbody id="expenseRows"></tbody></table></div></div></section><section class="page hidden" id="page-workers"><div class="panel"><h2>Worker अकाउंट जोड़ें</h2><p class="muted small">केवल Admin Worker बना सकता है। Worker को Admin अधिकार नहीं मिलेंगे। अस्थायी पासवर्ड Worker को सुरक्षित तरीके से दें।</p><form id="workerForm" class="formgrid"><div class="field"><label for="workerName">Worker का नाम *</label><input id="workerName" required maxlength="100"></div><div class="field"><label for="workerEmail">Worker Email *</label><input id="workerEmail" type="email" required></div><div class="field"><label for="workerPassword">अस्थायी पासवर्ड *</label><input id="workerPassword" type="password" minlength="6" required autocomplete="new-password"></div><div class="field"><label for="workerPhone">मोबाइल (वैकल्पिक)</label><input id="workerPhone" maxlength="15"></div><div class="field full"><button class="gold" id="workerCreateBtn" type="submit">Worker अकाउंट बनाएँ</button></div></form><div id="workerMsg"></div></div>
-<div class="panel" style="margin-top:18px">
-<h3>पहले से बने Worker को जोड़ें</h3>
-<p class="muted small">Firebase Authentication में पहले से मौजूद Worker का सही UID और उसी खाते का Email भरें। इससे नया Login अकाउंट नहीं बनेगा; केवल Worker प्रोफ़ाइल बनेगी।</p>
-<form id="linkWorkerForm" class="formgrid">
-<div class="field"><label for="linkWorkerUid">Firebase Auth UID *</label><input id="linkWorkerUid" required autocomplete="off"></div>
-<div class="field"><label for="linkWorkerName">Worker का नाम *</label><input id="linkWorkerName" required maxlength="100"></div>
-<div class="field"><label for="linkWorkerEmail">उसी खाते का Email *</label><input id="linkWorkerEmail" type="email" required></div>
-<div class="field"><label for="linkWorkerPhone">मोबाइल (वैकल्पिक)</label><input id="linkWorkerPhone" maxlength="15"></div>
-<div class="field full"><button class="gold" id="linkWorkerBtn" type="submit">मौजूदा Worker जोड़ें</button></div>
-</form>
-<div id="linkWorkerMsg"></div>
-</div>
+<section class="page hidden" id="page-expenses"><div class="panel"><h2>दुकान का खर्च दर्ज करें</h2><p class="muted small">जैसे इंटरनेट, स्टेशनरी, प्रिंटिंग, किराया या अन्य खर्च।</p><form id="expenseForm" class="formgrid"><div class="field"><label>खर्च का कारण *</label><input id="expenseTitle" maxlength="120" required placeholder="जैसे स्टेशनरी"></div><div class="field"><label>रकम (₹) *</label><input id="expenseAmount" type="number" min="0.01" step="0.01" required></div><div class="field"><label>तारीख *</label><input id="expenseDate" type="date" required></div><div class="field"><label>नोट</label><input id="expenseNote" maxlength="200"></div><div class="field full"><button class="gold" type="submit">खर्च सेव करें</button></div></form><div class="table-wrap"><table><thead><tr><th>तारीख और समय (IST)</th><th>कारण</th><th>नोट</th><th>रकम</th></tr></thead><tbody id="expenseRows"></tbody></table></div></div></section><section class="page hidden" id="page-workers"><div class="panel"><h2>Worker अकाउंट जोड़ें</h2><p class="muted small">केवल Admin Worker बना सकता है। Worker को Admin अधिकार नहीं मिलेंगे। अस्थायी पासवर्ड Worker को सुरक्षित तरीके से दें।</p><form id="workerForm" class="formgrid"><div class="field"><label for="workerName">Worker का नाम *</label><input id="workerName" required maxlength="100"></div><div class="field"><label for="workerEmail">Worker Email *</label><input id="workerEmail" type="email" required></div><div class="field"><label for="workerPassword">अस्थायी पासवर्ड *</label><input id="workerPassword" type="password" minlength="6" required autocomplete="new-password"></div><div class="field"><label for="workerPhone">मोबाइल (वैकल्पिक)</label><input id="workerPhone" maxlength="15"></div><div class="field full"><button class="gold" id="workerCreateBtn" type="submit">Worker अकाउंट बनाएँ</button></div></form><div id="workerMsg"></div></div>
+
 <div class="panel" style="margin-top:18px">
 <h2>Worker Details / सभी Worker</h2>
 <p class="muted small">Worker की जानकारी, अकाउंट की स्थिति और उसे बनाने वाले Admin का विवरण यहाँ दिखेगा।</p>
@@ -320,7 +309,7 @@ body {
 <div id="workerListMsg"></div>
 <div id="workerList"></div>
 
-<p class="muted small">नोट: Firebase के Free प्लान पर स्थायी Auth Delete और वास्तविक token revocation के लिए backend आवश्यक है। बिना backend के कोई बटन इन कामों का झूठा दावा नहीं करेगा।</p>
+
 </div></section>
 <section class="page hidden" id="page-profile"><div class="panel"><h2>आपकी Profile</h2><div class="profile-top"><img class="profile-photo" id="profilePhoto" alt="Profile photo" src=""><div><b id="profileEmail"></b><div id="profileRole" class="muted small"></div><div class="field"><label for="photoFile">अपनी फोटो चुनें</label><input type="file" id="photoFile" accept="image/*"></div></div></div><form id="profileForm" class="formgrid"><div class="field"><label for="profileName">नाम</label><input id="profileName" required maxlength="100"></div><div class="field"><label for="profilePhone">मोबाइल नंबर</label><input id="profilePhone" type="tel" inputmode="tel" maxlength="15" placeholder="अपना मोबाइल नंबर"></div><div class="field"><label>Email (बदलने के लिए Firebase Auth की अलग प्रक्रिया चाहिए)</label><input id="profileEmailRead" readonly></div><div class="field full"><button class="gold" type="submit">Profile सेव करें</button></div></form><p class="muted small">फोटो को इस ब्राउज़र में छोटा करके प्रोफ़ाइल में सेव किया जाएगा। फोटो का बैकअप अलग से रखें।</p></div></section>
 <section class="page hidden" id="page-settings"><div class="panel"><h2>Settings</h2><p class="muted small">पासवर्ड बदलने के लिए Firebase सुरक्षित Password Reset Email भेजेगा।</p><div class="result"><b id="settingsEmail"></b><p class="muted small">Email inbox में दिए गए निर्देशों से नया पासवर्ड सेट करें।</p><button class="gold" id="settingsReset">Password reset email भेजें</button></div><div class="result"><h3>सुरक्षा</h3><p class="muted small">पासवर्ड किसी के साथ साझा न करें। काम पूरा होने पर Logout करें।</p><button class="danger" id="settingsLogout">Logout</button></div></div></section>
@@ -563,7 +552,7 @@ if($('clearAllDeletedHistory'))$('clearAllDeletedHistory').onclick=async()=>{
   }catch(e){console.error(e);toast('Delete पूरा नहीं हुआ: '+(e.message||'अनजान त्रुटि'))}
 };
 
-async function loadBills(recent=false){if(!staff())return;try{const s=await getDocs(query(collection(db,'bills'),orderBy('createdAt','desc'),limit(100)));const archiveSnap=await getDocs(collection(db,'billArchive'));const archivedIds=new Set(archiveSnap.docs.map(d=>d.id));bills=s.docs.map(d=>({id:d.id,...d.data()})).filter(b=>!archivedIds.has(b.id));const total=bills.reduce((n,b)=>n+Number(b.total||0),0),paid=bills.reduce((n,b)=>n+Number(b.paid||0),0),due=bills.reduce((n,b)=>n+Number(b.due||0),0);$('statBills').textContent=bills.length;$('statTotal').textContent=money(total);$('statPaid').textContent=money(paid);$('statDue').textContent=money(due);const now=new Date(),ym=now.toLocaleDateString('en-CA').slice(0,7),day=now.toLocaleDateString('en-CA');const monthPaid=bills.reduce((n,b)=>n+(b.payments||[]).filter(p=>String(p.at||'').slice(0,7)===ym).reduce((a,p)=>a+Number(p.amount||0),0),0);const todayPaid=bills.reduce((n,b)=>n+(b.payments||[]).filter(p=>String(p.at||'').slice(0,10)===day).reduce((a,p)=>a+Number(p.amount||0),0),0);$('monthPaid').textContent=money(monthPaid);$('todayPaid').textContent=money(todayPaid);let monthExpense=0;try{const ex=await getDocs(query(collection(db,'expenses'),orderBy('createdAt','desc'),limit(300)));expenses=ex.docs.map(d=>({id:d.id,...d.data()}));monthExpense=expenses.filter(x=>(x.date||'').slice(0,7)===ym).reduce((n,x)=>n+Number(x.amount||0),0)}catch{}$('monthExpense').textContent=money(monthExpense);$('monthNet').textContent=money(monthPaid-monthExpense);renderActivity();renderBills(recent);if(recent)$('recentBills').innerHTML=bills.slice(0,5).map(b=>`<div class="result"><b>${escapeHtml(b.invoiceId)} · ${escapeHtml(b.customerName)}</b><p class="muted small">कुल ${money(b.total)} · जमा ${money(b.paid)} · बाकी ${money(b.due)}</p><button class="outline" data-bill="${escapeHtml(b.id)}">बिल देखें</button></div>`).join('')||'अभी कोई बिल नहीं है।'}catch(e){$('billsRows').innerHTML=`<tr><td colspan="6">बिल नहीं पढ़ पाए: ${escapeHtml(e.message)}</td></tr>`;$('recentBills').textContent='डेटा पढ़ने में समस्या: '+e.message}}
+async function loadBills(recent=false){if(!staff())return;try{const s=await getDocs(query(collection(db,'bills'),orderBy('createdAt','desc'),limit(100)));const archiveSnap=await getDocs(collection(db,'billArchive'));const archivedIds=new Set(archiveSnap.docs.map(d=>d.id));bills=s.docs.map(d=>({id:d.id,...d.data()})).filter(b=>!archivedIds.has(b.id));const total=bills.reduce((n,b)=>n+Number(b.total||0),0),paid=bills.reduce((n,b)=>n+Number(b.paid||0),0),due=bills.reduce((n,b)=>n+Number(b.due||0),0);$('statBills').textContent=bills.length;$('statTotal').textContent=money(total);$('statPaid').textContent=money(paid);$('statDue').textContent=money(due);const now=new Date(),todayKey=activityDateKey(now),ym=todayKey.slice(0,7),day=todayKey;const monthPaid=bills.reduce((n,b)=>n+(b.payments||[]).filter(p=>activityDateKey(p.at).slice(0,7)===ym).reduce((a,p)=>a+Number(p.amount||0),0),0);const todayPaid=bills.reduce((n,b)=>n+(b.payments||[]).filter(p=>activityDateKey(p.at)===day).reduce((a,p)=>a+Number(p.amount||0),0),0);$('monthPaid').textContent=money(monthPaid);$('todayPaid').textContent=money(todayPaid);let monthExpense=0;try{const ex=await getDocs(query(collection(db,'expenses'),orderBy('createdAt','desc'),limit(300)));expenses=ex.docs.map(d=>({id:d.id,...d.data()}));monthExpense=expenses.filter(x=>(x.date||'').slice(0,7)===ym).reduce((n,x)=>n+Number(x.amount||0),0)}catch{}$('monthExpense').textContent=money(monthExpense);$('monthNet').textContent=money(monthPaid-monthExpense);renderActivity();renderBills(recent);if(recent)$('recentBills').innerHTML=bills.slice(0,5).map(b=>`<div class="result"><b>${escapeHtml(b.invoiceId)} · ${escapeHtml(b.customerName)}</b><p class="muted small">कुल ${money(b.total)} · जमा ${money(b.paid)} · बाकी ${money(b.due)}</p><button class="outline" data-bill="${escapeHtml(b.id)}">बिल देखें</button></div>`).join('')||'अभी कोई बिल नहीं है।';$('recentBills').querySelectorAll('[data-bill]').forEach(btn=>btn.onclick=()=>{const bill=bills.find(x=>x.id===btn.dataset.bill);if(bill){receiptData=bill;renderReceipt(bill);showPage('receipt')}})}catch(e){$('billsRows').innerHTML=`<tr><td colspan="6">बिल नहीं पढ़ पाए: ${escapeHtml(e.message)}</td></tr>`;$('recentBills').textContent='डेटा पढ़ने में समस्या: '+e.message}}
 function renderBills(){const term=($('billsFilter').value||'').toLowerCase(),items=bills.filter(b=>[b.invoiceId,b.customerName,b.phone,b.customerId].some(x=>String(x||'').toLowerCase().includes(term)));$('billsRows').innerHTML=items.map(b=>`<tr><td>${escapeHtml(b.invoiceId)}</td><td>${escapeHtml(b.customerName)}<br><span class="muted small">${escapeHtml(b.phone||'')}</span></td><td>${money(b.total)}</td><td>${money(b.paid)}</td><td style="color:${b.due>0?'#ffd078':'#5ce0c0'}">${money(b.due)}</td><td><button class="outline" data-bill="${escapeHtml(b.id)}">रसीद</button> <button class="secondary" data-edit="${escapeHtml(b.id)}">Edit</button> ${admin()?`<button class="danger" data-delete-bill="${escapeHtml(b.id)}">Delete</button>`:''} ${b.due>0?`<button class="gold" data-pay="${escapeHtml(b.id)}">जमा करें</button>`:''}</td></tr>`).join('')||'<tr><td colspan="6">कोई बिल नहीं मिला।</td></tr>';document.querySelectorAll('[data-bill]').forEach(b=>b.onclick=()=>{const bill=bills.find(x=>x.id===b.dataset.bill);if(bill){receiptData=bill;renderReceipt(bill);showPage('receipt')}});document.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>recordPayment(b.dataset.pay));document.querySelectorAll('[data-edit]').forEach(btn=>btn.onclick=()=>editBill(btn.dataset.edit));document.querySelectorAll('[data-delete-bill]').forEach(btn=>btn.onclick=()=>archiveBill(btn.dataset.deleteBill))}
 function editBill(id){
  const b=bills.find(x=>x.id===id);
@@ -675,23 +664,18 @@ $('paymentForm').onsubmit=async e=>{
   btn.textContent='भुगतान सेव करें';
  }
 };
-async function loadExpenses(){if(!staff())return;try{const snap=await getDocs(query(collection(db,'expenses'),orderBy('createdAt','desc'),limit(300)));expenses=snap.docs.map(d=>({id:d.id,...d.data()}));$('expenseRows').innerHTML=expenses.map(x=>`<tr><td>${escapeHtml(x.date||'')}</td><td>${escapeHtml(x.title||'')}</td><td>${escapeHtml(x.note||'')}</td><td>${money(x.amount)}</td></tr>`).join('')||'<tr><td colspan="4">अभी कोई खर्च दर्ज नहीं है।</td></tr>'}catch(e){$('expenseRows').innerHTML=`<tr><td colspan="4">खर्च नहीं पढ़ पाए: ${escapeHtml(e.message)}</td></tr>`}}
+async function loadExpenses(){if(!staff())return;try{const snap=await getDocs(query(collection(db,'expenses'),orderBy('createdAt','desc'),limit(300)));expenses=snap.docs.map(d=>({id:d.id,...d.data()}));$('expenseRows').innerHTML=expenses.map(x=>`<tr><td>${escapeHtml(x.date||"—")}<br><span class="muted small">${escapeHtml(activityDateTime(x.createdAt)?.toLocaleTimeString("hi-IN",{timeZone:"Asia/Kolkata",hour:"2-digit",minute:"2-digit"})||"समय उपलब्ध नहीं")}</span></td><td>${escapeHtml(x.title||"")}</td><td>${escapeHtml(x.note||'')}</td><td>${money(x.amount)}</td></tr>`).join('')||'<tr><td colspan="4">अभी कोई खर्च दर्ज नहीं है।</td></tr>'}catch(e){$('expenseRows').innerHTML=`<tr><td colspan="4">खर्च नहीं पढ़ पाए: ${escapeHtml(e.message)}</td></tr>`}}
 $('expenseForm').onsubmit=async e=>{e.preventDefault();if(!staff())return;const amount=Number($('expenseAmount').value);if(!(amount>0))return toast('खर्च की रकम सही लिखें।');try{await addDoc(collection(db,'expenses'),{title:$('expenseTitle').value.trim(),amount,date:$('expenseDate').value,note:$('expenseNote').value.trim(),createdByUid:user.uid,createdByEmail:user.email,createdAt:serverTimestamp()});$('expenseForm').reset();$('expenseDate').value=new Date().toLocaleDateString('en-CA');await loadExpenses();await loadBills(true);toast('खर्च सेव हो गया।')}catch(e){toast('खर्च सेव नहीं हुआ: '+e.message)}};
 function renderReceipt(b){
 const payments=(b.payments||[]).map(p=>{
-  const raw=p.at;
-  let when='समय उपलब्ध नहीं';
-  if(raw){
-    const d=new Date(raw);
-    if(!Number.isNaN(d.getTime())) when=d.toLocaleString('hi-IN');
-  }
+  const when=activityTime(p.at)||'समय उपलब्ध नहीं';
   return `<tr><td>${escapeHtml(when)}</td><td>${money(p.amount)}</td></tr>`;
 }).join('');
 const due=Number(b.due)||0;
 const status=due<=0?'पूरा भुगतान':'आंशिक भुगतान / बकाया';
-const createdAt = b.createdAt && typeof b.createdAt.toDate === 'function' ? b.createdAt.toDate() : (b.createdAt ? new Date(b.createdAt) : new Date());
-const billDate = b.billDate || (Number.isNaN(createdAt.getTime()) ? new Date().toLocaleDateString('hi-IN') : createdAt.toLocaleDateString('hi-IN',{timeZone:'Asia/Kolkata'}));
-const billTime = Number.isNaN(createdAt.getTime()) ? new Date().toLocaleTimeString('hi-IN',{timeZone:'Asia/Kolkata'}) : createdAt.toLocaleTimeString('hi-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit'});
+const createdAt=activityDateTime(b.createdAt);
+const billDate=b.billDate || (createdAt ? createdAt.toLocaleDateString('hi-IN',{timeZone:'Asia/Kolkata'}) : 'तारीख उपलब्ध नहीं');
+const billTime=createdAt ? createdAt.toLocaleTimeString('hi-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit'}) : 'समय उपलब्ध नहीं';
 $('receiptContent').innerHTML=`<article class="receipt" style="max-width:760px;margin:12px auto;padding:22px;background:#fff;color:#182b49;border:1px solid #d8e3f2;border-top:6px solid #244b85;border-radius:14px;box-shadow:0 8px 28px #152b4912">
 <header style="display:grid;grid-template-columns:76px 1fr auto;gap:14px;align-items:center">
 <div style="width:72px;height:72px;border-radius:12px;background:#eef4ff;display:grid;place-items:center;overflow:hidden">
@@ -757,7 +741,7 @@ async function loadWorkerList(){
           <b>${escapeHtml(w.name||'नाम उपलब्ध नहीं')}</b>
           <span class="badge">${escapeHtml(status)}</span>
         </div>
-        <p class="muted small">Email: ${escapeHtml(w.email||'—')}<br>मोबाइल: ${escapeHtml(w.phone||'—')}<br>Worker ID: ${escapeHtml(w.uid||w.id||'—')}<br>बनाने वाले Admin: ${escapeHtml(creator.name||'जानकारी उपलब्ध नहीं')}<br>Admin Email: ${escapeHtml(creator.email||'—')}<br>Admin UID: ${escapeHtml(w.createdByUid||'—')}<br>Role: ${escapeHtml(w.role||'—')}<br>बनाया गया: ${w.createdAt&&w.createdAt.toDate?escapeHtml(w.createdAt.toDate().toLocaleString('en-IN')):'समय उपलब्ध नहीं'}</p>
+        <p class="muted small">Email: ${escapeHtml(w.email||'—')}<br>मोबाइल: ${escapeHtml(w.phone||'—')}<br>Worker ID: ${escapeHtml(w.uid||w.id||'—')}<br>बनाने वाले Admin: ${escapeHtml(creator.name||'जानकारी उपलब्ध नहीं')}<br>Admin Email: ${escapeHtml(creator.email||'—')}<br>Admin UID: ${escapeHtml(w.createdByUid||'—')}<br>Role: ${escapeHtml(w.role||'—')}<br>बनाया गया: ${w.createdAt&&w.createdAt.toDate?escapeHtml(w.createdAt.toDate().toLocaleString("hi-IN",{timeZone:"Asia/Kolkata",dateStyle:"medium",timeStyle:"short"})):'समय उपलब्ध नहीं'}</p>
         <div class="row" style="gap:8px;flex-wrap:wrap">
 
           ${status !== 'deleted' ? `<button type="button" class="secondary workerStatusBtn" data-worker="${escapeHtml(w.uid||w.id||'')}" data-status="${status === 'active' ? 'inactive' : 'active'}">${status === 'active' ? 'Inactive करें' : 'Active करें'}</button>
@@ -809,57 +793,104 @@ async function loadWorkerList(){
 $('refreshWorkersBtn').onclick=loadWorkerList;
 
 
-$('linkWorkerForm').onsubmit=async e=>{
-  e.preventDefault();
-  if(!admin())return msg('linkWorkerMsg','केवल Admin मौजूदा Worker जोड़ सकता है।');
-
-  const uid=$('linkWorkerUid').value.trim();
-  const name=$('linkWorkerName').value.trim();
-  const email=$('linkWorkerEmail').value.trim().toLowerCase();
-  const phone=$('linkWorkerPhone').value.trim();
-
-  if(!uid||/\s/.test(uid))return msg('linkWorkerMsg','सही Firebase Auth UID भरें।');
-  if(!name||!email)return msg('linkWorkerMsg','नाम और Email भरना आवश्यक है।');
-
-  const btn=$('linkWorkerBtn');
-  btn.disabled=true;
-  try{
-    const ref=doc(db,'users',uid);
-    const existing=await getDoc(ref);
-    if(existing.exists()){
-      msg('linkWorkerMsg','इस UID की Firestore प्रोफ़ाइल पहले से मौजूद है। कोई बदलाव नहीं किया गया।');
-      return;
-    }
-
-    await setDoc(ref,{
-      uid:uid,
-      name:name,
-      email:email,
-      phone:phone,
-      role:'worker',
-      status:'active',
-      createdByUid:user.uid,
-      createdAt:serverTimestamp(),
-      updatedAt:serverTimestamp()
-    });
-
-    msg('linkWorkerMsg','Worker प्रोफ़ाइल जोड़ दी गई। सूची Refresh की जा रही है।',true);
-    $('linkWorkerForm').reset();
-    await loadWorkerList();
-  }catch(err){
-    msg('linkWorkerMsg','Worker प्रोफ़ाइल नहीं जुड़ी: '+err.message);
-  }finally{
-    btn.disabled=false;
-  }
-};
-
-$('workerForm').onsubmit=async e=>{e.preventDefault();if(!admin())return toast('केवल Admin Worker बना सकता है।');const name=$('workerName').value.trim(),email=$('workerEmail').value.trim().toLowerCase(),password=$('workerPassword').value,phone=$('workerPhone').value.trim();if(password.length<6)return msg('workerMsg','पासवर्ड कम से कम 6 अक्षर का हो।');$('workerCreateBtn').disabled=true;let secondary=null;try{secondary=initializeApp(cfg,'worker-creation-'+Date.now());const secondaryAuth=getAuth(secondary);const cred=await createUserWithEmailAndPassword(secondaryAuth,email,password);await setDoc(doc(db,'users',cred.user.uid),{uid:cred.user.uid,name,email,phone,role:'worker',status:'active',createdByUid:user.uid,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});await signOut(secondaryAuth);await deleteApp(secondary);msg('workerMsg',`Worker बनाया गया: ${email}. अस्थायी पासवर्ड सुरक्षित तरीके से दें।` ,true);$('workerForm').reset()}catch(e){msg('workerMsg','Worker नहीं बना: '+e.message)}finally{$('workerCreateBtn').disabled=false}}
+$('workerForm').onsubmit=async e=>{e.preventDefault();if(!admin())return toast('केवल Admin Worker बना सकता है।');const name=$('workerName').value.trim(),email=$('workerEmail').value.trim().toLowerCase(),password=$('workerPassword').value,phone=$('workerPhone').value.trim();if(password.length<6)return msg('workerMsg','पासवर्ड कम से कम 6 अक्षर का हो।');$('workerCreateBtn').disabled=true;let secondary=null;try{secondary=initializeApp(cfg,'worker-creation-'+Date.now());const secondaryAuth=getAuth(secondary);const cred=await createUserWithEmailAndPassword(secondaryAuth,email,password);await setDoc(doc(db,'users',cred.user.uid),{uid:cred.user.uid,name,email,phone,role:'worker',status:'active',createdByUid:user.uid,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});await signOut(secondaryAuth);await deleteApp(secondary);msg('workerMsg',`Worker बनाया गया: ${email}. अस्थायी पासवर्ड सुरक्षित तरीके से दें।` ,true);$('workerForm').reset();await loadWorkerList()}catch(e){msg('workerMsg','Worker नहीं बना: '+e.message)}finally{if(secondary){try{await deleteApp(secondary)}catch(_){}}$('workerCreateBtn').disabled=false}}
 $('settingsReset').onclick=async()=>{if(!user)return;try{await sendPasswordResetEmail(auth,user.email);toast('Password reset email भेजा गया। Inbox/Spam देखें।')}catch(e){toast('Email नहीं भेजा: '+e.message)}};$('settingsLogout').onclick=$('logoutBtn').onclick=async()=>{await signOut(auth);setPublic();toast('Logout हो गया।')};
 $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Kendra से मुझे इस सेवा की जानकारी चाहिए: ${$('serviceChoice').value}\nसवाल: ${$('serviceQuestion').value.trim()||'कृपया जानकारी दें।'}`;window.open('https://wa.me/919076855003?text='+encodeURIComponent(text),'_blank','noopener')};
 </script><script>
 /* MJK_BILINGUAL_LANGUAGE_V1 */
 (function(){
  const dict={"सेवाएँ": "Services", "संपर्क": "Contact", "आपकी अपनी डिजिटल सेवा केंद्र": "Your Local Digital Service Centre", "हर ज़रूरी सेवा,": "Every essential service,", "एक ही जगह।": "all in one place.", "WhatsApp संपर्क": "Contact on WhatsApp", "सेवाएँ देखें": "View Services", "सुरक्षित प्रवेश": "Secure Login", "केवल अधिकृत खाते से लॉगिन करें।": "Sign in only with an authorized account.", "Login करें": "Login", "Password reset": "Password reset", "खाता नहीं है? Admin से Firebase में Worker प्रोफ़ाइल बनवाएँ।": "No account? Ask the Admin to create a Worker profile.", "Our services": "Our Services", "हमारी सेवाएँ": "Our Services", "अपनी जरूरत बताइए—सेवा उपलब्धता और शुल्क केंद्र से पुष्टि करें।": "Tell us what you need. Confirm availability and fees with the centre.", "केंद्र से संपर्क करें": "Contact the Centre", "संपर्क विवरण": "Contact Details", "केंद्र संपर्क": "Centre Contact", "फोन": "Phone", "पता": "Address", "WhatsApp करें": "WhatsApp Us", "Customer care": "Customer Care", "अपनी जरूरत बताइए": "Tell Us What You Need", "सेवा चुनें": "Choose a Service", "आपका सवाल": "Your Question", "अपनी जरूरत लिखें": "Describe what you need", "WhatsApp पर भेजें": "Send on WhatsApp", "नया बिल": "New Bill", "बिल रिकॉर्ड": "Bill Records", "ग्राहक / बिल खोजें": "Find Customer / Bill", "खर्च दर्ज करें": "Record Expense", "Worker जोड़ें": "Add Worker", "Profile": "Profile", "Settings": "Settings", "Logout": "Logout", "Private workspace": "Private Workspace", "Home Page": "Home Page", "कुल बिल": "Total Bills", "कुल बिल रकम": "Total Bill Amount", "प्राप्त भुगतान": "Payments Received", "ग्राहकों से बाकी": "Customer Dues", "इस महीने प्राप्त": "Received This Month", "इस महीने खर्च": "Expenses This Month", "इस महीने शुद्ध": "Net This Month", "आज प्राप्त": "Received Today", "आज का काम": "Today's Work", "ग्राहक का बिल जोड़ें": "Add Customer Bill", "बिल बनाएँ": "Create Bill", "बाकी भुगतान": "Outstanding Payments", "बिल रिकॉर्ड देखें": "View Bill Records", "हाल के बिल": "Recent Bills", "बिल · भुगतान · खर्च": "Bills · Payments · Expenses", "तारीख से फ़िल्टर": "Filter by Date", "आज की वसूली": "Collected Today", "आज का खर्च": "Today's Expenses", "गतिविधि": "Activity", "विवरण": "Details", "रकम": "Amount", "नया बिल बनाएँ": "Create New Bill", "खोजें": "Search", "ग्राहक का नाम *": "Customer Name *", "मोबाइल नंबर *": "Mobile Number *", "क्या काम किया / सेवा *": "Work Done / Service *", "काम की स्थिति": "Work Status", "बाकी / Pending": "Pending", "काम चल रहा है": "In Progress", "काम पूरा": "Completed", "काम का विवरण / नोट": "Work Details / Note", "बिल की तारीख": "Bill Date", "कुल रकम (₹) *": "Total Amount (₹) *", "अभी जमा (₹)": "Paid Now (₹)", "बाकी रकम (₹)": "Amount Due (₹)", "भुगतान तरीका": "Payment Method", "बिल सेव करें और रसीद बनाएँ": "Save Bill & Create Receipt", "Cash": "Cash", "UPI": "UPI", "Bank transfer": "Bank Transfer", "Other": "Other", "Refresh": "Refresh", "बिल ID": "Bill ID", "ग्राहक": "Customer", "कुल": "Total", "जमा": "Paid", "बाकी": "Due", "कार्रवाई": "Actions", "ग्राहक खोजें": "Find Customers", "दुकान का खर्च दर्ज करें": "Record Shop Expenses", "खर्च का कारण *": "Expense Reason *", "तारीख *": "Date *", "नोट": "Note", "खर्च सेव करें": "Save Expense", "Worker अकाउंट जोड़ें": "Add Worker Account", "Worker का नाम *": "Worker Name *", "Worker Email *": "Worker Email *", "अस्थायी पासवर्ड *": "Temporary Password *", "मोबाइल (वैकल्पिक)": "Phone (Optional)", "Worker अकाउंट बनाएँ": "Create Worker Account", "आपकी Profile": "Your Profile", "अपनी फोटो चुनें": "Choose Your Photo", "नाम": "Name", "Profile सेव करें": "Save Profile", "सुरक्षा": "Security", "Password reset email भेजें": "Send Password Reset Email", "← बिल रिकॉर्ड": "← Bill Records", "Print / PDF": "Print / PDF", "WhatsApp शेयर": "Share on WhatsApp", "बिल बना": "Bill Created", "भुगतान जमा": "Payment Received", "खर्च दर्ज": "Expense Recorded", "समय उपलब्ध नहीं": "Time unavailable", "इसी ग्राहक का नया बिल": "New Bill for This Customer", "पुराना बिल देखें": "View Previous Bill", "बिल सेव हो गया।": "Bill saved.", "बिल नहीं मिला": "Bill not found", "भुगतान सेव हो गया।": "Payment saved.", "बिल की जानकारी अपडेट हो गई।": "Bill details updated.", "कोई बिल नहीं मिला।": "No bills found.", "स्वागत है,": "Welcome,", "सेवा और भुगतान / Service & Payment": "Service & Payment", "ग्राहक विवरण / Customer Details": "Customer Details", "भुगतान इतिहास / Payment History": "Payment History", "बिल बनाने वाले का विवरण / Bill Created By": "Bill Created By", "ऑनलाइन फॉर्म": "Online Forms", "ऑनलाइन आवेदन और फॉर्म भरने में सहायता।": "Help with online forms and applications.", "प्रिंट और स्कैन": "Print & Scan", "दस्तावेज़ प्रिंट, स्कैन और डिजिटल कॉपी।": "Print, scan and digitize documents.", "दस्तावेज़ सहायता": "Document Help", "आवेदन के लिए जरूरी दस्तावेज़ों की सूची में मदद।": "Guidance on documents needed for applications.", "बिल और रसीद": "Bills & Receipts", "सेवा शुल्क, भुगतान और बाकी रकम का रिकॉर्ड।": "Track service charges, payments and balances.", "आवेदन मार्गदर्शन": "Application Help", "उपलब्ध ऑनलाइन सेवाओं की प्रक्रिया समझने में सहायता।": "Guidance on available online service procedures.", "ग्राहक सहायता": "Customer Support", "सेवा और स्थिति की जानकारी के लिए संपर्क करें।": "Contact us for service information and updates.", "आधार सहायता": "Aadhaar Help", "उपलब्ध आधार-संबंधित सेवाओं की जानकारी और मार्गदर्शन।": "Information about available Aadhaar services.", "PAN और प्रमाणपत्र": "PAN & Certificates", "PAN कार्ड और उपलब्ध प्रमाणपत्र सेवाओं के लिए सहायता।": "Help with PAN cards and certificate services.", "टिकट बुकिंग": "Ticket Booking", "उपलब्ध टिकट बुकिंग सेवाओं की जानकारी।": "Information about available ticket-booking services.", "स्कूल ID कार्ड": "School ID Card", "स्कूल ID कार्ड सेवा की जानकारी के लिए संपर्क करें।": "Contact us for school ID card service information."};
+
+ /* MJK_EXTRA_TRANSLATIONS_V1 */
+ Object.assign(dict,{
+  "Worker Details / सभी Worker":"Worker Details / All Workers",
+  "Worker Details":"Worker Details",
+  "सभी Worker":"All Workers",
+  "Worker अकाउंट जोड़े":"Create Worker Account",
+  "Worker का नाम":"Worker Name",
+  "Worker Email":"Worker Email",
+  "अस्थायी पासवर्ड":"Temporary Password",
+  "Worker बनाया गया:":"Worker created:",
+  "Worker नहीं बना:":"Could not create worker:",
+  "केवल Admin Worker बना सकता है।":"Only the Admin can create workers.",
+  "पासवर्ड कम से कम 6 अक्षर का हो।":"Password must contain at least 6 characters.",
+  "Deleted Bills History":"Deleted Bills History",
+  "Deleted Bills":"Deleted Bills",
+  "डिलीट किए गए बिल":"Deleted Bills",
+  "स्थायी रूप से हटाएँ":"Delete Permanently",
+  "Permanent Delete":"Delete Permanently",
+  "Restore":"Restore",
+  "रसीद":"Receipt",
+  "बिल देखें":"View Bill",
+  "जमा करें":"Record Payment",
+  "Edit":"Edit",
+  "Delete":"Delete",
+  "कोई बिल नहीं मिला।":"No bills found.",
+  "अभी कोई बिल नहीं है।":"No bills yet.",
+  "इस तारीख के लिए कोई रिकॉर्ड नहीं मिला।":"No records found for this date.",
+  "बिल नहीं पढ़ पाए:":"Could not load bills:",
+  "डेटा पढ़ने में समस्या:":"Problem loading data:",
+  "खर्च नहीं पढ़ पाए:":"Could not load expenses:",
+  "बिल सेव नहीं हुआ:":"Could not save bill:",
+  "खर्च सेव नहीं हुआ:":"Could not save expense:",
+  "भुगतान सेव नहीं हुआ:":"Could not save payment:",
+  "ग्राहक का नाम और मोबाइल भरें।":"Enter the customer's name and mobile number.",
+  "रकम जाँचें: जमा रकम कुल से अधिक नहीं हो सकती।":"Check the amount: payment cannot exceed the total.",
+  "खर्च की रकम सही लिखें।":"Enter a valid expense amount.",
+  "बिल सेव हो गया।":"Bill saved successfully.",
+  "खर्च सेव हो गया।":"Expense saved successfully.",
+  "भुगतान सेव हो गया।":"Payment saved successfully.",
+  "Profile सेव करें":"Save Profile",
+  "आपकी Profile":"Your Profile",
+  "Profile सेव हो गई।":"Profile saved successfully.",
+  "Profile सेव नहीं हुई।":"Could not save profile.",
+  "नाम":"Name",
+  "मोबाइल":"Mobile",
+  "फोटो":"Photo",
+  "सुरक्षा":"Security",
+  "Password reset email भेजें":"Send Password Reset Email",
+  "Password reset":"Password Reset",
+  "बिल बनाने वाले का विवरण":"Bill Creator Details",
+  "कर्मचारी का नाम":"Staff Name",
+  "कर्मचारी मोबाइल":"Staff Mobile",
+  "ग्राहक विवरण":"Customer Details",
+  "दिनांक और समय":"Date and Time",
+  "भुगतान इतिहास":"Payment History",
+  "अभी भुगतान दर्ज नहीं है।":"No payment recorded yet.",
+  "पूरा भुगतान":"Paid in Full",
+  "आंशिक भुगतान / बकाया":"Partially Paid / Due",
+  "तारीख उपलब्ध नहीं":"Date unavailable",
+  "समय उपलब्ध नहीं":"Time unavailable",
+  "खोजें":"Search",
+  "कोई Worker नहीं मिला।":"No workers found.",
+  "सक्रिय":"Active",
+  "निष्क्रिय":"Inactive",
+  "हटाया गया":"Deleted",
+  "स्थिति":"Status",
+  "बनाने की तारीख":"Created Date",
+  "आज की वसूली":"Collected Today",
+  "आज का खर्च":"Today's Expenses",
+  "गतिविधि":"Activity",
+  "विवरण":"Details",
+  "रकम":"Amount",
+  "बिल बना":"Bill Created",
+  "भुगतान जमा":"Payment Received",
+  "खर्च दर्ज":"Expense Recorded",
+  "Inactive करें":"Deactivate",
+  "Active करें":"Activate",
+  "Worker List Refresh करें":"Refresh Worker List",
+  "Worker की सूची लोड हो रही है...":"Loading worker list...",
+  "अभी कोई Worker अकाउंट नहीं है।":"No worker accounts yet.",
+  "Worker हटाया गया है":"Worker has been removed",
+  "Worker का status ":"Worker status ",
+  "कर दिया गया।":"updated.",
+  "बनाने वाले Admin:":"Created by Admin:",
+  "Admin Email:":"Admin Email:",
+  "Admin UID:":"Admin UID:",
+  "बनाया गया:":"Created at:"
+ });
+ /* END MJK_EXTRA_TRANSLATIONS_V1 */
+
  const reverse=Object.create(null);
  Object.keys(dict).forEach(k=>{if(!reverse[dict[k]])reverse[dict[k]]=k;});
  let lang="hi";

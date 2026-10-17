@@ -278,6 +278,69 @@ body {
 @media(prefers-reduced-motion:reduce){.language-toggle{transition:none!important}}
 /* END MJK_BILINGUAL_LANGUAGE_V1 */
 
+/* MJK SCHOOL ID CARD - isolated preview styles */
+.school-id-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:16px;align-items:start}
+.school-id-layout .panel{min-width:0}
+.school-id-photo-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.school-id-upload{border:1px dashed #56708e;border-radius:12px;padding:12px;background:#101e34}
+.school-id-upload img{display:block;width:88px;height:100px;object-fit:cover;border-radius:8px;margin-top:8px;background:#233a54}
+.school-id-card-preview{
+  width:100%;max-width:430px;aspect-ratio:1.586/1;margin:12px auto;
+  padding:14px;border-radius:10px;
+  background:linear-gradient(145deg,#fff 0%,#f5f8fc 68%,#e9f0f8 100%);
+  color:#17253b;border:1px solid #b8c7d8;
+  box-shadow:0 10px 26px #071b3526;overflow:hidden;position:relative;
+}
+.school-id-card-preview:before{
+  content:"";position:absolute;inset:5px;border:1px solid #d6b66d;
+  border-radius:6px;pointer-events:none;
+}
+.school-id-card-preview:after{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+  background:linear-gradient(#173b66,#2b6795,#d6b66d);
+}
+.school-id-card-preview h3{
+  border-bottom:2px solid #173b66;padding:0 30px 7px;
+  letter-spacing:.35px;text-transform:uppercase;
+}
+.school-id-card-preview .school-id-subtitle{
+  border-bottom:1px solid #d4dce6;padding:0 8px 6px;
+}
+.school-id-card-preview .school-id-details{
+  padding:7px 9px;border:1px solid #d9e1eb;border-radius:5px;
+  background:#ffffffc9;position:relative;z-index:1;
+}
+.school-id-card-preview #sidPreviewName{
+  display:inline-block;min-width:80px;border-bottom:1px solid #526b89;
+  font-weight:700;padding:0 2px 1px;
+}
+.school-id-card-preview.school-id-portrait{
+  max-width:300px;aspect-ratio:54/85.6;padding:15px 12px;
+}
+.school-id-card-preview.school-id-portrait h3{font-size:13px;padding-top:27px}
+.school-id-card-preview.school-id-portrait .school-id-card-body{
+  flex-direction:column;align-items:center;gap:7px;
+}
+.school-id-card-preview.school-id-portrait .school-id-student-photo{
+  width:78px;height:92px;
+}
+.school-id-card-preview.school-id-portrait .school-id-details{
+  width:100%;font-size:10px;line-height:1.65;
+}
+.school-id-card-preview.school-id-portrait .school-id-footer{margin-top:6px}
+
+.school-id-card-preview h3{font-size:15px;text-align:center;margin:0 0 4px;color:#173b66}
+.school-id-card-preview .school-id-subtitle{text-align:center;font-size:9px;margin-bottom:9px;color:#52627a}
+.school-id-card-preview .school-id-card-body{display:flex;gap:12px;align-items:flex-start}
+.school-id-card-preview .school-id-student-photo{width:82px;height:100px;object-fit:cover;border:1px solid #9aa9b8;border-radius:5px;background:#e2e8ef;flex-shrink:0}
+.school-id-card-preview .school-id-logo{width:34px;height:34px;object-fit:contain;position:absolute;top:12px;left:12px}
+.school-id-card-preview .school-id-details{font-size:10px;line-height:1.55;overflow-wrap:anywhere}
+.school-id-card-preview .school-id-details b{color:#183d67}
+.school-id-card-preview .school-id-footer{border-top:1px solid #cbd5df;margin-top:8px;padding-top:5px;font-size:8px;display:flex;justify-content:space-between;gap:8px}
+@media(max-width:900px){.school-id-layout{grid-template-columns:1fr}}
+@media(max-width:580px){.school-id-photo-row{grid-template-columns:1fr}.school-id-card-preview{padding:12px}.school-id-card-preview .school-id-student-photo{width:72px;height:88px}.school-id-card-preview .school-id-details{font-size:9px}}
+
+
 </style></head><body>
 <header class="topbar"><div class="topinner"><a class="brand" href="#home" id="brandHome"><span class="logo">MJ</span><span>Maurya Jan Seva Kendra<small>DIGITAL SERVICE • TRUST • CARE</small></span></a><nav class="nav"><a class="nav-link" href="#services">सेवाएँ</a><a class="nav-link" href="#contact">संपर्क</a><button class="gold" id="openLogin">Admin Login</button><button type="button" class="language-toggle" id="languageToggle" aria-label="Switch language">हिंदी | English</button></nav></div></header>
 <main id="publicSite">
@@ -286,7 +349,7 @@ body {
 <section class="wrap section" id="services"><div class="section-head"><div><div class="eyebrow">Our services</div><h2>हमारी सेवाएँ</h2><p class="muted">अपनी जरूरत बताइए—सेवा उपलब्धता और शुल्क केंद्र से पुष्टि करें।</p></div></div><div class="services">
 <article class="service"><div class="ico" aria-hidden="true">📝</div><h3 data-hi="ऑनलाइन फॉर्म" data-en="Online Forms">ऑनलाइन फॉर्म</h3><div class="service-en" aria-hidden="true">Online Forms</div><p data-hi="ऑनलाइन आवेदन और फॉर्म भरने में सहायता।" data-en="Help with online forms and applications.">ऑनलाइन आवेदन और फॉर्म भरने में सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🖨️</div><h3 data-hi="प्रिंट और स्कैन" data-en="Print & Scan">प्रिंट और स्कैन</h3><div class="service-en" aria-hidden="true">Print & Scan</div><p data-hi="दस्तावेज़ प्रिंट, स्कैन और डिजिटल कॉपी।" data-en="Print, scan and digitize documents.">दस्तावेज़ प्रिंट, स्कैन और डिजिटल कॉपी।</p></article><article class="service"><div class="ico" aria-hidden="true">📄</div><h3 data-hi="दस्तावेज़ सहायता" data-en="Document Help">दस्तावेज़ सहायता</h3><div class="service-en" aria-hidden="true">Document Help</div><p data-hi="आवेदन के लिए जरूरी दस्तावेज़ों की सूची में मदद।" data-en="Guidance on documents needed for applications.">आवेदन के लिए जरूरी दस्तावेज़ों की सूची में मदद।</p></article><article class="service"><div class="ico" aria-hidden="true">🧾</div><h3 data-hi="बिल और रसीद" data-en="Bills & Receipts">बिल और रसीद</h3><div class="service-en" aria-hidden="true">Bills & Receipts</div><p data-hi="सेवा शुल्क, भुगतान और बाकी रकम का रिकॉर्ड।" data-en="Track service charges, payments and balances.">सेवा शुल्क, भुगतान और बाकी रकम का रिकॉर्ड।</p></article><article class="service"><div class="ico" aria-hidden="true">🔎</div><h3 data-hi="आवेदन मार्गदर्शन" data-en="Application Help">आवेदन मार्गदर्शन</h3><div class="service-en" aria-hidden="true">Application Help</div><p data-hi="उपलब्ध ऑनलाइन सेवाओं की प्रक्रिया समझने में सहायता।" data-en="Guidance on available online service procedures.">उपलब्ध ऑनलाइन सेवाओं की प्रक्रिया समझने में सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🤝</div><h3 data-hi="ग्राहक सहायता" data-en="Customer Support">ग्राहक सहायता</h3><div class="service-en" aria-hidden="true">Customer Support</div><p data-hi="सेवा और स्थिति की जानकारी के लिए संपर्क करें।" data-en="Contact us for service information and updates.">सेवा और स्थिति की जानकारी के लिए संपर्क करें।</p></article><article class="service"><div class="ico" aria-hidden="true">🪪</div><h3 data-hi="आधार सहायता" data-en="Aadhaar Help">आधार सहायता</h3><div class="service-en" aria-hidden="true">Aadhaar Help</div><p data-hi="उपलब्ध आधार-संबंधित सेवाओं की जानकारी और मार्गदर्शन।" data-en="Information about available Aadhaar services.">उपलब्ध आधार-संबंधित सेवाओं की जानकारी और मार्गदर्शन।</p></article><article class="service"><div class="ico" aria-hidden="true">📑</div><h3 data-hi="PAN और प्रमाणपत्र" data-en="PAN & Certificates">PAN और प्रमाणपत्र</h3><div class="service-en" aria-hidden="true">PAN & Certificates</div><p data-hi="PAN कार्ड और उपलब्ध प्रमाणपत्र सेवाओं के लिए सहायता।" data-en="Help with PAN cards and certificate services.">PAN कार्ड और उपलब्ध प्रमाणपत्र सेवाओं के लिए सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🎫</div><h3 data-hi="टिकट बुकिंग" data-en="Ticket Booking">टिकट बुकिंग</h3><div class="service-en" aria-hidden="true">Ticket Booking</div><p data-hi="उपलब्ध टिकट बुकिंग सेवाओं की जानकारी।" data-en="Information about available ticket-booking services.">उपलब्ध टिकट बुकिंग सेवाओं की जानकारी।</p></article><article class="service"><div class="ico" aria-hidden="true">🎓</div><h3 data-hi="स्कूल ID कार्ड" data-en="School ID Card">स्कूल ID कार्ड</h3><div class="service-en" aria-hidden="true">School ID Card</div><p data-hi="स्कूल ID कार्ड सेवा की जानकारी के लिए संपर्क करें।" data-en="Contact us for school ID card service information.">स्कूल ID कार्ड सेवा की जानकारी के लिए संपर्क करें।</p></article></div></section>
 <section class="wrap section" id="contact"><div class="section-head"><div><div class="eyebrow">Get in touch</div><h2>केंद्र से संपर्क करें</h2></div></div><div class="contact-grid"><div class="contact-card"><h3>संपर्क विवरण</h3><div class="contact-row"><span>केंद्र संपर्क</span><b>Rajkumar Maurya</b></div><div class="contact-row"><span>फोन</span><a href="tel:9076855003">9076855003</a> · <a href="tel:6392526277">6392526277</a></div><div class="contact-row"><span>Email</span><a href="mailto:mauryarajkumar7398@gmail.com">mauryarajkumar7398@gmail.com</a></div><div class="contact-row"><span>पता</span>Hamjapur Patahan, Kadipur, Sultanpur, Uttar Pradesh — 228145</div><div class="actions"><a href="https://wa.me/919076855003" target="_blank" rel="noopener"><button class="gold">WhatsApp करें</button></a></div></div><div class="contact-card"><div class="eyebrow">Customer care</div><h3>अपनी जरूरत बताइए</h3><p class="muted">किस सेवा की जानकारी चाहिए? नीचे लिखकर WhatsApp पर भेजें।</p><div class="field"><label for="serviceChoice">सेवा चुनें</label><select id="serviceChoice"><option>ऑनलाइन फॉर्म</option><option>प्रिंट और स्कैन</option><option>दस्तावेज़ सहायता</option><option>बिल और रसीद</option><option>आवेदन मार्गदर्शन</option><option>अन्य</option></select></div><div class="field"><label for="serviceQuestion">आपका सवाल</label><textarea id="serviceQuestion" rows="3" maxlength="250" placeholder="अपनी जरूरत लिखें"></textarea></div><button class="gold" id="sendService">WhatsApp पर भेजें</button></div></div></section></main>
-<section class="wrap app-shell hidden" id="appShell"><aside class="sidebar"><div class="user-mini"><img id="sidePhoto" class="avatar" alt="Profile photo" src="" onerror="this.style.display='none';document.getElementById('sideInitial').style.display='grid'"><div id="sideInitial" class="avatar" style="display:none">MJ</div><div style="min-width:0"><b id="sideName">User</b><div id="sideRole" class="muted small">ADMIN</div></div></div><div class="menu-label">WORKSPACE</div><div class="menu"><button class="active" data-page="dashboard">▦ Dashboard</button><button data-page="billing">▤ नया बिल</button><button data-page="bills">▣ बिल रिकॉर्ड</button><button data-page="deleted-history" id="deletedHistoryMenu">▤ Deleted Bills History</button><button data-page="customers">⌕ ग्राहक / बिल खोजें</button><button data-page="expenses">₹ खर्च दर्ज करें</button><button data-page="workers" id="workersMenu">♙ Worker जोड़ें</button></div><div class="menu-label">ACCOUNT</div><div class="menu"><button data-page="profile">◉ Profile</button><button data-page="settings">⚙ Settings</button><button class="logout" id="logoutBtn">↪ Logout</button></div></aside>
+<section class="wrap app-shell hidden" id="appShell"><aside class="sidebar"><div class="user-mini"><img id="sidePhoto" class="avatar" alt="Profile photo" src="" onerror="this.style.display='none';document.getElementById('sideInitial').style.display='grid'"><div id="sideInitial" class="avatar" style="display:none">MJ</div><div style="min-width:0"><b id="sideName">User</b><div id="sideRole" class="muted small">ADMIN</div></div></div><div class="menu-label">WORKSPACE</div><div class="menu"><button class="active" data-page="dashboard">▦ Dashboard</button><button data-page="school-cards">🪪 School ID Card</button><button data-page="school-card-history">📋 ID Card History</button><button data-page="billing">▤ नया बिल</button><button data-page="bills">▣ बिल रिकॉर्ड</button><button data-page="deleted-history" id="deletedHistoryMenu">▤ Deleted Bills History</button><button data-page="customers">⌕ ग्राहक / बिल खोजें</button><button data-page="expenses">₹ खर्च दर्ज करें</button><button data-page="workers" id="workersMenu">♙ Worker जोड़ें</button></div><div class="menu-label">ACCOUNT</div><div class="menu"><button data-page="profile">◉ Profile</button><button data-page="settings">⚙ Settings</button><button class="logout" id="logoutBtn">↪ Logout</button></div></aside>
 <div class="workspace"><div class="page-head"><div><div class="eyebrow">Private workspace</div><h1 id="pageTitle">Dashboard</h1><div class="muted small" id="welcomeName"></div></div><div class="row"><button type="button" class="language-toggle" id="appLanguageToggle">हिंदी | English</button><button class="outline no-print" id="publicBtn">Home Page</button></div></div><div id="appMsg" aria-live="polite"></div>
 <div class="stats" id="dashboardStats"><div class="stat"><span>कुल बिल</span><strong id="statBills">0</strong></div><div class="stat"><span>कुल बिल रकम</span><strong id="statTotal">₹0</strong></div><div class="stat"><span>प्राप्त भुगतान</span><strong id="statPaid">₹0</strong></div><div class="stat"><span>ग्राहकों से बाकी</span><strong id="statDue">₹0</strong></div><div class="stat"><span>इस महीने प्राप्त</span><strong id="monthPaid">₹0</strong></div><div class="stat"><span>इस महीने खर्च</span><strong id="monthExpense">₹0</strong></div><div class="stat"><span>इस महीने शुद्ध</span><strong id="monthNet">₹0</strong></div><div class="stat"><span>आज प्राप्त</span><strong id="todayPaid">₹0</strong></div></div>
 <section class="page" id="page-dashboard"><div class="panel"><div class="section-head"><div><h2>आज का काम</h2><p class="muted small">ग्राहक का नया रिकॉर्ड बनाने के बजाय बिल बनाकर उसका हिसाब रखें।</p></div><button class="gold" data-go="billing">+ नया बिल</button></div><div class="split"><div class="result"><div class="eyebrow">QUICK ACTION</div><h3>ग्राहक का बिल जोड़ें</h3><p class="muted small">नाम या मोबाइल से ग्राहक खोजें, सेवा और रकम भरें, फिर रसीद प्रिंट/WhatsApp करें।</p><button class="gold" data-go="billing">बिल बनाएँ</button></div><div class="result"><div class="eyebrow">PAYMENT TRACKING</div><h3>बाकी भुगतान</h3><p class="muted small">कुल, जमा और बाकी रकम की जाँच करें और भुगतान इतिहास रखें।</p><button class="secondary" data-go="bills">बिल रिकॉर्ड देखें</button></div></div></div><div class="panel"><h2>हाल के बिल</h2><div id="recentBills" class="muted small">लॉगिन के बाद बिल रिकॉर्ड लोड होंगे।</div></div>
@@ -311,8 +374,8 @@ body {
 
 
 </div></section>
-<section class="page hidden" id="page-profile"><div class="panel"><h2>आपकी Profile</h2><div class="profile-top"><img class="profile-photo" id="profilePhoto" alt="Profile photo" src=""><div><b id="profileEmail"></b><div id="profileRole" class="muted small"></div><div class="field"><label for="photoFile">अपनी फोटो चुनें</label><input type="file" id="photoFile" accept="image/*"></div></div></div><form id="profileForm" class="formgrid"><div class="field"><label for="profileName">नाम</label><input id="profileName" required maxlength="100"></div><div class="field"><label for="profilePhone">मोबाइल नंबर</label><input id="profilePhone" type="tel" inputmode="tel" maxlength="15" placeholder="अपना मोबाइल नंबर"></div><div class="field"><label>Email (बदलने के लिए Firebase Auth की अलग प्रक्रिया चाहिए)</label><input id="profileEmailRead" readonly></div><div class="field full"><button class="gold" type="submit">Profile सेव करें</button></div></form><p class="muted small">फोटो को इस ब्राउज़र में छोटा करके प्रोफ़ाइल में सेव किया जाएगा। फोटो का बैकअप अलग से रखें।</p></div></section>
-<section class="page hidden" id="page-settings"><div class="panel"><h2>Settings</h2><p class="muted small">पासवर्ड बदलने के लिए Firebase सुरक्षित Password Reset Email भेजेगा।</p><div class="result"><b id="settingsEmail"></b><p class="muted small">Email inbox में दिए गए निर्देशों से नया पासवर्ड सेट करें।</p><button class="gold" id="settingsReset">Password reset email भेजें</button></div><div class="result"><h3>सुरक्षा</h3><p class="muted small">पासवर्ड किसी के साथ साझा न करें। काम पूरा होने पर Logout करें।</p><button class="danger" id="settingsLogout">Logout</button></div></div></section>
+<section class="page hidden" id="page-profile"><div class="panel"><h2>आपकी Profile</h2><div class="profile-top"><img class="profile-photo" id="profilePhoto" alt="Profile photo" src=""><div><b id="profileEmail"></b><div id="profileRole" class="muted small"></div><div class="field"><label for="photoFile">अपनी फोटो चुनें</label><input type="file" id="photoFile" accept="image/*"></div></div></div><form id="profileForm" class="formgrid"><div class="field"><label for="profileName">नाम</label><input id="profileName" required maxlength="100"></div><div class="field"><label for="profilePhone">मोबाइल नंबर</label><input id="profilePhone" type="tel" inputmode="tel" maxlength="15" placeholder="अपना मोबाइल नंबर"></div><div class="field"><label>Email (बदलने के लिए अलग प्रक्रिया आवश्यक है)</label><input id="profileEmailRead" readonly></div><div class="field full"><button class="gold" type="submit">Profile सेव करें</button></div></form><p class="muted small">फोटो को इस ब्राउज़र में छोटा करके प्रोफ़ाइल में सेव किया जाएगा। फोटो का बैकअप अलग से रखें।</p></div></section>
+<section class="page hidden" id="page-settings"><div class="panel"><h2>Settings</h2><p class="muted small">पासवर्ड बदलने के लिए आपके ईमेल पर सुरक्षित Password Reset लिंक भेजा जाएगा।</p><div class="result"><b id="settingsEmail"></b><p class="muted small">Email inbox में दिए गए निर्देशों से नया पासवर्ड सेट करें।</p><button class="gold" id="settingsReset">Password reset email भेजें</button></div><div class="result"><h3>सुरक्षा</h3><p class="muted small">पासवर्ड किसी के साथ साझा न करें। काम पूरा होने पर Logout करें।</p><button class="danger" id="settingsLogout">Logout</button></div></div></section>
 <section class="page hidden" id="page-editbill">
 <div class="panel">
 <h2>बिल की जानकारी Edit करें</h2>
@@ -347,19 +410,110 @@ body {
 </form>
 <div id="paymentMsg"></div>
 </div></section>
+<section class="page hidden" id="page-school-cards">
+  <div class="panel">
+    <div class="row" style="justify-content:space-between">
+      <div><h2>School ID Card</h2><p class="muted">छात्र का विवरण भरें, फोटो और स्कूल का लोगो अपलोड करें, फिर कार्ड का प्रीव्यू देखें।</p></div>
+      <button class="gold" id="schoolIdNewBtn" type="button">＋ नया छात्र</button>
+    </div>
+    <div class="field">
+      <label for="schoolIdSearch">छात्र का नाम, मोबाइल या Student ID खोजें</label>
+      <input id="schoolIdSearch" type="search" placeholder="नाम / मोबाइल / Student ID">
+    </div>
+    <div id="schoolIdListNotice" class="muted small">आपके बनाए गए ID कार्ड रिकॉर्ड यहाँ दिखेंगे।</div>
+    <div id="schoolIdList" class="table-wrap"><p class="muted">रिकॉर्ड लोड हो रहे हैं…</p></div>
+  </div>
+  </section>
+
+<section class="page hidden" id="page-school-card-edit">
+  <div class="panel" id="schoolIdEditor">
+    <div class="row" style="justify-content:space-between"><h2 id="schoolIdFormTitle">छात्र का विवरण</h2><button class="secondary" type="button" data-go="school-cards">← रिकॉर्ड सूची</button></div>
+    <form id="schoolIdForm">
+      <div class="field">
+        <label for="sidOrientation">कार्ड की दिशा चुनें</label>
+        <select id="sidOrientation">
+          <option value="landscape">Horizontal — आड़ा कार्ड</option>
+          <option value="portrait">Vertical — खड़ा कार्ड</option>
+        </select>
+      </div>
+      <div class="formgrid">
+        <div class="field"><label for="sidStudentName">छात्र का पूरा नाम *</label><input id="sidStudentName" required maxlength="100"></div>
+        <div class="field"><label for="sidStudentId">Student ID (वैकल्पिक)</label><input id="sidStudentId" maxlength="40"></div>
+        <div class="field"><label for="sidFather">पिता का नाम *</label><input id="sidFather" required maxlength="100"></div>
+        <div class="field"><label for="sidMother">माता का नाम</label><input id="sidMother" maxlength="100"></div>
+        <div class="field"><label for="sidSchoolName">स्कूल का नाम *</label><input id="sidSchoolName" required maxlength="150"></div>
+        <div class="field"><label for="sidSchoolPhone">स्कूल का फोन</label><input id="sidSchoolPhone" inputmode="tel" maxlength="15"></div>
+        <div class="field full"><label for="sidSchoolAddress">स्कूल का पता *</label><textarea id="sidSchoolAddress" required rows="2" maxlength="250"></textarea></div>
+        <div class="field"><label for="sidClass">कक्षा *</label><input id="sidClass" required maxlength="30" placeholder="जैसे 8"></div>
+        <div class="field"><label for="sidSection">सेक्शन</label><input id="sidSection" maxlength="20"></div>
+        <div class="field"><label for="sidRoll">रोल नंबर</label><input id="sidRoll" maxlength="30"></div>
+        <div class="field"><label for="sidDob">जन्म तिथि</label><input id="sidDob" type="date"></div>
+        <div class="field"><label for="sidPhone">अभिभावक का मोबाइल</label><input id="sidPhone" inputmode="tel" maxlength="15"></div>
+        <div class="field"><label for="sidYear">शैक्षणिक वर्ष *</label><input id="sidYear" required maxlength="20" placeholder="2026-27"></div>
+      </div>
+      <div class="school-id-photo-row">
+        <div class="school-id-upload">
+          <label for="sidStudentPhoto">छात्र की फोटो *</label>
+          <input id="sidStudentPhoto" type="file" accept="image/*" required>
+          <img id="sidStudentPhotoPreview" alt="छात्र की फोटो का प्रीव्यू" class="hidden">
+        </div>
+        <div class="school-id-upload">
+          <label for="sidSchoolLogo">स्कूल का लोगो / फोटो</label>
+          <input id="sidSchoolLogo" type="file" accept="image/*">
+          <img id="sidSchoolLogoPreview" alt="स्कूल लोगो का प्रीव्यू" class="hidden">
+        </div>
+      </div>
+      <p class="muted small">छात्र की फोटो और स्कूल लोगो कार्ड रिकॉर्ड में सुरक्षित रखे जाएँगे।</p>
+      <div class="row"><button class="gold" type="submit">प्रीव्यू अपडेट करें</button><button class="secondary" type="reset">फॉर्म साफ करें</button></div>
+      <div id="schoolIdFormNotice" aria-live="polite"></div>
+    </form>
+  </div>
+  <div class="panel">
+    <h2>कार्ड प्रीव्यू</h2>
+    <p class="muted small">कार्ड को CR80 आकार (85.6 × 54 mm) में Print या Save as PDF करें।</p>
+    <div class="school-id-card-preview" id="schoolIdCardPreview">
+      <h3 id="sidPreviewSchool">SCHOOL NAME</h3>
+      <div class="school-id-subtitle" id="sidPreviewAddress">School address</div>
+      <img id="sidPreviewLogo" class="school-id-logo hidden" alt="School logo">
+      <div class="school-id-card-body">
+        <img id="sidPreviewPhoto" class="school-id-student-photo" alt="Student photo">
+        <div class="school-id-details">
+          <div><b>Name:</b> <span id="sidPreviewName">Student Name</span></div>
+          <div><b>Student ID:</b> <span id="sidPreviewId">—</span></div>
+          <div><b>Father:</b> <span id="sidPreviewFather">—</span></div>
+          <div><b>Class:</b> <span id="sidPreviewClass">—</span></div>
+          <div><b>Roll No:</b> <span id="sidPreviewRoll">—</span></div>
+          <div><b>DOB:</b> <span id="sidPreviewDob">—</span></div>
+          <div><b>Session:</b> <span id="sidPreviewYear">—</span></div>
+        </div>
+      </div>
+      <div class="school-id-footer"><span>School Identity Card</span><span id="sidPreviewPhone"></span></div>
+    </div>
+  </div>
+
+</section>
+
+<section class="page hidden" id="page-school-card-history">
+  <div class="card">
+    <div class="row" style="justify-content:space-between;align-items:center;flex-wrap:wrap"><div><h2>School ID Card History</h2><p class="muted">सेव किए गए और हटाए गए ID कार्ड यहाँ खोजें।</p></div><button class="secondary" type="button" data-go="school-cards">← School ID Card</button></div>
+    <div class="row" style="gap:10px;flex-wrap:wrap;margin:16px 0"><input id="schoolIdHistorySearch" type="search" placeholder="नाम, मोबाइल या Student ID से खोजें" aria-label="Search ID card history" style="flex:1;min-width:220px"><button class="secondary" id="schoolIdHistoryRefresh" type="button">Refresh</button></div>
+    <div id="schoolIdHistoryNotice" aria-live="polite"></div><div id="schoolIdHistoryList"><div class="empty-state">Audit history लोड हो रही है…</div></div>
+  </div>
+</section>
+
 <section class="page hidden" id="page-receipt"><div class="panel no-print"><div class="row"><button class="secondary" data-go="bills">← बिल रिकॉर्ड</button><button class="gold" id="printReceipt">Print / PDF</button><button class="secondary" id="shareReceipt">WhatsApp शेयर</button></div></div><div id="receiptContent"></div></section>
 </div></section>
 <footer class="wrap footer" id="footer">© <span id="year"></span> Maurya Jan Seva Kendra · Private service centre, not a government website.</footer><div id="toast" class="toast hidden" role="status"></div>
 <script type="module">
 import{initializeApp,getApps,deleteApp}from'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut,sendPasswordResetEmail,createUserWithEmailAndPassword}from'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-import{getFirestore,doc,getDoc,setDoc,updateDoc,deleteDoc,writeBatch,collection,addDoc,getDocs,query,orderBy,limit,serverTimestamp,runTransaction,where}from'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+import{getFirestore,doc,getDoc,setDoc,updateDoc,deleteDoc,writeBatch,collection,addDoc,getDocs,query,orderBy,limit,serverTimestamp,runTransaction,where,deleteField}from'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 const cfg={apiKey:'AIzaSyARVksls_K3TwXGIBcltzcUYbwgh3_dhYc',authDomain:'maurya-jan-seva-kendra.firebaseapp.com',projectId:'maurya-jan-seva-kendra',storageBucket:'maurya-jan-seva-kendra.firebasestorage.app',messagingSenderId:'340620457116',appId:'1:340620457116:web:d7c2a099603500d12d2959',measurementId:'G-JX4PRTGSZ9'};
 const app=getApps().find(a=>a.name==='[DEFAULT]')||initializeApp(cfg),auth=getAuth(app),db=getFirestore(app),$=id=>document.getElementById(id),money=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:2}).format(Number(n||0)),escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let user=null,profile=null,bills=[],customers=[],chosenCustomer=null,receiptData=null,photoData='',expenses=[];$('year').textContent=new Date().getFullYear();$('billDate').value=new Date().toLocaleDateString('en-CA');$('expenseDate').value=new Date().toLocaleDateString('en-CA');
 function msg(id,t,ok=false){$(id).innerHTML=t?`<div class="msg ${ok?'ok':''}">${escapeHtml(t)}</div>`:''}function toast(t){$('toast').textContent=t;$('toast').classList.remove('hidden');setTimeout(()=> $('toast').classList.add('hidden'),3500)}function staff(){return !!profile&&profile.status==='active'&&['admin','worker'].includes(profile.role)}function admin(){return !!profile&&profile.status==='active'&&profile.role==='admin'}
 function setPublic(){ $('publicSite').classList.remove('hidden');$('appShell').classList.add('hidden');$('footer').classList.remove('hidden');$('openLogin').classList.remove('hidden');window.scrollTo(0,0)}function setApp(){ $('publicSite').classList.add('hidden');$('appShell').classList.remove('hidden');$('footer').classList.add('hidden');$('openLogin').classList.add('hidden');showPage('dashboard');}
-function showPage(page){if((page==='workers'||page==='deleted-history')&&!admin())page='dashboard';if($('deletedHistoryMenu'))$('deletedHistoryMenu').style.display=admin()?'':'none';document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));$('page-'+page)?.classList.remove('hidden');document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const titles={dashboard:'Dashboard',billing:'नया बिल',bills:'बिल रिकॉर्ड','deleted-history':'Deleted Bills History',customers:'ग्राहक खोजें',workers:'Worker जोड़ें',profile:'Profile',settings:'Settings',expenses:'दुकान का खर्च',receipt:'बिल / रसीद',editbill:'बिल Edit करें',payment:'भुगतान जमा करें'};$('pageTitle').textContent=titles[page]||'Dashboard';if(page==='bills')loadBills();if(page==='deleted-history')loadDeletedBillsHistory();if(page==='dashboard')loadBills(true);if(page==='expenses')loadExpenses();if(page==='workers')loadWorkerList();window.scrollTo(0,0)}
+function showPage(page){if((page==='workers'||page==='deleted-history')&&!admin())page='dashboard';if((page==='school-cards'||page==='school-card-history'||page==='school-card-edit')&&!staff())page='dashboard';if($('deletedHistoryMenu'))$('deletedHistoryMenu').style.display=admin()?'':'none';document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));$('page-'+page)?.classList.remove('hidden');document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const titles={dashboard:'Dashboard',billing:'नया बिल',bills:'बिल रिकॉर्ड','deleted-history':'Deleted Bills History',customers:'ग्राहक खोजें',workers:'Worker जोड़ें',profile:'Profile',settings:'Settings',expenses:'दुकान का खर्च',receipt:'बिल / रसीद',editbill:'बिल Edit करें',payment:'भुगतान जमा करें','school-cards':'School ID Card','school-card-history':'ID Card History','school-card-edit':'School ID Card Edit'};$('pageTitle').textContent=titles[page]||'Dashboard';if(page==='bills')loadBills();if(page==='deleted-history')loadDeletedBillsHistory();if(page==='dashboard')loadBills(true);if(page==='expenses')loadExpenses();if(page==='workers')loadWorkerList();if(page==='school-cards'&&window.loadSchoolIdCards)window.loadSchoolIdCards();if(page==='school-card-history'&&window.loadSchoolIdCardHistory)window.loadSchoolIdCardHistory();window.scrollTo(0,0)}
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>showPage(b.dataset.page));document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>showPage(b.dataset.go));$('openLogin').onclick=()=>{$('email').focus();$('loginPanel').scrollIntoView({behavior:'smooth',block:'center'})};$('publicBtn').onclick=setPublic;$('brandHome').onclick=()=>{if(user&&profile){setApp();showPage('dashboard')}else setPublic()};
 $('loginForm').onsubmit=async e=>{e.preventDefault();$('loginBtn').disabled=true;msg('loginMsg','');try{await signInWithEmailAndPassword(auth,$('email').value.trim(),$('password').value)}catch(err){let m='अभी Login नहीं हो पाया। कृपया दोबारा कोशिश करें।';if(['auth/invalid-credential','auth/wrong-password','auth/user-not-found','auth/invalid-email'].includes(err.code))m=window.mjkLang==='en'?'Check your email and password.':'Email या Password जाँचें।';else if(err.code==='auth/network-request-failed')m=window.mjkLang==='en'?'Check your internet connection and try again.':'इंटरनेट कनेक्शन जाँचकर दोबारा कोशिश करें।';msg('loginMsg',m)}finally{$('loginBtn').disabled=false}};
 $('resetBtn').onclick=async()=>{const email=$('email').value.trim();if(!email)return msg('loginMsg',window.mjkLang==='en'?'Enter your email first.':'पहले Email लिखें।');try{await sendPasswordResetEmail(auth,email);msg('loginMsg',window.mjkLang==='en'?'Password reset email sent. Check Inbox and Spam.':'Password reset email भेजा गया। Inbox और Spam देखें।',true)}catch(e){msg('loginMsg',window.mjkLang==='en'?'Could not send the reset email. Check the email and try again.':'Reset email नहीं भेजा जा सका। Email जाँचकर दोबारा कोशिश करें।')}};
@@ -796,6 +950,359 @@ $('refreshWorkersBtn').onclick=loadWorkerList;
 $('workerForm').onsubmit=async e=>{e.preventDefault();if(!admin())return toast('केवल Admin Worker बना सकता है।');const name=$('workerName').value.trim(),email=$('workerEmail').value.trim().toLowerCase(),password=$('workerPassword').value,phone=$('workerPhone').value.trim();if(password.length<6)return msg('workerMsg','पासवर्ड कम से कम 6 अक्षर का हो।');$('workerCreateBtn').disabled=true;let secondary=null;try{secondary=initializeApp(cfg,'worker-creation-'+Date.now());const secondaryAuth=getAuth(secondary);const cred=await createUserWithEmailAndPassword(secondaryAuth,email,password);await setDoc(doc(db,'users',cred.user.uid),{uid:cred.user.uid,name,email,phone,role:'worker',status:'active',createdByUid:user.uid,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});await signOut(secondaryAuth);await deleteApp(secondary);msg('workerMsg',`Worker बनाया गया: ${email}. अस्थायी पासवर्ड सुरक्षित तरीके से दें।` ,true);$('workerForm').reset();await loadWorkerList()}catch(e){msg('workerMsg','Worker नहीं बना: '+e.message)}finally{if(secondary){try{await deleteApp(secondary)}catch(_){}}$('workerCreateBtn').disabled=false}}
 $('settingsReset').onclick=async()=>{if(!user)return;try{await sendPasswordResetEmail(auth,user.email);toast('Password reset email भेजा गया। Inbox/Spam देखें।')}catch(e){toast('Email नहीं भेजा: '+e.message)}};$('settingsLogout').onclick=$('logoutBtn').onclick=async()=>{await signOut(auth);setPublic();toast('Logout हो गया।')};
 $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Kendra से मुझे इस सेवा की जानकारी चाहिए: ${$('serviceChoice').value}\nसवाल: ${$('serviceQuestion').value.trim()||'कृपया जानकारी दें।'}`;window.open('https://wa.me/919076855003?text='+encodeURIComponent(text),'_blank','noopener')};
+
+/* MJK_SCHOOL_ID_PREVIEW_HANDLER_V1 */
+(()=>{
+ const byId=id=>document.getElementById(id);
+ const val=id=>(byId(id)?.value||'').trim();
+ const fields={
+  sidOrientation:'orientation',sidStudentName:'studentName',sidStudentId:'studentId',
+  sidFather:'fatherName',sidMother:'motherName',
+  sidSchoolName:'schoolName',sidSchoolPhone:'schoolPhone',
+  sidSchoolAddress:'schoolAddress',sidClass:'className',
+  sidSection:'section',sidRoll:'rollNumber',sidDob:'dob',
+  sidPhone:'phone',sidYear:'academicYear'
+ };
+ let studentPhoto='',schoolLogo='',editingId=null,records=[];
+
+ function notice(text,ok=false){
+  const el=byId('schoolIdFormNotice');
+  el.innerHTML=text?`<div class="msg ${ok?'ok':''}">${escapeHtml(text)}</div>`:'';
+ }
+ function historyNotice(text){
+  byId('schoolIdHistoryNotice').textContent=text||'';
+ }
+ function actorName(){return String(profile?.name||user?.email||'Staff').slice(0,100)}
+ function readFields(){
+  const d={};
+  Object.entries(fields).forEach(([id,key])=>d[key]=val(id));
+  d.studentPhoto=studentPhoto;
+  d.schoolLogo=schoolLogo;
+  return d;
+ }
+ function updateCardPreview(){
+  const d=readFields();
+  const preview=byId('schoolIdCardPreview');
+  const portrait=d.orientation==='portrait';
+  preview.classList.toggle('school-id-portrait',portrait);
+  preview.classList.toggle('school-id-landscape',!portrait);
+  const values={
+    sidPreviewSchool:d.schoolName||'SCHOOL NAME',
+    sidPreviewAddress:d.schoolAddress||'School address',
+    sidPreviewName:d.studentName||'Student Name',
+    sidPreviewId:d.studentId||'',
+    sidPreviewFather:d.fatherName||'—',
+    sidPreviewClass:[d.className,d.section].filter(Boolean).join(' / ')||'—',
+    sidPreviewRoll:d.rollNumber||'—',
+    sidPreviewDob:d.dob||'—',
+    sidPreviewYear:d.academicYear||'—',
+    sidPreviewPhone:d.phone||''
+  };
+  Object.entries(values).forEach(([id,v])=>{
+    if(byId(id))byId(id).textContent=v;
+  });
+  const idSpan=byId('sidPreviewId');
+  if(idSpan)idSpan.parentElement.style.display=d.studentId?'':'none';
+  const photo=byId('sidPreviewPhoto'),logo=byId('sidPreviewLogo');
+  if(studentPhoto)photo.src=studentPhoto;else photo.removeAttribute('src');
+  if(schoolLogo){logo.src=schoolLogo;logo.classList.remove('hidden')}
+  else{logo.removeAttribute('src');logo.classList.add('hidden')}
+ }
+ function compressImage(file,maxBytes,maxSide){
+  return new Promise((resolve,reject)=>{
+   const url=URL.createObjectURL(file),img=new Image();
+   img.onload=()=>{
+    try{
+     const scale=Math.min(1,maxSide/Math.max(img.width,img.height));
+     const canvas=document.createElement('canvas');
+     canvas.width=Math.max(1,Math.round(img.width*scale));
+     canvas.height=Math.max(1,Math.round(img.height*scale));
+     canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+     let quality=.78,result=canvas.toDataURL('image/jpeg',quality);
+     while(result.length*0.75>maxBytes && quality>.35){
+      quality-=.07;result=canvas.toDataURL('image/jpeg',quality);
+     }
+     URL.revokeObjectURL(url);
+     if(result.length*0.75>=maxBytes)reject(Error('फोटो अभी भी बड़ी है। छोटी फोटो चुनें।'));
+     else resolve(result);
+    }catch(e){URL.revokeObjectURL(url);reject(e)}
+   };
+   img.onerror=()=>{URL.revokeObjectURL(url);reject(Error('फोटो पढ़ नहीं पाए।'))};
+   img.src=url;
+  });
+ }
+ async function setImage(inputId,previewId,which){
+  const input=byId(inputId),file=input.files?.[0];
+  if(!file)return;
+  if(!file.type.startsWith('image/')){toast('सही image file चुनें।');input.value='';return}
+  if(file.size>5*1024*1024){toast('फोटो 5 MB से छोटी होनी चाहिए।');input.value='';return}
+  try{
+   const data=await compressImage(file,which==='student'?285000:140000,which==='student'?600:400);
+   if(which==='student')studentPhoto=data;else schoolLogo=data;
+   byId(previewId).src=data;byId(previewId).classList.remove('hidden');
+   updateCardPreview();
+  }catch(e){toast(e.message||'फोटो compress नहीं हुई।');input.value=''}
+ }
+ function setEditor(d={},id=null){
+  editingId=id;
+  byId('schoolIdForm').reset();
+  Object.entries(fields).filter(([field])=>field!=='sidOrientation').forEach(([field,key])=>byId(field).value=d[key]||'');
+  byId('sidOrientation').value=d.orientation||'landscape';
+  studentPhoto=d.studentPhoto||'';
+  schoolLogo=d.schoolLogo||'';
+  [['sidStudentPhotoPreview',studentPhoto],['sidSchoolLogoPreview',schoolLogo]]
+   .forEach(([id,src])=>{const el=byId(id);if(src){el.src=src;el.classList.remove('hidden')}else{el.removeAttribute('src');el.classList.add('hidden')}});
+  byId('schoolIdFormTitle').textContent=id?'छात्र का ID कार्ड Edit करें':'नया छात्र ID कार्ड';
+  byId('schoolIdNewBtn').textContent='＋ नया छात्र';
+  notice('');
+  updateCardPreview();
+  byId('schoolIdEditor').scrollIntoView({behavior:'smooth',block:'start'});
+ }
+ function fmtTime(v){
+  if(!v)return 'समय उपलब्ध नहीं';
+  const d=typeof v.toDate==='function'?v.toDate():new Date(v);
+  return Number.isNaN(d.getTime())?'समय उपलब्ध नहीं':d.toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});
+ }
+ function cardMarkup(d,id){
+  return `<div class="panel" style="margin:10px 0">
+   <div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+    <div><strong>${escapeHtml(d.studentName||'नाम नहीं')}</strong>
+     <div class="muted small">ID: ${escapeHtml(d.studentId||'—')} · कक्षा: ${escapeHtml(d.className||'—')} ${escapeHtml(d.section||'')}</div>
+     <div class="muted small">मोबाइल: ${escapeHtml(d.phone||'—')} · अपडेट: ${escapeHtml(fmtTime(d.updatedAt))}</div>
+     <div class="muted small">किसने किया: ${escapeHtml(d.updatedByName||d.createdByName||'—')}</div>
+    </div>
+    <div class="row" style="gap:6px;flex-wrap:wrap">
+     <button type="button" class="secondary" data-card-action="print" data-card-id="${escapeHtml(id)}">Print / PDF</button>
+     ${d.deleted
+      ? `<button type="button" class="gold" data-card-action="restore" data-card-id="${escapeHtml(id)}">Restore</button>`
+      : `<button type="button" class="secondary" data-card-action="edit" data-card-id="${escapeHtml(id)}">Edit</button>
+         <button type="button" class="secondary" data-card-action="delete" data-card-id="${escapeHtml(id)}">Delete</button>`}
+    </div>
+   </div></div>`;
+ }
+ function printSchoolIdCard(d){
+  const w=window.open('','_blank','width=650,height=700');
+  if(!w){toast('Print विंडो खुल नहीं सकी। Browser में pop-ups अनुमति दें।');return}
+  const esc=escapeHtml;
+  const portrait=d.orientation==='portrait';
+  const width=portrait?'54mm':'85.6mm';
+  const height=portrait?'85.6mm':'54mm';
+  const logo=d.schoolLogo||'';
+  const idRow=d.studentId?`<div><b>Student ID:</b> ${esc(d.studentId)}</div>`:'';
+  const body=`<!doctype html><html><head><meta charset="utf-8"><title>School ID Card</title>
+  <style>
+  @page{size:${width} ${height};margin:0}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;width:${width};height:${height};font-family:Arial,sans-serif}
+  .id{width:${width};height:${height};padding:3mm;position:relative;overflow:hidden;color:#17253b;background:linear-gradient(145deg,#fff,#f0f5fa);border:.35mm solid #b8c7d8}
+  .id:before{content:"";position:absolute;inset:1.5mm;border:.25mm solid #d6b66d;pointer-events:none}
+  .accent{position:absolute;left:0;top:0;bottom:0;width:1.2mm;background:#173b66}
+  h3{font-size:${portrait?'9pt':'10pt'};text-align:center;margin:0 0 1mm;color:#173b66;padding:0 8mm 1.2mm;border-bottom:.5mm solid #173b66;overflow-wrap:anywhere}
+  .address{text-align:center;font-size:6pt;margin:1mm 0 2mm;color:#52627a;max-height:8mm;overflow:hidden}
+  .logo{position:absolute;top:3mm;left:3mm;width:8mm;height:8mm;object-fit:contain}
+  .body{display:flex;gap:2.5mm;align-items:flex-start}
+  .photo{width:19mm;height:24mm;object-fit:cover;border:.3mm solid #9aa9b8;flex-shrink:0}
+  .details{min-width:0;flex:1;font-size:${portrait?'6.2pt':'6.5pt'};line-height:1.42;overflow-wrap:anywhere;padding:1.2mm;border:.2mm solid #d9e1eb;border-radius:1mm;background:#ffffffd9}
+  .details b{color:#183d67}
+  .student-name{border-bottom:.25mm solid #526b89;display:inline-block;min-width:18mm;font-weight:bold}
+  .footer{border-top:.2mm solid #cbd5df;margin-top:1.5mm;padding-top:1mm;font-size:5.5pt;display:flex;justify-content:space-between;gap:2mm}
+  .portrait h3{padding-top:7mm}
+  .portrait .body{flex-direction:column;align-items:center;gap:1.5mm}
+  .portrait .photo{width:17mm;height:20mm}
+  .portrait .details{width:100%;font-size:6.3pt}
+  @media screen{body{margin:15px auto;box-shadow:0 2px 12px #888}.id{border-radius:2mm}}
+  </style></head><body><div class="id ${portrait?'portrait':'landscape'}">
+  <div class="accent"></div><h3>${esc(d.schoolName||'SCHOOL NAME')}</h3>
+  <div class="address">${esc(d.schoolAddress||'')}</div>
+  ${logo?`<img class="logo" src="${esc(logo)}" alt="">`:''}
+  <div class="body"><img class="photo" src="${esc(d.studentPhoto||'')}" alt=""><div class="details">
+  <div><b>Name:</b> <span class="student-name">${esc(d.studentName||'—')}</span></div>
+  ${idRow}
+  <div><b>Father:</b> ${esc(d.fatherName||'—')}</div>
+  ${d.motherName?`<div><b>Mother:</b> ${esc(d.motherName)}</div>`:''}
+  <div><b>Class:</b> ${esc([d.className,d.section].filter(Boolean).join(' / ')||'—')}</div>
+  ${d.rollNumber?`<div><b>Roll No:</b> ${esc(d.rollNumber)}</div>`:''}
+  ${d.dob?`<div><b>DOB:</b> ${esc(d.dob)}</div>`:''}
+  <div><b>Session:</b> ${esc(d.academicYear||'—')}</div>
+  </div></div><div class="footer"><span>School Identity Card</span><span>${esc(d.phone||d.schoolPhone||'')}</span></div>
+  </div><script>window.onload=()=>setTimeout(()=>window.print(),400);window.onafterprint=()=>window.close();<\/script></body></html>`;
+  w.document.open();w.document.write(body);w.document.close();
+ }
+ function searchMatches(d,q){
+  const text=[d.studentName,d.studentId,d.phone,d.fatherName,d.schoolName].join(' ').toLowerCase();
+  return text.includes(q.toLowerCase());
+ }
+ async function loadSchoolIdCards(){
+  if(!staff())return;
+  const box=byId('schoolIdList');
+  byId('schoolIdListNotice').textContent='रिकॉर्ड लोड हो रहे हैं…';
+  try{
+   const snap=await getDocs(collection(db,'schoolIdCards'));
+   records=snap.docs.map(x=>({id:x.id,...x.data()}));
+   renderRecords();
+   byId('schoolIdListNotice').textContent=`कुल रिकॉर्ड: ${records.length}`;
+  }catch(e){
+   byId('schoolIdListNotice').textContent='रिकॉर्ड नहीं लोड हुए: '+e.message;
+  }
+ }
+ function renderRecords(){
+  const q=val('schoolIdSearch');
+  const rows=records.filter(d=>!d.deleted&&searchMatches(d,q));
+  byId('schoolIdList').innerHTML=rows.length?rows.map(d=>cardMarkup(d,d.id)).join(''):'<p class="muted">कोई रिकॉर्ड नहीं मिला।</p>';
+ }
+ async function audit(batch,ref,action,details){
+  batch.set(doc(collection(ref,'history')),{
+   action,byUid:user.uid,byName:actorName(),at:serverTimestamp(),
+   details:String(details||'').slice(0,250)
+  });
+ }
+ async function saveSchoolIdCard(e){
+  e.preventDefault();
+  if(!staff()||!user)return toast('पहले अधिकृत Staff account से login करें।');
+  const d=readFields();
+  if(!d.studentName||!d.schoolName)return notice('छात्र का नाम और स्कूल का नाम जरूरी हैं।');
+  if(!studentPhoto)return notice('पहले छात्र की फोटो अपलोड करें।');
+  if(studentPhoto.length*.75>=300000)return notice('छात्र की फोटो बड़ी है। छोटी फोटो चुनें।');
+  if(schoolLogo&&schoolLogo.length*.75>=150000)return notice('School logo बड़ी है। छोटी image चुनें।');
+  const duplicate=d.studentId?records.find(r=>!r.deleted&&(r.studentId||'').toLowerCase()===d.studentId.toLowerCase()&&r.id!==editingId):null;
+  if(duplicate)return notice('यह Student ID पहले से मौजूद है। अलग ID लिखें।');
+  const btn=byId('schoolIdForm').querySelector('[type="submit"]');
+  if(btn)btn.disabled=true;
+  try{
+   const ref=editingId?doc(db,'schoolIdCards',editingId):doc(collection(db,'schoolIdCards'));
+   const batch=writeBatch(db);
+   const nowData={
+    ...d,updatedAt:serverTimestamp(),updatedByUid:user.uid,updatedByName:actorName(),deleted:false
+   };
+   if(editingId){
+    delete nowData.deleted;
+    batch.update(ref,nowData);
+    await audit(batch,ref,'updated','छात्र ID कार्ड अपडेट किया गया');
+   }else{
+    batch.set(ref,{
+     ...nowData,createdByUid:user.uid,createdByName:actorName(),createdAt:serverTimestamp()
+    });
+    await audit(batch,ref,'created','नया छात्र ID कार्ड बनाया गया');
+   }
+   await batch.commit();
+   editingId=null;
+   notice('ID कार्ड सफलतापूर्वक सेव हो गया।',true);
+   toast('ID कार्ड सेव हो गया।');
+   await loadSchoolIdCards();
+  }catch(err){notice('सेव नहीं हुआ: '+err.message)}
+  finally{if(btn)btn.disabled=false}
+ }
+ async function changeDeleted(id,restore){
+  if(!staff()||!user)return;
+  const d=records.find(x=>x.id===id);
+  if(!d)return;
+  if(!restore&&!confirm(`क्या ${d.studentName||'इस छात्र'} का कार्ड हटाना है? इसे बाद में Restore किया जा सकता है।`))return;
+  try{
+   const ref=doc(db,'schoolIdCards',id),batch=writeBatch(db);
+   if(restore){
+    batch.update(ref,{
+     deleted:false,deletedAt:deleteField(),deletedByUid:deleteField(),deletedByName:deleteField(),
+     updatedAt:serverTimestamp(),updatedByUid:user.uid,updatedByName:actorName()
+    });
+    await audit(batch,ref,'restored','हटाया गया ID कार्ड वापस Restore किया गया');
+   }else{
+    batch.update(ref,{
+     deleted:true,deletedAt:serverTimestamp(),deletedByUid:user.uid,deletedByName:actorName(),
+     updatedAt:serverTimestamp(),updatedByUid:user.uid,updatedByName:actorName()
+    });
+    await audit(batch,ref,'deleted','ID कार्ड soft-delete किया गया');
+   }
+   await batch.commit();
+   toast(restore?'ID कार्ड Restore हो गया।':'ID कार्ड हट गया; इसे History से Restore कर सकते हैं।');
+   await loadSchoolIdCards();
+   await loadSchoolIdCardHistory();
+  }catch(e){toast('बदलाव नहीं हुआ: '+e.message)}
+ }
+ async function loadSchoolIdCardHistory(){
+  if(!staff())return;
+  historyNotice('History लोड हो रही है…');
+  try{
+   const snap=await getDocs(collection(db,'schoolIdCards'));
+   const q=val('schoolIdHistorySearch');
+   const parents=snap.docs.map(x=>({id:x.id,...x.data()}))
+    .filter(d=>searchMatches(d,q));
+   const groups=await Promise.all(parents.map(async d=>{
+    const hs=await getDocs(collection(db,'schoolIdCards',d.id,'history'));
+    return hs.docs.map(h=>({card:d,event:{id:h.id,...h.data()}}));
+   }));
+   const events=groups.flat().sort((a,b)=>{
+    const ta=a.event.at?.toMillis?.()||0,tb=b.event.at?.toMillis?.()||0;
+    return tb-ta;
+   });
+   const actionNames={created:'कार्ड बनाया',updated:'कार्ड Edit किया',deleted:'कार्ड हटाया',restored:'कार्ड Restore किया'};
+   byId('schoolIdHistoryList').innerHTML=events.length?events.map(({card:d,event:e})=>`
+    <div class="panel" style="margin:10px 0">
+     <div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+      <div>
+       <strong>${escapeHtml(d.studentName||'नाम नहीं')}</strong>
+       <div class="muted small">Student ID: ${escapeHtml(d.studentId||'—')} · कक्षा: ${escapeHtml(d.className||'—')}</div>
+       <div><strong>${escapeHtml(actionNames[e.action]||e.action||'गतिविधि')}</strong></div>
+       <div class="muted small">किसने किया: ${escapeHtml(e.byName||'—')}</div>
+       <div class="muted small">समय (IST): ${escapeHtml(fmtTime(e.at))}</div>
+       <div class="small">${escapeHtml(e.details||'')}</div>
+       ${d.deleted?`<div class="muted small">यह कार्ड हटाया गया है।</div>`:''}
+      </div>
+      <div class="row" style="gap:6px;flex-wrap:wrap">
+       <button type="button" class="secondary" data-card-action="print" data-card-id="${escapeHtml(d.id)}">Print / PDF</button>
+       ${d.deleted?`<button type="button" class="gold" data-card-action="restore" data-card-id="${escapeHtml(d.id)}">Restore</button>`:''}
+      </div>
+     </div>
+    </div>`).join(''):'<p class="muted">इस खोज के लिए कोई Audit History नहीं मिली।</p>';
+   historyNotice(`कुल गतिविधियाँ: ${events.length}`);
+  }catch(e){historyNotice('History नहीं लोड हुई: '+e.message)}
+ }
+ byId('sidStudentPhoto').addEventListener('change',()=>setImage('sidStudentPhoto','sidStudentPhotoPreview','student'));
+ byId('sidSchoolLogo').addEventListener('change',()=>setImage('sidSchoolLogo','sidSchoolLogoPreview','logo'));
+ byId('schoolIdForm').addEventListener('input',updateCardPreview);
+  byId('sidOrientation').addEventListener('change',updateCardPreview);
+ byId('schoolIdForm').addEventListener('submit',saveSchoolIdCard);
+ byId('schoolIdForm').addEventListener('reset',()=>{
+  setTimeout(()=>{
+   if(editingId)return;
+   studentPhoto='';
+   schoolLogo='';
+   ['sidStudentPhotoPreview','sidSchoolLogoPreview'].forEach(id=>{
+    const el=byId(id);
+    if(el){el.removeAttribute('src');el.classList.add('hidden')}
+   });
+   updateCardPreview();
+  },0);
+ });
+ byId('schoolIdNewBtn').addEventListener('click',()=>{showPage('school-card-edit');setEditor()});
+ byId('schoolIdSearch').addEventListener('input',renderRecords);
+ byId('schoolIdHistorySearch').addEventListener('input',loadSchoolIdCardHistory);
+ byId('schoolIdHistoryRefresh').addEventListener('click',loadSchoolIdCardHistory);
+ document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-card-action]');
+  if(!b)return;
+  const id=b.dataset.cardId,action=b.dataset.cardAction;
+  if(action==='edit'){
+   const d=records.find(x=>x.id===id);
+   if(d){showPage('school-card-edit');setEditor(d,id)}
+  }
+   if(action==='delete')await changeDeleted(id,false);
+   if(action==='restore')await changeDeleted(id,true);
+   if(action==='print'){
+    const d=records.find(x=>x.id===id);
+    if(d)printSchoolIdCard(d);
+    else{
+     try{
+      const snap=await getDoc(doc(db,'schoolIdCards',id));
+      if(snap.exists())printSchoolIdCard({id:snap.id,...snap.data()});
+      else toast('कार्ड रिकॉर्ड नहीं मिला।');
+     }catch(err){toast('कार्ड लोड नहीं हुआ: '+err.message)}
+    }
+   }
+ });
+ window.loadSchoolIdCards=loadSchoolIdCards;
+ window.loadSchoolIdCardHistory=loadSchoolIdCardHistory;
+ updateCardPreview();
+})();
 </script><script>
 /* MJK_BILINGUAL_LANGUAGE_V1 */
 (function(){

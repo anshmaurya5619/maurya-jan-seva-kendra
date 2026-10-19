@@ -64,7 +64,7 @@ assert.ok(script.includes("printCardCSS()+'@page{size:A4 portrait;margin:7mm}'")
 assert.ok(script.includes('await w.document.fonts.ready'), 'Print should wait for fonts');
 assert.ok(script.includes('img.decode'), 'Print should wait for images');
 
-const schoolRules = getBetween(rules, 'match /schoolIdCards/{cardId}', 'match /{document=**}');
+const schoolRules = getBetween(rules, 'match /schoolIdCards/{cardId}', '// MJK_SCHOOL_ID_SCHOOL_REGISTRY_V1');
 assert.ok(rules.includes('match /schoolIdSchools/{schoolId}'), 'School registry rules must be present');
 assert.ok(rules.includes('match /cscKendraLinks/{linkId}'), 'Multi-link CSC rules must be present');
 assert.ok(rules.includes('match /history/{historyId}'), 'Immutable school and website history rules must be present');

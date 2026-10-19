@@ -24,6 +24,16 @@ function schoolData(uid, name='Sample School') {
   };
 }
 
+function cscConfig(uid, websiteUrl='https://client-example.test') {
+  return {
+    websiteName:'Client CSC Website',
+    websiteUrl,
+    updatedAt:serverTimestamp(),
+    updatedByUid:uid,
+    updatedByName:'Test Admin'
+  };
+}
+
 function cardData(uid, schoolId='', overrides={}) {
   return {
     studentName:'', studentId:'', fatherName:'', motherName:'',
@@ -59,6 +69,24 @@ describe('School ID Firestore rules', function () {
     await seedUser('admin-user', 'admin', 'active');
     await seedUser('worker-user', 'worker', 'active');
     await seedUser('inactive-user', 'worker', 'inactive');
+  });
+
+  it('allows anonymous visitors to read only the public CSC Kendra config path', async function () {
+    await env.withSecurityRulesDisabled(async context => {
+      await setDoc(doc(context.firestore(), 'publicSiteConfig', 'cscKendra'), cscConfig('admin-user'));
+    });
+    const anon = env.unauthenticatedContext().firestore();
+    const saved = await assertSucceeds(getDoc(doc(anon, 'publicSiteConfig', 'cscKendra')));
+    assert.equal(saved.data().websiteName, 'Client CSC Website');
+    await assertFails(getDoc(doc(anon, 'publicSiteConfig', 'privateConfig')));
+  });
+
+  it('allows only an admin to save an http(s) CSC Kendra URL', async function () {
+    const adminDb = dbFor('admin-user');
+    await assertSucceeds(setDoc(doc(adminDb, 'publicSiteConfig', 'cscKendra'), cscConfig('admin-user')));
+    const workerDb = dbFor('worker-user');
+    await assertFails(setDoc(doc(workerDb, 'publicSiteConfig', 'cscKendra'), cscConfig('worker-user')));
+    await assertFails(setDoc(doc(adminDb, 'publicSiteConfig', 'cscKendra'), cscConfig('admin-user', 'javascript:alert(1)')));
   });
 
   it('allows an active staff member to create a school registry record', async function () {

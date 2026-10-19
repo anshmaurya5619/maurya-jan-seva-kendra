@@ -333,8 +333,119 @@ service cloud.firestore {
         && request.resource.data.updatedByUid == request.auth.uid
         && request.resource.data.updatedByName is string;
       allow delete: if false;
+
+      // School name and contact edits leave an immutable audit record.
+      match /history/{historyId} {
+        allow read: if active();
+        allow create: if active()
+          && request.resource.data.keys().hasOnly([
+            'action','byUid','byName','at','details','schoolName','schoolAddress','schoolPhone'
+          ])
+          && request.resource.data.keys().hasAll([
+            'action','byUid','byName','at','details','schoolName','schoolAddress','schoolPhone'
+          ])
+          && request.resource.data.action == 'updated'
+          && request.resource.data.byUid == request.auth.uid
+          && request.resource.data.byName is string
+          && request.resource.data.at == request.time
+          && request.resource.data.details is string
+          && request.resource.data.details.size() <= 250
+          && request.resource.data.schoolName is string
+          && request.resource.data.schoolName.size() > 0
+          && request.resource.data.schoolName.size() <= 150
+          && request.resource.data.schoolAddress is string
+          && request.resource.data.schoolAddress.size() <= 250
+          && request.resource.data.schoolPhone is string
+          && request.resource.data.schoolPhone.size() <= 15;
+        allow update, delete: if false;
+      }
     }
 
+    // Saved CSC Kendra websites are available only inside an authenticated workspace.
+    // The stored website opens only after the user explicitly chooses its Open button.
+    match /cscKendraLinks/{linkId} {
+      allow read: if active();
+      allow create: if admin()
+        && request.resource.data.keys().hasAll([
+          'name','url','isActive','createdAt','createdByUid','createdByName',
+          'updatedAt','updatedByUid','updatedByName'
+        ])
+        && request.resource.data.keys().hasOnly([
+          'name','url','isActive','createdAt','createdByUid','createdByName',
+          'updatedAt','updatedByUid','updatedByName'
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.url is string
+        && request.resource.data.url.size() > 0
+        && request.resource.data.url.size() <= 500
+        && request.resource.data.url.matches('https?://.*')
+        && request.resource.data.isActive is bool
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.createdByUid == request.auth.uid
+        && request.resource.data.createdByName is string
+        && request.resource.data.createdByName.size() <= 100
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedByUid == request.auth.uid
+        && request.resource.data.updatedByName is string
+        && request.resource.data.updatedByName.size() <= 100;
+      allow update: if admin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'name','url','isActive','updatedAt','updatedByUid','updatedByName'
+        ])
+        && request.resource.data.keys().hasAll([
+          'name','url','isActive','createdAt','createdByUid','createdByName',
+          'updatedAt','updatedByUid','updatedByName'
+        ])
+        && request.resource.data.keys().hasOnly([
+          'name','url','isActive','createdAt','createdByUid','createdByName',
+          'updatedAt','updatedByUid','updatedByName'
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.url is string
+        && request.resource.data.url.size() > 0
+        && request.resource.data.url.size() <= 500
+        && request.resource.data.url.matches('https?://.*')
+        && request.resource.data.isActive is bool
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.createdByUid == resource.data.createdByUid
+        && request.resource.data.createdByName == resource.data.createdByName
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedByUid == request.auth.uid
+        && request.resource.data.updatedByName is string
+        && request.resource.data.updatedByName.size() <= 100;
+      allow delete: if false;
+
+      match /history/{historyId} {
+        allow read: if active();
+        allow create: if active()
+          && request.resource.data.keys().hasAll([
+            'action','byUid','byName','at','details','websiteName','websiteUrl'
+          ])
+          && request.resource.data.keys().hasOnly([
+            'action','byUid','byName','at','details','websiteName','websiteUrl'
+          ])
+          && request.resource.data.action in ['created','updated','opened']
+          && request.resource.data.byUid == request.auth.uid
+          && request.resource.data.byName is string
+          && request.resource.data.byName.size() <= 100
+          && request.resource.data.at == request.time
+          && request.resource.data.details is string
+          && request.resource.data.details.size() <= 250
+          && request.resource.data.websiteName is string
+          && request.resource.data.websiteName.size() <= 100
+          && request.resource.data.websiteUrl is string
+          && request.resource.data.websiteUrl.size() > 0
+          && request.resource.data.websiteUrl.size() <= 500
+          && request.resource.data.websiteUrl.matches('https?://.*');
+        allow update, delete: if false;
+      }
+    }
+
+    // Backward-compatible legacy config record; new links are managed above.
     // Public menu link is readable by visitors; only an active admin can change it.
     match /publicSiteConfig/{configId} {
       allow read: if configId == 'cscKendra';

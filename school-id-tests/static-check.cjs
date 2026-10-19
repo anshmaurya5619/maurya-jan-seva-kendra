@@ -30,15 +30,22 @@ assert.equal(html.includes('Hamjapur Patahan'), false, 'Old address spelling mus
 assert.ok(html.includes('schoolIdSchools'), 'School registry functionality is required');
 const publicNav = getBetween(html, '<nav class="nav">', '</nav>');
 assert.equal(publicNav.includes('cscKendraNav'), false, 'CSC Kendra must not be shown in the public header');
-assert.ok(html.includes('<button id="cscKendraNav" type="button"'), 'CSC Kendra must be in the logged-in workspace menu');
-assert.ok(html.includes('id="cscKendraWebsiteName"') && html.includes('id="cscKendraWebsiteUrl"'), 'Admin must be able to edit the external website name and URL');
-assert.ok(html.includes("doc(db,'publicSiteConfig','cscKendra')"), 'CSC Kendra settings should use a dedicated config document');
-assert.ok(html.includes('window.location.assign(url)'), 'CSC Kendra should navigate to the saved external URL in the same tab');
-assert.equal(html.includes('target="_blank" rel="noopener noreferrer" aria-label="CSC Kendra website"'), false, 'CSC Kendra must not open a new tab');
-assert.ok(html.includes("if(admin()){") && html.includes("showPage('settings');"), 'Admin should be taken to full Settings page when CSC link is missing');
+assert.ok(html.includes('<button data-page="csc-kendra" id="cscKendraNav"'), 'CSC Kendra must open the authenticated internal manager page');
+assert.ok(html.includes('id="cscKendraLinkName"') && html.includes('id="cscKendraLinkUrl"'), 'Admin must be able to add/edit multiple website links');
+assert.ok(html.includes("doc(db,'cscKendraLinks'"), 'Saved CSC sites must use a dedicated link collection');
+assert.ok(html.includes("doc(db,'publicSiteConfig','cscKendra')") && html.includes("'legacy-cscKendra'"), 'Existing single-link settings must be preserved through migration');
+assert.ok(html.includes('data-csc-open=') && html.includes('target="_blank" rel="noopener noreferrer"'), 'Opening an external link must be an explicit new-tab action');
+assert.equal(html.includes('window.location.assign(url)'), false, 'CSC Kendra must not replace the main website');
+assert.ok(html.includes('data-csc-edit=') && html.includes('data-csc-history='), 'Each saved website must have Edit and History actions');
+assert.ok(html.includes("actionNames={created:'वेबसाइट जोड़ी गई',updated:'वेबसाइट Edit हुई',opened:'वेबसाइट खोली गई'}"), 'Website history must track add, edit and open events');
 assert.ok(html.includes("['http:','https:'].includes(u.protocol)"), 'External links must be restricted to http(s)');
-assert.ok(html.includes("if(!admin()||!user)return toast('CSC Kendra लिंक केवल Admin सेव कर सकता है।')"), 'Only admin may save the CSC Kendra URL');
+assert.ok(html.includes("if(!admin()||!user)return toast('लिंक सेव करने का अधिकार केवल Admin को है।')"), 'Only admin may add or edit CSC links');
 
+assert.ok(html.includes('id="schoolIdSchoolEditForm"') && html.includes('id="schoolIdEditName"'), 'School registry must offer an explicit name-edit form');
+assert.ok(html.includes('स्कूल नाम/विवरण सुधार'), 'School edits should propagate to connected card records and audit history');
+assert.ok(html.includes('max-width:520px;aspect-ratio:1.586/1'), 'Landscape editor preview should be wider');
+assert.ok(html.includes('font-size:12px;line-height:1.35;overflow-wrap:anywhere;flex:1;min-width:0;width:100%'), 'Preview details should fill the card width with larger text');
+assert.ok(html.includes('font-size:7pt;line-height:1.12'), 'Printed card text should be larger');
 assert.ok(html.includes('sidCardTemplateFile'), 'Custom card image upload should exist');
 assert.ok(html.includes('background:linear-gradient(145deg,#1d3b63 0%,#142744 58%,#0e1c33 100%)'), 'School ID preview must use the site dark theme');
 assert.ok(html.includes("el.textContent=value||'—'"), 'Empty editor preview must show preview-only label placeholders');
@@ -57,8 +64,10 @@ assert.ok(script.includes("printCardCSS()+'@page{size:A4 portrait;margin:7mm}'")
 assert.ok(script.includes('await w.document.fonts.ready'), 'Print should wait for fonts');
 assert.ok(script.includes('img.decode'), 'Print should wait for images');
 
-const schoolRules = getBetween(rules, 'match /schoolIdCards/{cardId}', 'match /{document=**}');
+const schoolRules = getBetween(rules, 'match /schoolIdCards/{cardId}', '// MJK_SCHOOL_ID_SCHOOL_REGISTRY_V1');
 assert.ok(rules.includes('match /schoolIdSchools/{schoolId}'), 'School registry rules must be present');
+assert.ok(rules.includes('match /cscKendraLinks/{linkId}'), 'Multi-link CSC rules must be present');
+assert.ok(rules.includes('match /history/{historyId}'), 'Immutable school and website history rules must be present');
 assert.ok(schoolRules.includes("request.resource.data.schoolId is string"), 'Cards should be associated with a school');
 assert.equal(schoolRules.includes('request.resource.data.studentName.size() > 0'), false, 'Student name must be optional');
 assert.equal(schoolRules.includes('request.resource.data.schoolName.size() > 0'), false, 'School name must be optional');

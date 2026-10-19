@@ -147,14 +147,14 @@ service cloud.firestore {
 
       allow create: if active()
         && request.resource.data.keys().hasAll([
-          'studentName','studentId','fatherName','motherName',
+          'studentName','studentId','fatherName','motherName','schoolId',
           'schoolName','schoolAddress','schoolPhone','className',
           'section','rollNumber','dob','phone','academicYear',
           'studentPhoto','schoolLogo','orientation','createdByUid','createdByName',
           'createdAt','updatedAt','updatedByUid','updatedByName','deleted'
         ])
         && request.resource.data.keys().hasOnly([
-          'studentName','studentId','fatherName','motherName',
+          'studentName','studentId','fatherName','motherName','schoolId',
           'schoolName','schoolAddress','schoolPhone','className',
           'section','rollNumber','dob','phone','academicYear',
           'studentPhoto','schoolLogo','orientation','createdByUid','createdByName',
@@ -162,16 +162,18 @@ service cloud.firestore {
           'deleted','deletedAt','deletedByUid','deletedByName'
         ])
         && request.resource.data.studentName is string
-        && request.resource.data.studentName.size() > 0
         && request.resource.data.studentName.size() <= 100
         && request.resource.data.studentId is string
         && request.resource.data.studentId.size() <= 40
+        && request.resource.data.schoolId is string
+        && request.resource.data.schoolId.size() <= 100
+        && (request.resource.data.schoolId == '' || exists(/databases/$(database)/documents/schoolIdSchools/$(request.resource.data.schoolId)))
         && request.resource.data.orientation is string
         && request.resource.data.orientation in ['landscape', 'portrait']
         && request.resource.data.fatherName is string
         && request.resource.data.motherName is string
         && request.resource.data.schoolName is string
-        && request.resource.data.schoolName.size() > 0
+        && request.resource.data.schoolName.size() <= 150
         && request.resource.data.schoolAddress is string
         && request.resource.data.className is string
         && request.resource.data.section is string
@@ -180,9 +182,9 @@ service cloud.firestore {
         && request.resource.data.phone is string
         && request.resource.data.academicYear is string
         && request.resource.data.studentPhoto is string
-        && request.resource.data.studentPhoto.size() < 300000
+        && request.resource.data.studentPhoto.size() < 400000
         && request.resource.data.schoolLogo is string
-        && request.resource.data.schoolLogo.size() < 150000
+        && request.resource.data.schoolLogo.size() < 200000
         && request.resource.data.createdByUid == request.auth.uid
         && request.resource.data.createdByName is string
         && request.resource.data.createdAt == request.time
@@ -196,7 +198,7 @@ service cloud.firestore {
 
       allow update: if active()
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
-          'studentName','studentId','fatherName','motherName',
+          'studentName','studentId','fatherName','motherName','schoolId',
           'schoolName','schoolAddress','schoolPhone','className',
           'section','rollNumber','dob','phone','academicYear',
           'studentPhoto','schoolLogo','orientation','updatedAt','updatedByUid',
@@ -207,17 +209,19 @@ service cloud.firestore {
         && request.resource.data.updatedByName is string
         && request.resource.data.deleted is bool
         && request.resource.data.studentName is string
-        && request.resource.data.studentName.size() > 0
         && request.resource.data.studentName.size() <= 100
         && request.resource.data.studentId is string
         && request.resource.data.studentId.size() <= 40
+        && request.resource.data.schoolId is string
+        && request.resource.data.schoolId.size() <= 100
+        && (request.resource.data.schoolId == '' || exists(/databases/$(database)/documents/schoolIdSchools/$(request.resource.data.schoolId)))
         && (!('orientation' in request.resource.data)
           || (request.resource.data.orientation is string
             && request.resource.data.orientation in ['landscape', 'portrait']))
         && request.resource.data.studentPhoto is string
-        && request.resource.data.studentPhoto.size() < 300000
+        && request.resource.data.studentPhoto.size() < 400000
         && request.resource.data.schoolLogo is string
-        && request.resource.data.schoolLogo.size() < 150000
+        && request.resource.data.schoolLogo.size() < 200000
         && (
           (request.resource.data.deleted == false
             && !('deletedAt' in request.resource.data)
@@ -252,6 +256,118 @@ service cloud.firestore {
           && request.resource.data.details.size() <= 250;
         allow update, delete: if false;
       }
+    }
+
+    // MJK_SCHOOL_ID_SCHOOL_REGISTRY_V1
+    match /schoolIdSchools/{schoolId} {
+      allow read: if active();
+      allow create: if active()
+        && request.resource.data.keys().hasAll([
+          'name','schoolAddress','schoolPhone','cardTemplateLandscape','cardTemplatePortrait',
+          'templateMappingLandscape','templateMappingPortrait','createdByUid','createdByName',
+          'createdAt','updatedAt','updatedByUid','updatedByName'
+        ])
+        && request.resource.data.keys().hasOnly([
+          'name','schoolAddress','schoolPhone','cardTemplateLandscape','cardTemplatePortrait',
+          'templateMappingLandscape','templateMappingPortrait','createdByUid','createdByName',
+          'createdAt','updatedAt','updatedByUid','updatedByName'
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 150
+        && request.resource.data.schoolAddress is string
+        && request.resource.data.schoolAddress.size() <= 250
+        && request.resource.data.schoolPhone is string
+        && request.resource.data.schoolPhone.size() <= 15
+        && request.resource.data.cardTemplateLandscape is string
+        && request.resource.data.cardTemplateLandscape.size() < 350000
+        && request.resource.data.cardTemplatePortrait is string
+        && request.resource.data.cardTemplatePortrait.size() < 350000
+        && request.resource.data.templateMappingLandscape is map
+        && request.resource.data.templateMappingLandscape.keys().hasOnly([
+          'schoolName','schoolAddress','studentName','studentId','fatherName','motherName',
+          'className','section','rollNumber','dob','schoolPhone','phone','academicYear',
+          'studentPhoto','schoolLogo'
+        ])
+        && request.resource.data.templateMappingPortrait is map
+        && request.resource.data.templateMappingPortrait.keys().hasOnly([
+          'schoolName','schoolAddress','studentName','studentId','fatherName','motherName',
+          'className','section','rollNumber','dob','schoolPhone','phone','academicYear',
+          'studentPhoto','schoolLogo'
+        ])
+        && request.resource.data.createdByUid == request.auth.uid
+        && request.resource.data.createdByName is string
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedByUid == request.auth.uid
+        && request.resource.data.updatedByName is string;
+      allow update: if active()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'name','schoolAddress','schoolPhone','cardTemplateLandscape','cardTemplatePortrait',
+          'templateMappingLandscape','templateMappingPortrait','updatedAt','updatedByUid','updatedByName'
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 150
+        && request.resource.data.schoolAddress is string
+        && request.resource.data.schoolAddress.size() <= 250
+        && request.resource.data.schoolPhone is string
+        && request.resource.data.schoolPhone.size() <= 15
+        && request.resource.data.cardTemplateLandscape is string
+        && request.resource.data.cardTemplateLandscape.size() < 350000
+        && request.resource.data.cardTemplatePortrait is string
+        && request.resource.data.cardTemplatePortrait.size() < 350000
+        && request.resource.data.templateMappingLandscape is map
+        && request.resource.data.templateMappingLandscape.keys().hasOnly([
+          'schoolName','schoolAddress','studentName','studentId','fatherName','motherName',
+          'className','section','rollNumber','dob','schoolPhone','phone','academicYear',
+          'studentPhoto','schoolLogo'
+        ])
+        && request.resource.data.templateMappingPortrait is map
+        && request.resource.data.templateMappingPortrait.keys().hasOnly([
+          'schoolName','schoolAddress','studentName','studentId','fatherName','motherName',
+          'className','section','rollNumber','dob','schoolPhone','phone','academicYear',
+          'studentPhoto','schoolLogo'
+        ])
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedByUid == request.auth.uid
+        && request.resource.data.updatedByName is string;
+      allow delete: if false;
+    }
+
+    // Public menu link is readable by visitors; only an active admin can change it.
+    match /publicSiteConfig/{configId} {
+      allow read: if configId == 'cscKendra';
+      allow create: if configId == 'cscKendra' && admin()
+        && request.resource.data.keys().hasAll(['websiteName','websiteUrl','updatedAt','updatedByUid','updatedByName'])
+        && request.resource.data.keys().hasOnly(['websiteName','websiteUrl','updatedAt','updatedByUid','updatedByName'])
+        && request.resource.data.websiteName is string
+        && request.resource.data.websiteName.size() > 0
+        && request.resource.data.websiteName.size() <= 100
+        && request.resource.data.websiteUrl is string
+        && request.resource.data.websiteUrl.size() > 0
+        && request.resource.data.websiteUrl.size() <= 500
+        && (request.resource.data.websiteUrl.matches('https?://.*'))
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedByUid == request.auth.uid
+        && request.resource.data.updatedByName is string
+        && request.resource.data.updatedByName.size() <= 100;
+      allow update: if configId == 'cscKendra' && admin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['websiteName','websiteUrl','updatedAt','updatedByUid','updatedByName'])
+        && request.resource.data.keys().hasAll(['websiteName','websiteUrl','updatedAt','updatedByUid','updatedByName'])
+        && request.resource.data.keys().hasOnly(['websiteName','websiteUrl','updatedAt','updatedByUid','updatedByName'])
+        && request.resource.data.websiteName is string
+        && request.resource.data.websiteName.size() > 0
+        && request.resource.data.websiteName.size() <= 100
+        && request.resource.data.websiteUrl is string
+        && request.resource.data.websiteUrl.size() > 0
+        && request.resource.data.websiteUrl.size() <= 500
+        && request.resource.data.websiteUrl.matches('https?://.*')
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedByUid == request.auth.uid
+        && request.resource.data.updatedByName is string
+        && request.resource.data.updatedByName.size() <= 100;
+      allow delete: if false;
     }
 
     match /{document=**} { allow read, write: if false; }

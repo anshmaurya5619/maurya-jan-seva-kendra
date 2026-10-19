@@ -220,6 +220,8 @@ service cloud.firestore {
         && (!('orientation' in request.resource.data)
           || (request.resource.data.orientation is string
             && request.resource.data.orientation in ['landscape', 'portrait']))
+        && request.resource.data.language is string
+        && request.resource.data.language in ['hi', 'en']
         && request.resource.data.studentPhoto is string
         && request.resource.data.studentPhoto.size() < 400000
         && request.resource.data.schoolLogo is string
@@ -355,8 +357,6 @@ service cloud.firestore {
           && request.resource.data.schoolName is string
           && request.resource.data.schoolName.size() > 0
           && request.resource.data.schoolName.size() <= 150
-        && request.resource.data.language is string
-        && request.resource.data.language in ['hi', 'en']
           && request.resource.data.schoolAddress is string
           && request.resource.data.schoolAddress.size() <= 250
           && request.resource.data.schoolPhone is string

@@ -29,6 +29,7 @@ assert.equal((html.match(/Hamjapur Pathan/g) || []).length, 2, 'Contact and rece
 assert.equal(html.includes('Hamjapur Patahan'), false, 'Old address spelling must be gone');
 assert.ok(html.includes('schoolIdSchools'), 'School registry functionality is required');
 assert.ok(html.includes('sidCardTemplateFile'), 'Custom card image upload should exist');
+assert.ok(html.includes('accept="image/*,application/pdf"') && html.includes('pdfTemplateToImage'), 'Custom card PDF upload should rasterize the first page');
 assert.ok(html.includes('templatePositions'), 'Custom template field positions should be configurable and reusable');
 assert.ok(html.includes('schoolIdBulkPrintBtn'), 'Bulk print control should exist');
 assert.ok(html.includes('printSchoolIdCardsBulk'), 'Bulk printing should use one print job');

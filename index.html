@@ -341,6 +341,29 @@ body {
 @media(max-width:580px){.school-id-photo-row{grid-template-columns:1fr}.school-id-card-preview{padding:12px}.school-id-card-preview .school-id-student-photo{width:72px;height:88px}.school-id-card-preview .school-id-details{font-size:9px}}
 
 
+/* MJK SCHOOL ID CARD UPDATE V2 */
+.school-id-school-tools{display:grid;grid-template-columns:minmax(180px,1fr) minmax(180px,1fr) auto;gap:10px;align-items:end;margin:14px 0}
+.school-id-school-tools .field{margin:0}
+.school-id-bulk-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:#0d1a2e}
+.school-id-bulk-tools label{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:12px;font-weight:700}
+.school-id-bulk-tools select,.school-id-template-tools select{background:#09172b;color:#f7f8fc;border:1px solid #38516f;border-radius:10px;padding:10px}
+.school-id-template-tools{padding:14px;border:1px solid #c7d5e4;background:linear-gradient(145deg,#f8fbff,#e8f0f8);color:#17253b;border-radius:12px;margin:12px 0}
+.school-id-template-tools .field{margin:8px 0}.school-id-template-tools p{margin:4px 0 10px}
+.school-id-template-layer{position:absolute;inset:0;overflow:hidden;z-index:2}
+.school-id-template-item{position:absolute;display:block;box-sizing:border-box;overflow:hidden;overflow-wrap:anywhere;white-space:normal;line-height:1.15;font-size:9px;font-weight:700;color:#17253b;padding:1px;text-shadow:0 0 1px #ffffff99;pointer-events:none}
+.school-id-template-item.image{padding:0;object-fit:cover;box-shadow:0 0 0 1px #ffffff80}
+.school-id-template-item.logo{object-fit:contain}
+.school-id-template-item.hint{outline:1px dashed #cf4d20;background:#fff3d6cc;color:#852e11;font-size:8px}
+.school-id-card-preview.has-template{padding:0;border:0;background-size:100% 100%;background-position:center;background-repeat:no-repeat;box-shadow:0 10px 26px #071b3526}
+.school-id-card-preview.has-template:before,.school-id-card-preview.has-template:after{display:none}
+.school-id-card-preview.has-template #sidDefaultCardContent{display:none}
+.school-id-card-preview.has-template .school-id-template-layer{display:block!important}
+.school-id-card-preview .school-id-details [data-preview-row]{margin:0;overflow-wrap:anywhere}
+.school-id-card-preview .school-id-footer{justify-content:center;text-align:center}
+.school-id-card-preview .school-id-student-photo.hidden{display:none!important}
+@media(max-width:700px){.school-id-school-tools{grid-template-columns:1fr}.school-id-bulk-tools{align-items:stretch;flex-direction:column}.school-id-bulk-tools label{justify-content:space-between}}
+/* END MJK SCHOOL ID CARD UPDATE V2 */
+
 </style></head><body>
 <header class="topbar"><div class="topinner"><a class="brand" href="#home" id="brandHome"><span class="logo">MJ</span><span>Maurya Jan Seva Kendra<small>DIGITAL SERVICE • TRUST • CARE</small></span></a><nav class="nav"><a class="nav-link" href="#services">सेवाएँ</a><a class="nav-link" href="#contact">संपर्क</a><button class="gold" id="openLogin">Admin Login</button><button type="button" class="language-toggle" id="languageToggle" aria-label="Switch language">हिंदी | English</button></nav></div></header>
 <main id="publicSite">
@@ -348,7 +371,7 @@ body {
 <aside class="login-card" id="loginPanel"><div class="eyebrow">सुरक्षित प्रवेश</div><h2>Admin / Staff Login</h2><p class="muted small">केवल अधिकृत खाते से लॉगिन करें।</p><form id="loginForm"><div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required></div><div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div><div id="loginMsg" aria-live="polite"></div><div class="login-actions"><button class="gold" id="loginBtn" type="submit">Login करें</button><button class="outline" id="resetBtn" type="button">Password reset</button></div></form><div class="notice" data-hi="केवल अधिकृत कर्मचारी लॉगिन कर सकते हैं।" data-en="Login is available to authorized staff only.">केवल अधिकृत कर्मचारी लॉगिन कर सकते हैं।</div></aside></section>
 <section class="wrap section" id="services"><div class="section-head"><div><div class="eyebrow">Our services</div><h2>हमारी सेवाएँ</h2><p class="muted">अपनी जरूरत बताइए—सेवा उपलब्धता और शुल्क केंद्र से पुष्टि करें।</p></div></div><div class="services">
 <article class="service"><div class="ico" aria-hidden="true">📝</div><h3 data-hi="ऑनलाइन फॉर्म" data-en="Online Forms">ऑनलाइन फॉर्म</h3><div class="service-en" aria-hidden="true">Online Forms</div><p data-hi="ऑनलाइन आवेदन और फॉर्म भरने में सहायता।" data-en="Help with online forms and applications.">ऑनलाइन आवेदन और फॉर्म भरने में सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🖨️</div><h3 data-hi="प्रिंट और स्कैन" data-en="Print & Scan">प्रिंट और स्कैन</h3><div class="service-en" aria-hidden="true">Print & Scan</div><p data-hi="दस्तावेज़ प्रिंट, स्कैन और डिजिटल कॉपी।" data-en="Print, scan and digitize documents.">दस्तावेज़ प्रिंट, स्कैन और डिजिटल कॉपी।</p></article><article class="service"><div class="ico" aria-hidden="true">📄</div><h3 data-hi="दस्तावेज़ सहायता" data-en="Document Help">दस्तावेज़ सहायता</h3><div class="service-en" aria-hidden="true">Document Help</div><p data-hi="आवेदन के लिए जरूरी दस्तावेज़ों की सूची में मदद।" data-en="Guidance on documents needed for applications.">आवेदन के लिए जरूरी दस्तावेज़ों की सूची में मदद।</p></article><article class="service"><div class="ico" aria-hidden="true">🧾</div><h3 data-hi="बिल और रसीद" data-en="Bills & Receipts">बिल और रसीद</h3><div class="service-en" aria-hidden="true">Bills & Receipts</div><p data-hi="सेवा शुल्क, भुगतान और बाकी रकम का रिकॉर्ड।" data-en="Track service charges, payments and balances.">सेवा शुल्क, भुगतान और बाकी रकम का रिकॉर्ड।</p></article><article class="service"><div class="ico" aria-hidden="true">🔎</div><h3 data-hi="आवेदन मार्गदर्शन" data-en="Application Help">आवेदन मार्गदर्शन</h3><div class="service-en" aria-hidden="true">Application Help</div><p data-hi="उपलब्ध ऑनलाइन सेवाओं की प्रक्रिया समझने में सहायता।" data-en="Guidance on available online service procedures.">उपलब्ध ऑनलाइन सेवाओं की प्रक्रिया समझने में सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🤝</div><h3 data-hi="ग्राहक सहायता" data-en="Customer Support">ग्राहक सहायता</h3><div class="service-en" aria-hidden="true">Customer Support</div><p data-hi="सेवा और स्थिति की जानकारी के लिए संपर्क करें।" data-en="Contact us for service information and updates.">सेवा और स्थिति की जानकारी के लिए संपर्क करें।</p></article><article class="service"><div class="ico" aria-hidden="true">🪪</div><h3 data-hi="आधार सहायता" data-en="Aadhaar Help">आधार सहायता</h3><div class="service-en" aria-hidden="true">Aadhaar Help</div><p data-hi="उपलब्ध आधार-संबंधित सेवाओं की जानकारी और मार्गदर्शन।" data-en="Information about available Aadhaar services.">उपलब्ध आधार-संबंधित सेवाओं की जानकारी और मार्गदर्शन।</p></article><article class="service"><div class="ico" aria-hidden="true">📑</div><h3 data-hi="PAN और प्रमाणपत्र" data-en="PAN & Certificates">PAN और प्रमाणपत्र</h3><div class="service-en" aria-hidden="true">PAN & Certificates</div><p data-hi="PAN कार्ड और उपलब्ध प्रमाणपत्र सेवाओं के लिए सहायता।" data-en="Help with PAN cards and certificate services.">PAN कार्ड और उपलब्ध प्रमाणपत्र सेवाओं के लिए सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🎫</div><h3 data-hi="टिकट बुकिंग" data-en="Ticket Booking">टिकट बुकिंग</h3><div class="service-en" aria-hidden="true">Ticket Booking</div><p data-hi="उपलब्ध टिकट बुकिंग सेवाओं की जानकारी।" data-en="Information about available ticket-booking services.">उपलब्ध टिकट बुकिंग सेवाओं की जानकारी।</p></article><article class="service"><div class="ico" aria-hidden="true">🎓</div><h3 data-hi="स्कूल ID कार्ड" data-en="School ID Card">स्कूल ID कार्ड</h3><div class="service-en" aria-hidden="true">School ID Card</div><p data-hi="स्कूल ID कार्ड सेवा की जानकारी के लिए संपर्क करें।" data-en="Contact us for school ID card service information.">स्कूल ID कार्ड सेवा की जानकारी के लिए संपर्क करें।</p></article></div></section>
-<section class="wrap section" id="contact"><div class="section-head"><div><div class="eyebrow">Get in touch</div><h2>केंद्र से संपर्क करें</h2></div></div><div class="contact-grid"><div class="contact-card"><h3>संपर्क विवरण</h3><div class="contact-row"><span>केंद्र संपर्क</span><b>Rajkumar Maurya</b></div><div class="contact-row"><span>फोन</span><a href="tel:9076855003">9076855003</a> · <a href="tel:6392526277">6392526277</a></div><div class="contact-row"><span>Email</span><a href="mailto:mauryarajkumar7398@gmail.com">mauryarajkumar7398@gmail.com</a></div><div class="contact-row"><span>पता</span>Hamjapur Patahan, Kadipur, Sultanpur, Uttar Pradesh — 228145</div><div class="actions"><a href="https://wa.me/919076855003" target="_blank" rel="noopener"><button class="gold">WhatsApp करें</button></a></div></div><div class="contact-card"><div class="eyebrow">Customer care</div><h3>अपनी जरूरत बताइए</h3><p class="muted">किस सेवा की जानकारी चाहिए? नीचे लिखकर WhatsApp पर भेजें।</p><div class="field"><label for="serviceChoice">सेवा चुनें</label><select id="serviceChoice"><option>ऑनलाइन फॉर्म</option><option>प्रिंट और स्कैन</option><option>दस्तावेज़ सहायता</option><option>बिल और रसीद</option><option>आवेदन मार्गदर्शन</option><option>अन्य</option></select></div><div class="field"><label for="serviceQuestion">आपका सवाल</label><textarea id="serviceQuestion" rows="3" maxlength="250" placeholder="अपनी जरूरत लिखें"></textarea></div><button class="gold" id="sendService">WhatsApp पर भेजें</button></div></div></section></main>
+<section class="wrap section" id="contact"><div class="section-head"><div><div class="eyebrow">Get in touch</div><h2>केंद्र से संपर्क करें</h2></div></div><div class="contact-grid"><div class="contact-card"><h3>संपर्क विवरण</h3><div class="contact-row"><span>केंद्र संपर्क</span><b>Rajkumar Maurya</b></div><div class="contact-row"><span>फोन</span><a href="tel:9076855003">9076855003</a> · <a href="tel:6392526277">6392526277</a></div><div class="contact-row"><span>Email</span><a href="mailto:mauryarajkumar7398@gmail.com">mauryarajkumar7398@gmail.com</a></div><div class="contact-row"><span>पता</span>Hamjapur Pathan, Kadipur, Sultanpur, Uttar Pradesh — 228145</div><div class="actions"><a href="https://wa.me/919076855003" target="_blank" rel="noopener"><button class="gold">WhatsApp करें</button></a></div></div><div class="contact-card"><div class="eyebrow">Customer care</div><h3>अपनी जरूरत बताइए</h3><p class="muted">किस सेवा की जानकारी चाहिए? नीचे लिखकर WhatsApp पर भेजें।</p><div class="field"><label for="serviceChoice">सेवा चुनें</label><select id="serviceChoice"><option>ऑनलाइन फॉर्म</option><option>प्रिंट और स्कैन</option><option>दस्तावेज़ सहायता</option><option>बिल और रसीद</option><option>आवेदन मार्गदर्शन</option><option>अन्य</option></select></div><div class="field"><label for="serviceQuestion">आपका सवाल</label><textarea id="serviceQuestion" rows="3" maxlength="250" placeholder="अपनी जरूरत लिखें"></textarea></div><button class="gold" id="sendService">WhatsApp पर भेजें</button></div></div></section></main>
 <section class="wrap app-shell hidden" id="appShell"><aside class="sidebar"><div class="user-mini"><img id="sidePhoto" class="avatar" alt="Profile photo" src="" onerror="this.style.display='none';document.getElementById('sideInitial').style.display='grid'"><div id="sideInitial" class="avatar" style="display:none">MJ</div><div style="min-width:0"><b id="sideName">User</b><div id="sideRole" class="muted small">ADMIN</div></div></div><div class="menu-label">WORKSPACE</div><div class="menu"><button class="active" data-page="dashboard">▦ Dashboard</button><button data-page="school-cards">🪪 School ID Card</button><button data-page="school-card-history">📋 ID Card History</button><button data-page="billing">▤ नया बिल</button><button data-page="bills">▣ बिल रिकॉर्ड</button><button data-page="deleted-history" id="deletedHistoryMenu">▤ Deleted Bills History</button><button data-page="customers">⌕ ग्राहक / बिल खोजें</button><button data-page="expenses">₹ खर्च दर्ज करें</button><button data-page="workers" id="workersMenu">♙ Worker जोड़ें</button></div><div class="menu-label">ACCOUNT</div><div class="menu"><button data-page="profile">◉ Profile</button><button data-page="settings">⚙ Settings</button><button class="logout" id="logoutBtn">↪ Logout</button></div></aside>
 <div class="workspace"><div class="page-head"><div><div class="eyebrow">Private workspace</div><h1 id="pageTitle">Dashboard</h1><div class="muted small" id="welcomeName"></div></div><div class="row"><button type="button" class="language-toggle" id="appLanguageToggle">हिंदी | English</button><button class="outline no-print" id="publicBtn">Home Page</button></div></div><div id="appMsg" aria-live="polite"></div>
 <div class="stats" id="dashboardStats"><div class="stat"><span>कुल बिल</span><strong id="statBills">0</strong></div><div class="stat"><span>कुल बिल रकम</span><strong id="statTotal">₹0</strong></div><div class="stat"><span>प्राप्त भुगतान</span><strong id="statPaid">₹0</strong></div><div class="stat"><span>ग्राहकों से बाकी</span><strong id="statDue">₹0</strong></div><div class="stat"><span>इस महीने प्राप्त</span><strong id="monthPaid">₹0</strong></div><div class="stat"><span>इस महीने खर्च</span><strong id="monthExpense">₹0</strong></div><div class="stat"><span>इस महीने शुद्ध</span><strong id="monthNet">₹0</strong></div><div class="stat"><span>आज प्राप्त</span><strong id="todayPaid">₹0</strong></div></div>
@@ -410,87 +433,95 @@ body {
 </form>
 <div id="paymentMsg"></div>
 </div></section>
+
 <section class="page hidden" id="page-school-cards">
   <div class="panel">
-    <div class="row" style="justify-content:space-between">
-      <div><h2>School ID Card</h2><p class="muted">छात्र का विवरण भरें, फोटो और स्कूल का लोगो अपलोड करें, फिर कार्ड का प्रीव्यू देखें।</p></div>
+    <div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+      <div><h2>School ID Card</h2><p class="muted">स्कूल जोड़ें, स्कूल चुनकर छात्रों के कार्ड बनाएं, और एक ही A4 PDF में कई कार्ड प्रिंट करें।</p></div>
       <button class="gold" id="schoolIdNewBtn" type="button">＋ नया छात्र</button>
     </div>
-    <div class="field">
-      <label for="schoolIdSearch">छात्र का नाम, मोबाइल या Student ID खोजें</label>
-      <input id="schoolIdSearch" type="search" placeholder="नाम / मोबाइल / Student ID">
+    <div class="school-id-school-tools">
+      <div class="field"><label for="schoolIdSchoolFilter">स्कूल के हिसाब से रिकॉर्ड देखें</label><select id="schoolIdSchoolFilter"><option value="">सभी स्कूल</option></select></div>
+      <div class="field"><label for="schoolIdNewSchoolName">नया स्कूल जोड़ें</label><input id="schoolIdNewSchoolName" maxlength="150" placeholder="स्कूल का पूरा नाम"></div>
+      <button class="gold" id="schoolIdAddSchoolBtn" type="button">＋ स्कूल जोड़ें</button>
     </div>
+    <div class="school-id-bulk-tools">
+      <label for="schoolIdBulkCount">A4 पर कार्ड <select id="schoolIdBulkCount"><option value="8">8 कार्ड / पेज</option><option value="10">10 कार्ड / पेज (आड़े कार्ड)</option></select></label>
+      <button class="secondary" id="schoolIdBulkPrintBtn" type="button">एक PDF में Bulk Print / Save PDF</button>
+    </div>
+    <div class="field"><label for="schoolIdSearch">छात्र का नाम, मोबाइल, Student ID या स्कूल खोजें</label><input id="schoolIdSearch" type="search" placeholder="नाम / मोबाइल / Student ID / स्कूल"></div>
     <div id="schoolIdListNotice" class="muted small">आपके बनाए गए ID कार्ड रिकॉर्ड यहाँ दिखेंगे।</div>
     <div id="schoolIdList" class="table-wrap"><p class="muted">रिकॉर्ड लोड हो रहे हैं…</p></div>
   </div>
-  </section>
+</section>
 
 <section class="page hidden" id="page-school-card-edit">
   <div class="panel" id="schoolIdEditor">
-    <div class="row" style="justify-content:space-between"><h2 id="schoolIdFormTitle">छात्र का विवरण</h2><button class="secondary" type="button" data-go="school-cards">← रिकॉर्ड सूची</button></div>
+    <div class="row" style="justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2 id="schoolIdFormTitle">छात्र का विवरण</h2><button class="secondary" type="button" data-go="school-cards">← रिकॉर्ड सूची</button></div>
     <form id="schoolIdForm">
-      <div class="field">
-        <label for="sidOrientation">कार्ड की दिशा चुनें</label>
-        <select id="sidOrientation">
-          <option value="landscape">Horizontal — आड़ा कार्ड</option>
-          <option value="portrait">Vertical — खड़ा कार्ड</option>
-        </select>
-      </div>
+      <div class="field full"><label for="sidSchoolSelect">स्कूल चुनें (रिकॉर्ड इसी स्कूल के अंतर्गत रहेगा)</label><select id="sidSchoolSelect"><option value="">स्कूल चुनें या खाली छोड़ें</option></select><small class="muted">नया स्कूल पहले ऊपर रिकॉर्ड सूची से जोड़ें। सभी छात्र विवरण वैकल्पिक हैं।</small></div>
+      <div class="field"><label for="sidOrientation">कार्ड की दिशा चुनें</label><select id="sidOrientation"><option value="landscape">Horizontal — आड़ा कार्ड</option><option value="portrait">Vertical — खड़ा कार्ड</option></select></div>
       <div class="formgrid">
-        <div class="field"><label for="sidStudentName">छात्र का पूरा नाम *</label><input id="sidStudentName" required maxlength="100"></div>
-        <div class="field"><label for="sidStudentId">Student ID (वैकल्पिक)</label><input id="sidStudentId" maxlength="40"></div>
-        <div class="field"><label for="sidFather">पिता का नाम *</label><input id="sidFather" required maxlength="100"></div>
+        <div class="field"><label for="sidStudentName">छात्र का पूरा नाम</label><input id="sidStudentName" maxlength="100"></div>
+        <div class="field"><label for="sidStudentId">Student ID</label><input id="sidStudentId" maxlength="40"></div>
+        <div class="field"><label for="sidFather">पिता का नाम</label><input id="sidFather" maxlength="100"></div>
         <div class="field"><label for="sidMother">माता का नाम</label><input id="sidMother" maxlength="100"></div>
-        <div class="field"><label for="sidSchoolName">स्कूल का नाम *</label><input id="sidSchoolName" required maxlength="150"></div>
+        <div class="field"><label for="sidSchoolName">स्कूल का नाम</label><input id="sidSchoolName" maxlength="150"></div>
         <div class="field"><label for="sidSchoolPhone">स्कूल का फोन</label><input id="sidSchoolPhone" inputmode="tel" maxlength="15"></div>
-        <div class="field full"><label for="sidSchoolAddress">स्कूल का पता *</label><textarea id="sidSchoolAddress" required rows="2" maxlength="250"></textarea></div>
-        <div class="field"><label for="sidClass">कक्षा *</label><input id="sidClass" required maxlength="30" placeholder="जैसे 8"></div>
+        <div class="field full"><label for="sidSchoolAddress">स्कूल का पता</label><textarea id="sidSchoolAddress" rows="2" maxlength="250"></textarea></div>
+        <div class="field"><label for="sidClass">कक्षा</label><input id="sidClass" maxlength="30" placeholder="जैसे 8"></div>
         <div class="field"><label for="sidSection">सेक्शन</label><input id="sidSection" maxlength="20"></div>
         <div class="field"><label for="sidRoll">रोल नंबर</label><input id="sidRoll" maxlength="30"></div>
         <div class="field"><label for="sidDob">जन्म तिथि</label><input id="sidDob" type="date"></div>
         <div class="field"><label for="sidPhone">अभिभावक का मोबाइल</label><input id="sidPhone" inputmode="tel" maxlength="15"></div>
-        <div class="field"><label for="sidYear">शैक्षणिक वर्ष *</label><input id="sidYear" required maxlength="20" placeholder="2026-27"></div>
+        <div class="field"><label for="sidYear">शैक्षणिक वर्ष</label><input id="sidYear" maxlength="20" placeholder="2026-27"></div>
       </div>
       <div class="school-id-photo-row">
-        <div class="school-id-upload">
-          <label for="sidStudentPhoto">छात्र की फोटो *</label>
-          <input id="sidStudentPhoto" type="file" accept="image/*" required>
-          <img id="sidStudentPhotoPreview" alt="छात्र की फोटो का प्रीव्यू" class="hidden">
-        </div>
-        <div class="school-id-upload">
-          <label for="sidSchoolLogo">स्कूल का लोगो / फोटो</label>
-          <input id="sidSchoolLogo" type="file" accept="image/*">
-          <img id="sidSchoolLogoPreview" alt="स्कूल लोगो का प्रीव्यू" class="hidden">
-        </div>
+        <div class="school-id-upload"><label for="sidStudentPhoto">छात्र की फोटो (वैकल्पिक)</label><input id="sidStudentPhoto" type="file" accept="image/*"><img id="sidStudentPhotoPreview" alt="छात्र की फोटो का प्रीव्यू" class="hidden"></div>
+        <div class="school-id-upload"><label for="sidSchoolLogo">स्कूल का लोगो / फोटो (वैकल्पिक)</label><input id="sidSchoolLogo" type="file" accept="image/*"><img id="sidSchoolLogoPreview" alt="स्कूल लोगो का प्रीव्यू" class="hidden"></div>
       </div>
-      <p class="muted small">छात्र की फोटो और स्कूल लोगो कार्ड रिकॉर्ड में सुरक्षित रखे जाएँगे।</p>
-      <div class="row"><button class="gold" type="submit">प्रीव्यू अपडेट करें</button><button class="secondary" type="reset">फॉर्म साफ करें</button></div>
+      <p class="muted small">कोई भी विवरण खाली छोड़ा जा सकता है। भरी हुई जानकारी ही कार्ड पर दिखाई जाएगी।</p>
+      <div class="row"><button class="gold" type="submit">ID कार्ड सेव करें</button><button class="secondary" type="reset">फॉर्म साफ करें</button></div>
       <div id="schoolIdFormNotice" aria-live="polite"></div>
     </form>
   </div>
   <div class="panel">
     <h2>कार्ड प्रीव्यू</h2>
-    <p class="muted small">कार्ड को CR80 आकार (85.6 × 54 mm) में Print या Save as PDF करें।</p>
-    <div class="school-id-card-preview" id="schoolIdCardPreview">
-      <h3 id="sidPreviewSchool">SCHOOL NAME</h3>
-      <div class="school-id-subtitle" id="sidPreviewAddress">School address</div>
-      <img id="sidPreviewLogo" class="school-id-logo hidden" alt="School logo">
-      <div class="school-id-card-body">
-        <img id="sidPreviewPhoto" class="school-id-student-photo" alt="Student photo">
-        <div class="school-id-details">
-          <div><b>Name:</b> <span id="sidPreviewName">Student Name</span></div>
-          <div><b>Student ID:</b> <span id="sidPreviewId">—</span></div>
-          <div><b>Father:</b> <span id="sidPreviewFather">—</span></div>
-          <div><b>Class:</b> <span id="sidPreviewClass">—</span></div>
-          <div><b>Roll No:</b> <span id="sidPreviewRoll">—</span></div>
-          <div><b>DOB:</b> <span id="sidPreviewDob">—</span></div>
-          <div><b>Session:</b> <span id="sidPreviewYear">—</span></div>
-        </div>
-      </div>
-      <div class="school-id-footer"><span>School Identity Card</span><span id="sidPreviewPhone"></span></div>
+    <p class="muted small">आड़ा कार्ड 85.6 × 54 mm और खड़ा कार्ड 54 × 85.6 mm होगा। कस्टम डिज़ाइन पर क्लिक करके फ़ील्ड की जगह तय कर सकते हैं।</p>
+    <div class="school-id-template-tools" id="sidTemplateTools">
+      <div class="field"><label for="sidCardTemplateFile">कस्टम कार्ड डिज़ाइन अपलोड करें (Image)</label><input id="sidCardTemplateFile" type="file" accept="image/*"><p class="small">PNG/JPG चुनें। हर दिशा का डिज़ाइन अलग सेव हो सकता है; एक बार जगहें तय करके उसी स्कूल के कई छात्रों पर इस्तेमाल करें।</p></div>
+      <div class="field"><label for="sidTemplateField">किस फ़ील्ड की जगह तय करें?</label><select id="sidTemplateField">
+        <option value="schoolName">School name</option><option value="schoolAddress">School address</option><option value="studentName">Student name</option><option value="studentId">Student ID</option><option value="fatherName">Father name</option><option value="motherName">Mother name</option><option value="className">Class</option><option value="section">Section</option><option value="rollNumber">Roll number</option><option value="dob">Date of birth</option><option value="schoolPhone">School phone</option><option value="phone">Parent mobile</option><option value="academicYear">Academic year</option><option value="studentPhoto">Student photo</option><option value="schoolLogo">School logo</option>
+      </select></div>
+      <div class="row" style="flex-wrap:wrap"><button class="secondary" id="sidTemplateMapToggle" type="button">फ़ील्ड की जगह तय करें</button><button class="gold" id="sidSaveSchoolTemplate" type="button">स्कूल विवरण / डिज़ाइन सेव करें</button></div>
+      <div class="muted small" id="sidTemplateNotice" aria-live="polite">डिज़ाइन अपलोड करने के बाद फ़ील्ड चुनें और कार्ड प्रीव्यू पर जहाँ जानकारी चाहिए वहाँ क्लिक करें।</div>
     </div>
+    <div class="school-id-card-preview" id="schoolIdCardPreview">
+      <div id="sidDefaultCardContent">
+        <h3 id="sidPreviewSchool"></h3><div class="school-id-subtitle" id="sidPreviewAddress"></div>
+        <img id="sidPreviewLogo" class="school-id-logo hidden" alt="School logo">
+        <div class="school-id-card-body">
+          <img id="sidPreviewPhoto" class="school-id-student-photo hidden" alt="Student photo">
+          <div class="school-id-details">
+            <div data-preview-row="studentName"><b>Name:</b> <span id="sidPreviewName"></span></div>
+            <div data-preview-row="studentId"><b>Student ID:</b> <span id="sidPreviewId"></span></div>
+            <div data-preview-row="fatherName"><b>Father:</b> <span id="sidPreviewFather"></span></div>
+            <div data-preview-row="motherName"><b>Mother:</b> <span id="sidPreviewMother"></span></div>
+            <div data-preview-row="className"><b>Class:</b> <span id="sidPreviewClass"></span></div>
+            <div data-preview-row="section"><b>Section:</b> <span id="sidPreviewSection"></span></div>
+            <div data-preview-row="rollNumber"><b>Roll No:</b> <span id="sidPreviewRoll"></span></div>
+            <div data-preview-row="dob"><b>DOB:</b> <span id="sidPreviewDob"></span></div>
+            <div data-preview-row="schoolPhone"><b>School Phone:</b> <span id="sidPreviewSchoolPhone"></span></div>
+            <div data-preview-row="phone"><b>Parent Mobile:</b> <span id="sidPreviewPhone"></span></div>
+            <div data-preview-row="academicYear"><b>Session:</b> <span id="sidPreviewYear"></span></div>
+          </div>
+        </div>
+        <div class="school-id-footer"><span>School Identity Card</span></div>
+      </div>
+      <div id="sidTemplateLayer" class="school-id-template-layer hidden"></div>
+    </div>
+    <div class="row" style="justify-content:center"><button class="secondary" id="sidPreviewPrintBtn" type="button">Print / Save as PDF</button></div>
   </div>
-
 </section>
 
 <section class="page hidden" id="page-school-card-history">
@@ -837,7 +868,7 @@ $('receiptContent').innerHTML=`<article class="receipt" style="max-width:760px;m
 <strong style="display:none;color:#244b85;text-align:center">MJK</strong>
 </div>
 <div><h2 style="margin:0;color:#244b85;font-size:clamp(18px,3vw,25px)">Maurya Jan Seva Kendra</h2>
-<p style="margin:6px 0;color:#53647d;font-size:13px">Hamjapur Patahan, Kadipur, Sultanpur, UP 228145<br>9076855003 · 6392526277</p></div>
+<p style="margin:6px 0;color:#53647d;font-size:13px">Hamjapur Pathan, Kadipur, Sultanpur, UP 228145<br>9076855003 · 6392526277</p></div>
 <div style="text-align:right;font-size:12px;overflow-wrap:anywhere"><strong>रसीद / RECEIPT</strong><br><span>${escapeHtml(status)}</span><br><span>बिल ID: ${escapeHtml(b.invoiceId||b.id||'—')}</span></div>
 </header>
 <hr style="border:0;border-top:1px solid #d8e3f2;margin:18px 0">

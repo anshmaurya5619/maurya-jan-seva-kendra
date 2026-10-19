@@ -338,6 +338,33 @@ body {
 .school-id-card-preview .school-id-preview-placeholder{color:#a9bfd8;font-style:italic;font-weight:500}
 .school-id-card-preview .school-id-details b{color:#5ce0c0}
 .school-id-card-preview .school-id-footer{border-top:1px solid #496484;margin-top:8px;padding-top:5px;font-size:10px;color:#f2bd59;display:flex;justify-content:center;text-align:center;gap:8px}
+/* MJK SCHOOL ID HIGH-CONTRAST CARD LAYOUT V2 */
+#page-school-card-edit>.panel{background:linear-gradient(145deg,#173b66 0%,#102744 56%,#0b1d34 100%);color:#f5f7fb;border:1px solid #3b6285;box-shadow:0 10px 24px #04132645}
+#page-school-card-edit>.panel h2,#page-school-card-edit>.panel h3,#page-school-card-edit>.panel label{color:#f0f6ff}
+#page-school-card-edit>.panel .muted{color:#c2d5eb!important}
+#page-school-card-edit>.panel input:not([type="file"]),#page-school-card-edit>.panel select,#page-school-card-edit>.panel textarea{background:#081a30;color:#f5f7fb;border-color:#496484}
+#page-school-card-edit>.panel input::placeholder,#page-school-card-edit>.panel textarea::placeholder{color:#a9bfd8}
+#page-school-card-edit>.panel .school-id-template-tools{padding:12px;border:1px solid #3b5879;border-radius:10px;background:rgba(5,19,38,.52);margin:10px 0 14px}
+#page-school-card-edit>.panel .school-id-upload{background:rgba(5,19,38,.48);border-color:#456284;color:#eaf3ff}
+.school-id-card-preview .school-id-card-body{display:grid;grid-template-columns:minmax(0,1fr) 23%;grid-template-areas:"details photo";gap:10px;align-items:stretch;width:100%;min-height:118px;position:relative;z-index:1}
+.school-id-card-preview .school-id-details{grid-area:details;display:flex;flex-direction:column;justify-content:center;width:auto;min-width:0;min-height:0;gap:3px;padding:8px 10px;font-size:12px;line-height:1.25}
+.school-id-card-preview .school-id-details>div{margin:0;min-width:0;overflow-wrap:anywhere;word-break:normal}
+.school-id-card-preview .school-id-details b{color:#5ce0c0}
+.school-id-card-preview .school-id-photo-slot{grid-area:photo;align-self:center;justify-self:stretch;width:100%;height:clamp(95px,25vw,132px);max-height:100%;border:1px solid #5ce0c0;border-radius:6px;background:linear-gradient(145deg,#132d4c,#0b1b30);display:flex;align-items:center;justify-content:center;overflow:hidden;color:#c3d4ea;text-align:center;font-size:11px;font-weight:800;letter-spacing:.5px}
+.school-id-card-preview .school-id-student-photo{display:block;width:100%;height:100%;max-height:none;object-fit:cover;border:0;border-radius:4px;background:transparent;flex-shrink:0}
+.school-id-card-preview.school-id-portrait .school-id-card-body{grid-template-columns:minmax(0,1fr);grid-template-areas:"photo" "details";grid-template-rows:auto 1fr;gap:8px;min-height:0}
+.school-id-card-preview.school-id-portrait .school-id-photo-slot{width:100px;height:116px;max-height:none;justify-self:center}
+.school-id-card-preview.school-id-portrait .school-id-details{width:100%;font-size:12px;line-height:1.28;min-height:0}
+.school-id-card-preview .school-id-template-layer{z-index:3}
+.school-id-card-preview.has-template{background-color:#102744}
+.school-id-card-preview .school-id-template-item{display:flex;align-items:center;justify-content:flex-start;padding:2px 4px;line-height:1.1;font-size:10px;font-weight:750;color:#fff;background:rgba(5,18,36,.82);border:1px solid rgba(92,224,192,.75);border-radius:3px;text-shadow:0 1px 1px #000;overflow:hidden}
+.school-id-card-preview .school-id-template-item.image{padding:0;background:#102744;border:1px solid #5ce0c0;display:flex;align-items:center;justify-content:center}
+.school-id-card-preview .school-id-template-item.image img{display:block;width:100%;height:100%;object-fit:cover}
+.school-id-card-preview .school-id-template-item.logo img{object-fit:contain}
+.school-id-card-preview .school-id-template-item.photo-placeholder span{display:block;color:#c3d4ea;text-align:center;font-size:10px;padding:4px}
+.school-id-card-preview .school-id-template-item.hint{background:rgba(5,18,36,.9);color:#fff;border:1px dashed #f2bd59;font-size:9px;outline:none}
+@media(max-width:580px){#page-school-card-edit>.panel .school-id-template-tools{padding:9px}.school-id-card-preview .school-id-details{font-size:10.5px;padding:6px;gap:2px}.school-id-card-preview .school-id-photo-slot{height:88px}.school-id-card-preview.school-id-portrait .school-id-photo-slot{width:86px;height:100px}}
+
 @media(max-width:900px){.school-id-layout{grid-template-columns:1fr}}
 @media(max-width:580px){.school-id-photo-row{grid-template-columns:1fr}.school-id-card-preview{padding:12px}.school-id-card-preview .school-id-student-photo{width:72px;height:88px}.school-id-card-preview .school-id-details{font-size:10.5px}}
 
@@ -507,7 +534,7 @@ body {
       <div class="field"><label for="sidOrientation">कार्ड की दिशा चुनें</label><select id="sidOrientation"><option value="landscape">Horizontal — आड़ा कार्ड</option><option value="portrait">Vertical — खड़ा कार्ड</option></select></div>
       <div class="formgrid">
         <div class="field"><label for="sidStudentName">छात्र का पूरा नाम</label><input id="sidStudentName" maxlength="100"></div>
-        <div class="field"><label for="sidStudentId">Student ID</label><input id="sidStudentId" maxlength="40"></div>
+        <div class="field"><label for="sidLanguage">कार्ड की भाषा / Card language</label><select id="sidLanguage"><option value="hi">हिन्दी — Hindi</option><option value="en">English</option></select></div>
         <div class="field"><label for="sidFather">पिता का नाम</label><input id="sidFather" maxlength="100"></div>
         <div class="field"><label for="sidMother">माता का नाम</label><input id="sidMother" maxlength="100"></div>
         <div class="field"><label for="sidSchoolName">स्कूल का नाम</label><input id="sidSchoolName" maxlength="150"></div>
@@ -533,9 +560,9 @@ body {
     <h2>कार्ड प्रीव्यू</h2>
     <p class="muted small">आड़ा कार्ड 85.6 × 54 mm और खड़ा कार्ड 54 × 85.6 mm होगा। कस्टम डिज़ाइन पर क्लिक करके फ़ील्ड की जगह तय कर सकते हैं।</p>
     <div class="school-id-template-tools" id="sidTemplateTools">
-      <div class="field"><label for="sidCardTemplateFile">कस्टम कार्ड डिज़ाइन अपलोड करें (Image)</label><input id="sidCardTemplateFile" type="file" accept="image/*,application/pdf"><p class="small">PNG/JPG या PDF चुनें (PDF का पहला पेज इस्तेमाल होगा)। हर दिशा का डिज़ाइन अलग सेव हो सकता है; एक बार जगहें तय करके उसी स्कूल के कई छात्रों पर इस्तेमाल करें।</p></div>
+      <div class="field"><label for="sidCardTemplateFile">कस्टम कार्ड डिज़ाइन अपलोड करें (Image)</label><input id="sidCardTemplateFile" type="file" accept="image/*,application/pdf"><p class="small">PNG/JPG या PDF चुनें (PDF का पहला पेज इस्तेमाल होगा)। फ़ील्ड अपने-आप कार्ड में व्यवस्थित होंगे; जरूरत हो तो जगह बदलकर उसी स्कूल के कई छात्रों पर इस्तेमाल करें। खाली फ़ील्ड का स्थान भी प्रीव्यू में दिखेगा।</p></div>
       <div class="field"><label for="sidTemplateField">किस फ़ील्ड की जगह तय करें?</label><select id="sidTemplateField">
-        <option value="schoolName">School name</option><option value="schoolAddress">School address</option><option value="studentName">Student name</option><option value="studentId">Student ID</option><option value="fatherName">Father name</option><option value="motherName">Mother name</option><option value="className">Class</option><option value="section">Section</option><option value="rollNumber">Roll number</option><option value="dob">Date of birth</option><option value="schoolPhone">School phone</option><option value="phone">Parent mobile</option><option value="academicYear">Academic year</option><option value="studentPhoto">Student photo</option><option value="schoolLogo">School logo</option>
+        <option value="schoolName">विद्यालय का नाम</option><option value="schoolAddress">विद्यालय का पता</option><option value="studentName">छात्र का नाम</option><option value="fatherName">पिता का नाम</option><option value="motherName">माता का नाम</option><option value="className">कक्षा</option><option value="section">सेक्शन</option><option value="rollNumber">रोल नंबर</option><option value="dob">जन्म तिथि</option><option value="schoolPhone">स्कूल फोन</option><option value="phone">अभिभावक मोबाइल</option><option value="academicYear">शैक्षणिक वर्ष</option><option value="studentPhoto">छात्र की फोटो</option><option value="schoolLogo">स्कूल का लोगो</option>
       </select></div>
       <div class="row" style="flex-wrap:wrap"><button class="secondary" id="sidTemplateMapToggle" type="button">फ़ील्ड की जगह तय करें</button><button class="gold" id="sidSaveSchoolTemplate" type="button">स्कूल विवरण / डिज़ाइन सेव करें</button></div>
       <div class="muted small" id="sidTemplateNotice" aria-live="polite">डिज़ाइन अपलोड करने के बाद फ़ील्ड चुनें और कार्ड प्रीव्यू पर जहाँ जानकारी चाहिए वहाँ क्लिक करें।</div>
@@ -545,22 +572,24 @@ body {
         <h3 id="sidPreviewSchool"></h3><div class="school-id-subtitle" id="sidPreviewAddress"></div>
         <img id="sidPreviewLogo" class="school-id-logo hidden" alt="School logo">
         <div class="school-id-card-body">
-          <img id="sidPreviewPhoto" class="school-id-student-photo hidden" alt="Student photo">
           <div class="school-id-details">
-            <div data-preview-row="studentName"><b>Name:</b> <span id="sidPreviewName"></span></div>
-            <div data-preview-row="studentId"><b>Student ID:</b> <span id="sidPreviewId"></span></div>
-            <div data-preview-row="fatherName"><b>Father:</b> <span id="sidPreviewFather"></span></div>
-            <div data-preview-row="motherName"><b>Mother:</b> <span id="sidPreviewMother"></span></div>
-            <div data-preview-row="className"><b>Class:</b> <span id="sidPreviewClass"></span></div>
-            <div data-preview-row="section"><b>Section:</b> <span id="sidPreviewSection"></span></div>
-            <div data-preview-row="rollNumber"><b>Roll No:</b> <span id="sidPreviewRoll"></span></div>
-            <div data-preview-row="dob"><b>DOB:</b> <span id="sidPreviewDob"></span></div>
-            <div data-preview-row="schoolPhone"><b>School Phone:</b> <span id="sidPreviewSchoolPhone"></span></div>
-            <div data-preview-row="phone"><b>Parent Mobile:</b> <span id="sidPreviewPhone"></span></div>
-            <div data-preview-row="academicYear"><b>Session:</b> <span id="sidPreviewYear"></span></div>
+            <div data-preview-row="studentName"><b data-preview-label="studentName">नाम:</b> <span id="sidPreviewName"></span></div>
+            <div data-preview-row="fatherName"><b data-preview-label="fatherName">पिता का नाम:</b> <span id="sidPreviewFather"></span></div>
+            <div data-preview-row="motherName"><b data-preview-label="motherName">माता का नाम:</b> <span id="sidPreviewMother"></span></div>
+            <div data-preview-row="className"><b data-preview-label="className">कक्षा:</b> <span id="sidPreviewClass"></span></div>
+            <div data-preview-row="section"><b data-preview-label="section">सेक्शन:</b> <span id="sidPreviewSection"></span></div>
+            <div data-preview-row="rollNumber"><b data-preview-label="rollNumber">रोल नंबर:</b> <span id="sidPreviewRoll"></span></div>
+            <div data-preview-row="dob"><b data-preview-label="dob">जन्म तिथि:</b> <span id="sidPreviewDob"></span></div>
+            <div data-preview-row="schoolPhone"><b data-preview-label="schoolPhone">स्कूल फोन:</b> <span id="sidPreviewSchoolPhone"></span></div>
+            <div data-preview-row="phone"><b data-preview-label="phone">अभिभावक मोबाइल:</b> <span id="sidPreviewPhone"></span></div>
+            <div data-preview-row="academicYear"><b data-preview-label="academicYear">शैक्षणिक वर्ष:</b> <span id="sidPreviewYear"></span></div>
+          </div>
+          <div class="school-id-photo-slot" id="sidPreviewPhotoSlot">
+            <img id="sidPreviewPhoto" class="school-id-student-photo hidden" alt="Student photo">
+            <span id="sidPreviewPhotoPlaceholder">छात्र की फोटो</span>
           </div>
         </div>
-        <div class="school-id-footer"><span>School Identity Card</span></div>
+        <div class="school-id-footer"><span id="sidPreviewFooter">स्कूल पहचान पत्र</span></div>
       </div>
       <div id="sidTemplateLayer" class="school-id-template-layer hidden"></div>
     </div>
@@ -571,7 +600,7 @@ body {
 <section class="page hidden" id="page-school-card-history">
   <div class="card">
     <div class="row" style="justify-content:space-between;align-items:center;flex-wrap:wrap"><div><h2>School ID Card History</h2><p class="muted">सेव किए गए और हटाए गए ID कार्ड यहाँ खोजें।</p></div><button class="secondary" type="button" data-go="school-cards">← School ID Card</button></div>
-    <div class="row" style="gap:10px;flex-wrap:wrap;margin:16px 0"><input id="schoolIdHistorySearch" type="search" placeholder="नाम, मोबाइल या Student ID से खोजें" aria-label="Search ID card history" style="flex:1;min-width:220px"><button class="secondary" id="schoolIdHistoryRefresh" type="button">Refresh</button></div>
+    <div class="row" style="gap:10px;flex-wrap:wrap;margin:16px 0"><input id="schoolIdHistorySearch" type="search" placeholder="नाम, मोबाइल, स्कूल या कक्षा से खोजें" aria-label="Search ID card history" style="flex:1;min-width:220px"><button class="secondary" id="schoolIdHistoryRefresh" type="button">Refresh</button></div>
     <div id="schoolIdHistoryNotice" aria-live="polite"></div><div id="schoolIdHistoryList"><div class="empty-state">Audit history लोड हो रही है…</div></div>
   </div>
 </section>
@@ -1531,7 +1560,7 @@ async function addSchool(){
   return Number.isNaN(d.getTime())?'समय उपलब्ध नहीं':d.toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});
  }
  function cardMarkup(d,id){
-  return '<div class="panel" style="margin:10px 0"><div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap"><div><strong>'+escapeHtml(d.studentName||d.schoolName||'नाम नहीं')+'</strong><div class="muted small">स्कूल: '+escapeHtml(d.schoolName||'—')+' · Student ID: '+escapeHtml(d.studentId||'—')+' · कक्षा: '+escapeHtml(d.className||'—')+' '+escapeHtml(d.section||'')+'</div><div class="muted small">मोबाइल: '+escapeHtml(d.phone||'—')+' · अपडेट: '+escapeHtml(fmtTime(d.updatedAt))+'</div><div class="muted small">किसने किया: '+escapeHtml(d.updatedByName||d.createdByName||'—')+'</div></div><div class="row" style="gap:6px;flex-wrap:wrap"><button type="button" class="secondary" data-card-action="print" data-card-id="'+escapeHtml(id)+'">Print / PDF</button>'+(d.deleted?'<button type="button" class="gold" data-card-action="restore" data-card-id="'+escapeHtml(id)+'">Restore</button>':'<button type="button" class="secondary" data-card-action="edit" data-card-id="'+escapeHtml(id)+'">Edit</button><button type="button" class="secondary" data-card-action="delete" data-card-id="'+escapeHtml(id)+'">Delete</button>')+'</div></div></div>';
+  return '<div class="panel" style="margin:10px 0"><div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap"><div><strong>'+escapeHtml(d.studentName||d.schoolName||'नाम नहीं')+'</strong><div class="muted small">स्कूल: '+escapeHtml(d.schoolName||'—')+' · कक्षा: '+escapeHtml(d.className||'—')+' '+escapeHtml(d.section||'')+'</div><div class="muted small">मोबाइल: '+escapeHtml(d.phone||'—')+' · अपडेट: '+escapeHtml(fmtTime(d.updatedAt))+'</div><div class="muted small">किसने किया: '+escapeHtml(d.updatedByName||d.createdByName||'—')+'</div></div><div class="row" style="gap:6px;flex-wrap:wrap"><button type="button" class="secondary" data-card-action="print" data-card-id="'+escapeHtml(id)+'">Print / PDF</button>'+(d.deleted?'<button type="button" class="gold" data-card-action="restore" data-card-id="'+escapeHtml(id)+'">Restore</button>':'<button type="button" class="secondary" data-card-action="edit" data-card-id="'+escapeHtml(id)+'">Edit</button><button type="button" class="secondary" data-card-action="delete" data-card-id="'+escapeHtml(id)+'">Delete</button>')+'</div></div></div>';
  }
  function searchMatches(d,q){
   const text=[d.studentName,d.studentId,d.phone,d.fatherName,d.motherName,d.schoolName,d.schoolAddress,d.schoolPhone,d.className,d.section,d.rollNumber].join(' ').toLowerCase();
@@ -1692,7 +1721,7 @@ async function addSchool(){
    }));
    const events=groups.flat().sort((a,b)=>(b.event.at?.toMillis?.()||0)-(a.event.at?.toMillis?.()||0));
    const actionNames={created:'कार्ड बनाया',updated:'कार्ड Edit किया',deleted:'कार्ड हटाया',restored:'कार्ड Restore किया'};
-   byId('schoolIdHistoryList').innerHTML=events.length?events.map(({card:d,event:e})=>'<div class="panel" style="margin:10px 0"><div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap"><div><strong>'+escapeHtml(d.studentName||'नाम नहीं')+'</strong><div class="muted small">स्कूल: '+escapeHtml(d.schoolName||'—')+' · Student ID: '+escapeHtml(d.studentId||'—')+' · कक्षा: '+escapeHtml(d.className||'—')+'</div><div><strong>'+escapeHtml(actionNames[e.action]||e.action||'गतिविधि')+'</strong></div><div class="muted small">किसने किया: '+escapeHtml(e.byName||'—')+'</div><div class="muted small">समय (IST): '+escapeHtml(fmtTime(e.at))+'</div><div class="small">'+escapeHtml(e.details||'')+'</div>'+(d.deleted?'<div class="muted small">यह कार्ड हटाया गया है।</div>':'')+'</div><div class="row" style="gap:6px;flex-wrap:wrap"><button type="button" class="secondary" data-card-action="print" data-card-id="'+escapeHtml(d.id)+'">Print / PDF</button>'+(d.deleted?'<button type="button" class="gold" data-card-action="restore" data-card-id="'+escapeHtml(d.id)+'">Restore</button>':'')+'</div></div></div>').join(''):'<p class="muted">इस खोज के लिए कोई Audit History नहीं मिली।</p>';
+   byId('schoolIdHistoryList').innerHTML=events.length?events.map(({card:d,event:e})=>'<div class="panel" style="margin:10px 0"><div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap"><div><strong>'+escapeHtml(d.studentName||'नाम नहीं')+'</strong><div class="muted small">स्कूल: '+escapeHtml(d.schoolName||'—')+' · कक्षा: '+escapeHtml(d.className||'—')+'</div><div><strong>'+escapeHtml(actionNames[e.action]||e.action||'गतिविधि')+'</strong></div><div class="muted small">किसने किया: '+escapeHtml(e.byName||'—')+'</div><div class="muted small">समय (IST): '+escapeHtml(fmtTime(e.at))+'</div><div class="small">'+escapeHtml(e.details||'')+'</div>'+(d.deleted?'<div class="muted small">यह कार्ड हटाया गया है।</div>':'')+'</div><div class="row" style="gap:6px;flex-wrap:wrap"><button type="button" class="secondary" data-card-action="print" data-card-id="'+escapeHtml(d.id)+'">Print / PDF</button>'+(d.deleted?'<button type="button" class="gold" data-card-action="restore" data-card-id="'+escapeHtml(d.id)+'">Restore</button>':'')+'</div></div></div>').join(''):'<p class="muted">इस खोज के लिए कोई Audit History नहीं मिली।</p>';
    historyNotice('कुल गतिविधियाँ: '+events.length);
   }catch(e){historyNotice('History नहीं लोड हुई: '+e.message)}
  }

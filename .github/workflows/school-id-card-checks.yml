@@ -1,0 +1,37 @@
+name: School ID Card Checks
+
+on:
+  push:
+    branches:
+      - school-id-card-fixes-2026-10-19
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  school-id-card-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Set up Java for Firestore Emulator
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Install test dependencies
+        run: npm install --prefix school-id-tests
+
+      - name: Run HTML, JavaScript, and regression checks
+        run: node school-id-tests/static-check.cjs
+
+      - name: Run Firestore security-rule tests in emulator
+        run: npx --prefix school-id-tests firebase-tools emulators:exec --project demo-mjk-school-id-rules --only firestore --config firebase.json "npm --prefix school-id-tests run test:rules"

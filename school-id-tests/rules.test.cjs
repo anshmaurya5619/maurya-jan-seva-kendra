@@ -52,7 +52,7 @@ function cscLinkHistory(uid, action='created', name='Client Portal', url='https:
 function cardData(uid, schoolId='', overrides={}) {
   return {
     studentName:'', studentId:'', fatherName:'', motherName:'',
-    schoolId, schoolName:'', schoolAddress:'', schoolPhone:'',
+    schoolId, schoolName:'', schoolAddress:'', schoolPhone:'', language:'hi',
     className:'', section:'', rollNumber:'', dob:'', phone:'', academicYear:'',
     studentPhoto:'', schoolLogo:'', orientation:'landscape',
     createdByUid:uid, createdByName:'Test Admin',
@@ -189,6 +189,20 @@ describe('School ID Firestore rules', function () {
     const saved = await assertSucceeds(getDoc(card));
     assert.equal(saved.data().studentName, '');
     assert.equal(saved.data().studentPhoto, '');
+  });
+
+  it('stores only the selected Hindi or English card language', async function () {
+    const db = dbFor();
+    const hindiRef = doc(db, 'schoolIdCards', 'card-language-hi');
+    const englishRef = doc(db, 'schoolIdCards', 'card-language-en');
+    await assertSucceeds(setDoc(hindiRef, cardData('admin-user', '', {language:'hi'})));
+    await assertSucceeds(setDoc(englishRef, cardData('admin-user', '', {language:'en'})));
+    const hindi = await assertSucceeds(getDoc(hindiRef));
+    const english = await assertSucceeds(getDoc(englishRef));
+    assert.equal(hindi.data().language, 'hi');
+    assert.equal(english.data().language, 'en');
+    await assertFails(setDoc(doc(db, 'schoolIdCards', 'card-language-invalid'),
+      cardData('admin-user', '', {language:'fr'})));
   });
 
   it('allows a card associated with an existing school', async function () {

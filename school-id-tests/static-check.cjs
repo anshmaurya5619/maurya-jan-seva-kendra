@@ -22,7 +22,7 @@ assert.doesNotThrow(() => new Function(script), 'School ID handler must parse as
 
 const ids = new Set(Array.from(html.matchAll(/\bid=["']([^"']+)["']/g), m => m[1]));
 const referencedIds = Array.from(script.matchAll(/byId\(['"]([^'"]+)['"]\)/g), m => m[1]);
-const missingIds = [...new Set(referencedIds.filter(id => !ids.has(id))];
+const missingIds = [...new Set(referencedIds.filter(id => !ids.has(id)))];
 assert.deepEqual(missingIds, [], 'School ID handler refers to missing elements');
 
 assert.equal((html.match(/Hamjapur Pathan/g) || []).length, 2, 'Contact and receipt address spelling should be corrected exactly twice');

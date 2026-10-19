@@ -28,6 +28,13 @@ assert.deepEqual(missingIds, [], 'School ID handler refers to missing elements')
 assert.equal((html.match(/Hamjapur Pathan/g) || []).length, 2, 'Contact and receipt address spelling should be corrected exactly twice');
 assert.equal(html.includes('Hamjapur Patahan'), false, 'Old address spelling must be gone');
 assert.ok(html.includes('schoolIdSchools'), 'School registry functionality is required');
+assert.ok(html.includes('id="cscKendraNav"'), 'Public menu must include CSC Kendra');
+assert.ok(html.includes('id="cscKendraWebsiteName"') && html.includes('id="cscKendraWebsiteUrl"'), 'Admin must be able to edit the external website name and URL');
+assert.ok(html.includes("doc(db,'publicSiteConfig','cscKendra')"), 'CSC Kendra settings should use a dedicated config document');
+assert.ok(html.includes("link.href=url||'#csc-kendra-unconfigured'"), 'CSC Kendra menu should redirect to the saved external URL');
+assert.ok(html.includes("['http:','https:'].includes(u.protocol)"), 'External links must be restricted to http(s)');
+assert.ok(html.includes("if(!admin()||!user)return toast('CSC Kendra लिंक केवल Admin सेव कर सकता है।')"), 'Only admin may save the CSC Kendra URL');
+
 assert.ok(html.includes('sidCardTemplateFile'), 'Custom card image upload should exist');
 assert.ok(html.includes('accept="image/*,application/pdf"') && html.includes('pdfTemplateToImage'), 'Custom card PDF upload should rasterize the first page');
 assert.ok(html.includes('templatePositions'), 'Custom template field positions should be configurable and reusable');

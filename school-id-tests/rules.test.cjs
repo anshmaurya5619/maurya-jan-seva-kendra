@@ -205,6 +205,24 @@ describe('School ID Firestore rules', function () {
       cardData('admin-user', '', {language:'fr'})));
   });
 
+  it('preserves soft-delete and restore for legacy cards without a language field', async function () {
+    await env.withSecurityRulesDisabled(async context => {
+      const legacy = cardData('admin-user', '', {studentName:'Legacy Student'});
+      delete legacy.language;
+      await setDoc(doc(context.firestore(), 'schoolIdCards', 'legacy-card'), legacy);
+    });
+    const db = dbFor();
+    const ref = doc(db, 'schoolIdCards', 'legacy-card');
+    await assertSucceeds(updateDoc(ref, {
+      deleted:true, deletedAt:serverTimestamp(), deletedByUid:'admin-user', deletedByName:'Test Admin',
+      updatedAt:serverTimestamp(), updatedByUid:'admin-user', updatedByName:'Test Admin'
+    }));
+    await assertSucceeds(updateDoc(ref, {
+      deleted:false, deletedAt:deleteField(), deletedByUid:deleteField(), deletedByName:deleteField(),
+      updatedAt:serverTimestamp(), updatedByUid:'admin-user', updatedByName:'Test Admin'
+    }));
+  });
+
   it('allows a card associated with an existing school', async function () {
     await env.withSecurityRulesDisabled(async context => {
       await setDoc(doc(context.firestore(), 'schoolIdSchools', 'school-2'), schoolData('admin-user', 'Second School'));

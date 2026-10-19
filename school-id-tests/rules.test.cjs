@@ -34,6 +34,21 @@ function cscConfig(uid, websiteUrl='https://client-example.test') {
   };
 }
 
+function cscLinkData(uid, name='Client Portal', url='https://portal-example.test') {
+  return {
+    name, url, isActive:true,
+    createdAt:serverTimestamp(), createdByUid:uid, createdByName:'Test Admin',
+    updatedAt:serverTimestamp(), updatedByUid:uid, updatedByName:'Test Admin'
+  };
+}
+
+function cscLinkHistory(uid, action='created', name='Client Portal', url='https://portal-example.test') {
+  return {
+    action, byUid:uid, byName:'Test Actor', at:serverTimestamp(),
+    details:'Test '+action, websiteName:name, websiteUrl:url
+  };
+}
+
 function cardData(uid, schoolId='', overrides={}) {
   return {
     studentName:'', studentId:'', fatherName:'', motherName:'',
@@ -87,6 +102,73 @@ describe('School ID Firestore rules', function () {
     const workerDb = dbFor('worker-user');
     await assertFails(setDoc(doc(workerDb, 'publicSiteConfig', 'cscKendra'), cscConfig('worker-user')));
     await assertFails(setDoc(doc(adminDb, 'publicSiteConfig', 'cscKendra'), cscConfig('admin-user', 'javascript:alert(1)')));
+  });
+
+  it('keeps CSC websites in a staff directory with admin-only editing and immutable per-link history', async function () {
+    const adminDb = dbFor('admin-user');
+    const workerDb = dbFor('worker-user');
+    const anonDb = env.unauthenticatedContext().firestore();
+    const linkRef = doc(adminDb, 'cscKendraLinks', 'portal-1');
+
+    await assertSucceeds(setDoc(linkRef, cscLinkData('admin-user')));
+    await assertSucceeds(setDoc(doc(adminDb, 'cscKendraLinks', 'portal-1', 'history', 'created-1'),
+      cscLinkHistory('admin-user', 'created')));
+    await assertSucceeds(updateDoc(linkRef, {
+      name:'Corrected Portal', url:'https://portal-example.test/updated', isActive:true,
+      updatedAt:serverTimestamp(), updatedByUid:'admin-user', updatedByName:'Test Admin'
+    }));
+    await assertSucceeds(setDoc(doc(workerDb, 'cscKendraLinks', 'portal-1', 'history', 'opened-1'),
+      cscLinkHistory('worker-user', 'opened', 'Corrected Portal', 'https://portal-example.test/updated')));
+
+    await assertFails(setDoc(doc(workerDb, 'cscKendraLinks', 'worker-created'), cscLinkData('worker-user')));
+    await assertFails(updateDoc(linkRef, {
+      name:'Worker Edit', url:'https://portal-example.test/updated', isActive:true,
+      updatedAt:serverTimestamp(), updatedByUid:'worker-user', updatedByName:'Test Worker'
+    }));
+    await assertFails(updateDoc(linkRef, {
+      url:'javascript:alert(1)', updatedAt:serverTimestamp(),
+      updatedByUid:'admin-user', updatedByName:'Test Admin'
+    }));
+    await assertFails(deleteDoc(linkRef));
+    await assertFails(updateDoc(doc(adminDb, 'cscKendraLinks', 'portal-1', 'history', 'created-1'), {details:'tampered'}));
+    await assertSucceeds(getDoc(doc(workerDb, 'cscKendraLinks', 'portal-1')));
+    await assertFails(getDoc(doc(anonDb, 'cscKendraLinks', 'portal-1')));
+    await assertFails(getDoc(doc(anonDb, 'cscKendraLinks', 'portal-1', 'history', 'created-1')));
+  });
+
+  it('allows staff to correct a school and propagate its new details to linked cards with audit history', async function () {
+    const db = dbFor();
+    const schoolRef = doc(db, 'schoolIdSchools', 'school-to-correct');
+    const cardRef = doc(db, 'schoolIdCards', 'card-to-correct');
+    const initial = writeBatch(db);
+    initial.set(schoolRef, schoolData('admin-user', 'Wrong School'));
+    initial.set(cardRef, cardData('admin-user', 'school-to-correct', {
+      studentName:'Test Student', schoolName:'Wrong School', schoolAddress:'Old address', schoolPhone:'111'
+    }));
+    await assertSucceeds(initial.commit());
+
+    const change = writeBatch(db);
+    change.update(schoolRef, {
+      name:'Correct School', schoolAddress:'New address', schoolPhone:'222',
+      updatedAt:serverTimestamp(), updatedByUid:'admin-user', updatedByName:'Test Admin'
+    });
+    change.set(doc(db, 'schoolIdSchools', 'school-to-correct', 'history', 'edit-1'), {
+      action:'updated', byUid:'admin-user', byName:'Test Admin', at:serverTimestamp(),
+      details:'School rename test', schoolName:'Correct School', schoolAddress:'New address', schoolPhone:'222'
+    });
+    change.update(cardRef, {
+      schoolId:'school-to-correct', schoolName:'Correct School', schoolAddress:'New address', schoolPhone:'222',
+      updatedAt:serverTimestamp(), updatedByUid:'admin-user', updatedByName:'Test Admin'
+    });
+    change.set(doc(db, 'schoolIdCards', 'card-to-correct', 'history', 'rename-1'), {
+      action:'updated', byUid:'admin-user', byName:'Test Admin', at:serverTimestamp(),
+      details:'School name/details corrected'
+    });
+    await assertSucceeds(change.commit());
+    const updatedCard = await assertSucceeds(getDoc(cardRef));
+    assert.equal(updatedCard.data().schoolName, 'Correct School');
+    const savedHistory = await assertSucceeds(getDoc(doc(db, 'schoolIdSchools', 'school-to-correct', 'history', 'edit-1')));
+    assert.equal(savedHistory.data().schoolName, 'Correct School');
   });
 
   it('allows an active staff member to create a school registry record', async function () {

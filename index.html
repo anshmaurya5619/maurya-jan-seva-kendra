@@ -1209,30 +1209,47 @@ $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Ke
 (()=>{
  const byId=id=>document.getElementById(id);
  const val=id=>(byId(id)?.value||'').trim();
- const fields={
-  sidOrientation:'orientation',sidStudentName:'studentName',sidStudentId:'studentId',
-  sidFather:'fatherName',sidMother:'motherName',sidSchoolName:'schoolName',
-  sidSchoolPhone:'schoolPhone',sidSchoolAddress:'schoolAddress',sidClass:'className',
-  sidSection:'section',sidRoll:'rollNumber',sidDob:'dob',sidPhone:'phone',sidYear:'academicYear'
+ const fields={sidOrientation:'orientation',sidLanguage:'language',sidStudentName:'studentName',sidFather:'fatherName',sidMother:'motherName',sidSchoolName:'schoolName',sidSchoolPhone:'schoolPhone',sidSchoolAddress:'schoolAddress',sidClass:'className',sidSection:'section',sidRoll:'rollNumber',sidDob:'dob',sidPhone:'phone',sidYear:'academicYear'};
+ const templateKeys=['schoolName','schoolAddress','studentName','fatherName','motherName','className','section','rollNumber','dob','schoolPhone','phone','academicYear','studentPhoto','schoolLogo'];
+ const labelSets={
+  hi:{schoolName:'विद्यालय का नाम',schoolAddress:'विद्यालय का पता',studentName:'नाम',fatherName:'पिता का नाम',motherName:'माता का नाम',className:'कक्षा',section:'सेक्शन',rollNumber:'रोल नंबर',dob:'जन्म तिथि',schoolPhone:'स्कूल फोन',phone:'अभिभावक मोबाइल',academicYear:'शैक्षणिक वर्ष',studentPhoto:'छात्र की फोटो',schoolLogo:'स्कूल का लोगो',photoSlot:'छात्र की फोटो',footer:'स्कूल पहचान पत्र'},
+  en:{schoolName:'School Name',schoolAddress:'School Address',studentName:'Name',fatherName:"Father's Name",motherName:"Mother's Name",className:'Class',section:'Section',rollNumber:'Roll No.',dob:'Date of Birth',schoolPhone:'School Phone',phone:'Parent Mobile',academicYear:'Academic Year',studentPhoto:'Student Photo',schoolLogo:'School Logo',photoSlot:'STUDENT PHOTO',footer:'School Identity Card'}
  };
- const templateKeys=['schoolName','schoolAddress','studentName','studentId','fatherName','motherName','className','section','rollNumber','dob','schoolPhone','phone','academicYear','studentPhoto','schoolLogo'];
- const templateLabels={schoolName:'School name',schoolAddress:'School address',studentName:'Student name',studentId:'Student ID',fatherName:'Father name',motherName:'Mother name',className:'Class',section:'Section',rollNumber:'Roll number',dob:'Date of birth',schoolPhone:'School phone',phone:'Parent mobile',academicYear:'Academic year',studentPhoto:'Student photo',schoolLogo:'School logo'};
+ function cardLabels(language='hi'){return labelSets[language==='en'?'en':'hi']}
+ function updateTemplateFieldOptions(language=val('sidLanguage')||'hi'){
+  const select=byId('sidTemplateField');if(!select)return;
+  const selected=templateKeys.includes(select.value)?select.value:'schoolName',labels=cardLabels(language);
+  select.innerHTML=templateKeys.map(key=>'<option value="'+key+'">'+escapeHtml(labels[key])+'</option>').join('');
+  select.value=selected;
+ }
  let studentPhoto='',schoolLogo='',editingId=null,records=[],schools=[],selectedSchoolId='',templateMappingMode=false;
- let cardTemplates={landscape:'',portrait:''};
- let templatePositions={landscape:{},portrait:{}};
-
- function notice(text,ok=false){
-  const el=byId('schoolIdFormNotice');
-  if(el)el.innerHTML=text?'<div class="msg '+(ok?'ok':'')+'">'+escapeHtml(text)+'</div>':'';
- }
+ let cardTemplates={landscape:'',portrait:''},templatePositions={landscape:{},portrait:{}};
+ function notice(text,ok=false){const el=byId('schoolIdFormNotice');if(el)el.innerHTML=text?'<div class="msg '+(ok?'ok':'')+'">'+escapeHtml(text)+'</div>':''}
  function historyNotice(text){const el=byId('schoolIdHistoryNotice');if(el)el.textContent=text||''}
- function templateNotice(text,ok=false){
-  const el=byId('sidTemplateNotice');
-  if(el){el.textContent=text||'';el.style.color=ok?'#12664c':''}
- }
+ function templateNotice(text,ok=false){const el=byId('sidTemplateNotice');if(el){el.textContent=text||'';el.style.color=ok?'#5ce0c0':''}}
  function actorName(){return String(profile?.name||user?.email||'Staff').slice(0,100)}
  function currentOrientation(){return val('sidOrientation')==='portrait'?'portrait':'landscape'}
  function getSchool(id){return schools.find(s=>s.id===id)||null}
+ function defaultTemplatePositions(orientation='landscape'){
+  if(orientation==='portrait')return {
+   schoolName:{x:19,y:4,width:66,height:5},schoolAddress:{x:8,y:11,width:84,height:4},
+   schoolLogo:{x:4,y:3,width:12,height:7},studentPhoto:{x:35,y:17,width:30,height:19},
+   studentName:{x:6,y:39,width:88,height:5},fatherName:{x:6,y:46,width:43,height:5},
+   motherName:{x:51,y:46,width:43,height:5},className:{x:6,y:53,width:26,height:5},
+   section:{x:34,y:53,width:26,height:5},rollNumber:{x:62,y:53,width:32,height:5},
+   dob:{x:6,y:60,width:43,height:5},academicYear:{x:51,y:60,width:43,height:5},
+   schoolPhone:{x:6,y:67,width:43,height:5},phone:{x:51,y:67,width:43,height:5}
+  };
+  return {
+   schoolLogo:{x:3,y:4,width:9,height:14},schoolName:{x:14,y:4,width:72,height:9},
+   schoolAddress:{x:14,y:14,width:80,height:7},studentPhoto:{x:76,y:27,width:20,height:53},
+   studentName:{x:4,y:27,width:68,height:8},fatherName:{x:4,y:38,width:33,height:8},
+   motherName:{x:38,y:38,width:33,height:8},className:{x:4,y:49,width:21,height:8},
+   section:{x:26,y:49,width:19,height:8},rollNumber:{x:46,y:49,width:25,height:8},
+   dob:{x:4,y:60,width:32,height:8},academicYear:{x:38,y:60,width:33,height:8},
+   schoolPhone:{x:4,y:71,width:32,height:8},phone:{x:38,y:71,width:33,height:8}
+  };
+ }
  function loadSelectedSchoolDesign(school){
   cardTemplates={landscape:school?.cardTemplateLandscape||'',portrait:school?.cardTemplatePortrait||''};
   const cleanMapping=value=>{const map={...(value||{})};delete map.studentId;return map};
@@ -1241,104 +1258,68 @@ $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Ke
  }
  function populateSchoolSelects(){
   const filter=byId('schoolIdSchoolFilter'),form=byId('sidSchoolSelect');
-  if(filter){
-   filter.innerHTML='<option value="">सभी स्कूल</option>'+schools.map(s=>'<option value="'+escapeHtml(s.id)+'">'+escapeHtml(s.name||'नाम नहीं')+'</option>').join('');
-   filter.value=selectedSchoolId||'';
-  }
+  if(filter){filter.innerHTML='<option value="">सभी स्कूल</option>'+schools.map(s=>'<option value="'+escapeHtml(s.id)+'">'+escapeHtml(s.name||'नाम नहीं')+'</option>').join('');filter.value=selectedSchoolId||''}
   const editSchoolButton=byId('schoolIdEditSchoolBtn');if(editSchoolButton)editSchoolButton.disabled=!selectedSchoolId;
-  if(form){
-   form.innerHTML='<option value="">स्कूल चुनें या खाली छोड़ें</option>'+schools.map(s=>'<option value="'+escapeHtml(s.id)+'">'+escapeHtml(s.name||'नाम नहीं')+'</option>').join('');
-   form.value=selectedSchoolId||'';
-  }
+  if(form){form.innerHTML='<option value="">स्कूल चुनें या खाली छोड़ें</option>'+schools.map(s=>'<option value="'+escapeHtml(s.id)+'">'+escapeHtml(s.name||'नाम नहीं')+'</option>').join('');form.value=selectedSchoolId||''}
  }
  async function loadSchoolRegistry(preferredId=''){
   try{
-   const snap=await getDocs(collection(db,'schoolIdSchools'));
-   schools=snap.docs.map(x=>({id:x.id,...x.data()})).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
+   const snap=await getDocs(collection(db,'schoolIdSchools'));schools=snap.docs.map(x=>({id:x.id,...x.data()})).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
    if(preferredId&&schools.some(s=>s.id===preferredId))selectedSchoolId=preferredId;
    if(selectedSchoolId&&!getSchool(selectedSchoolId))selectedSchoolId='';
-   populateSchoolSelects();
-   loadSelectedSchoolDesign(getSchool(selectedSchoolId));
+   populateSchoolSelects();loadSelectedSchoolDesign(getSchool(selectedSchoolId));
   }catch(e){templateNotice('स्कूल सूची लोड नहीं हुई: '+e.message)}
  }
  function applySelectedSchool(id,options={}){
-  const fill=options.fill!==false;
-  selectedSchoolId=id&&getSchool(id)?id:'';
-  templateMappingMode=false;
-  byId('sidTemplateMapToggle').textContent='फ़ील्ड की जगह तय करें';
-  populateSchoolSelects();
-  const school=getSchool(selectedSchoolId);
-  loadSelectedSchoolDesign(school);
-  if(fill&&school){
-   byId('sidSchoolName').value=school.name||'';
-   byId('sidSchoolAddress').value=school.schoolAddress||'';
-   byId('sidSchoolPhone').value=school.schoolPhone||'';
-  }
-  if(options.render!==false)renderRecords();
-  updateCardPreview();
+  const fill=options.fill!==false;selectedSchoolId=id&&getSchool(id)?id:'';templateMappingMode=false;
+  byId('sidTemplateMapToggle').textContent='फ़ील्ड की जगह तय करें';populateSchoolSelects();
+  const school=getSchool(selectedSchoolId);loadSelectedSchoolDesign(school);
+  if(fill&&school){byId('sidSchoolName').value=school.name||'';byId('sidSchoolAddress').value=school.schoolAddress||'';byId('sidSchoolPhone').value=school.schoolPhone||''}
+  if(options.render!==false)renderRecords();updateCardPreview();
  }
  function readFields(){
-  const d={};
-  Object.entries(fields).forEach(([id,key])=>d[key]=val(id));
-  const matched=schools.find(s=>String(s.name||'').trim().toLowerCase()===String(d.schoolName||'').trim().toLowerCase());
-  d.schoolId=selectedSchoolId||(matched?.id||'');
-  d.studentPhoto=studentPhoto;
-  d.schoolLogo=schoolLogo;
-  return d;
+  const d={};Object.entries(fields).forEach(([id,key])=>d[key]=val(id));
+  d.studentId='';const matched=schools.find(s=>String(s.name||'').trim().toLowerCase()===String(d.schoolName||'').trim().toLowerCase());
+  d.schoolId=selectedSchoolId||(matched?.id||'');d.language=d.language==='en'?'en':'hi';d.studentPhoto=studentPhoto;d.schoolLogo=schoolLogo;return d;
  }
- function textValue(d,key){
-  if(key==='studentPhoto'||key==='schoolLogo')return d[key]||'';
-  return String(d[key]??'').trim();
- }
- function safePosition(pos){
-  const x=Number(pos?.x),y=Number(pos?.y);
-  return {x:Number.isFinite(x)?Math.max(0,Math.min(100,x)):0,y:Number.isFinite(y)?Math.max(0,Math.min(100,y)):0};
+ function textValue(d,key){if(key==='studentPhoto'||key==='schoolLogo')return d[key]||'';return String(d[key]??'').trim()}
+ function safePosition(pos,orientation='landscape',key='studentName'){
+  const defaults=defaultTemplatePositions(orientation)[key]||{x:0,y:0,width:40,height:8};
+  const clamp=(value,fallback,min,max)=>Number.isFinite(Number(value))?Math.max(min,Math.min(max,Number(value))):fallback;
+  const x=clamp(pos?.x,defaults.x,0,100),y=clamp(pos?.y,defaults.y,0,100),width=clamp(pos?.width,defaults.width,5,95),height=clamp(pos?.height,defaults.height,3,70);
+  return {x,y,width:Math.min(width,100-x),height:Math.min(height,100-y)};
  }
  function renderTemplateLayer(d,orientation,mapping,showHints=false){
+  const labels=cardLabels(d.language);
   return templateKeys.map(key=>{
-   const position=mapping?.[key];
-   if(!position)return '';
-   const p=safePosition(position),value=textValue(d,key),isImage=key==='studentPhoto'||key==='schoolLogo';
-   if(!value&&!showHints)return '';
-   const width=key==='studentPhoto'?'22%':key==='schoolLogo'?'12%':key==='schoolAddress'?'48%':key==='schoolName'?'55%':'44%';
-   const cls='school-id-template-item'+(isImage?' image '+(key==='schoolLogo'?'logo':'photo'):(!value?' hint':''));
-   const content=isImage?(value?'<img src="'+escapeHtml(value)+'" alt="" style="width:100%;height:100%;object-fit:'+(key==='schoolLogo'?'contain':'cover')+'">':'<span>'+escapeHtml(templateLabels[key])+'</span>'):escapeHtml(value||templateLabels[key]);
-   const height=isImage?'height:'+(key==='schoolLogo'?'12%':'25%')+';':'';
-   return '<div class="'+cls+'" data-template-item="'+key+'" style="left:'+p.x+'%;top:'+p.y+'%;width:'+width+';'+height+'">'+content+'</div>';
+   const p=safePosition(mapping?.[key],orientation,key),value=textValue(d,key);
+   if(!value&&!showHints&&key!=='studentPhoto')return '';
+   let content='',cls='school-id-template-item';
+   if(key==='studentPhoto'){cls+=' image '+(value?'photo':'photo-placeholder');content=value?'<img src="'+escapeHtml(value)+'" alt="" style="width:100%;height:100%;object-fit:cover">':'<span>'+escapeHtml(labels.photoSlot)+'</span>'}
+   else if(key==='schoolLogo'){if(!value&&!showHints)return '';cls+=' image logo';content=value?'<img src="'+escapeHtml(value)+'" alt="" style="width:100%;height:100%;object-fit:contain">':'<span>'+escapeHtml(labels.schoolLogo)+'</span>'}
+   else if(key==='schoolName'||key==='schoolAddress'){content=escapeHtml(value||(showHints?labels[key]:''));if(!value)cls+=' hint'}
+   else{content='<span class="school-id-template-label">'+escapeHtml(labels[key])+':</span> '+escapeHtml(value||(showHints?'—':''));if(!value)cls+=' hint'}
+   return '<div class="'+cls+'" data-template-item="'+key+'" style="left:'+p.x+'%;top:'+p.y+'%;width:'+p.width+'%;height:'+p.height+'%">'+content+'</div>';
   }).join('');
  }
  function updateCardPreview(){
-  const d=readFields(),orientation=d.orientation==='portrait'?'portrait':'landscape',preview=byId('schoolIdCardPreview');
-  if(!preview)return;
-  preview.classList.toggle('school-id-portrait',orientation==='portrait');
-  preview.classList.toggle('school-id-landscape',orientation==='landscape');
-  const rows={
-   studentName:d.studentName,studentId:d.studentId,fatherName:d.fatherName,motherName:d.motherName,
-   className:d.className,section:d.section,rollNumber:d.rollNumber,dob:d.dob,
-   schoolPhone:d.schoolPhone,phone:d.phone,academicYear:d.academicYear
-  };
-  const ids={studentName:'sidPreviewName',studentId:'sidPreviewId',fatherName:'sidPreviewFather',motherName:'sidPreviewMother',className:'sidPreviewClass',section:'sidPreviewSection',rollNumber:'sidPreviewRoll',dob:'sidPreviewDob',schoolPhone:'sidPreviewSchoolPhone',phone:'sidPreviewPhone',academicYear:'sidPreviewYear'};
-  Object.entries(ids).forEach(([key,id])=>{
-   const el=byId(id),row=el?.closest('[data-preview-row]'),value=String(rows[key]||'').trim();
-   if(el){el.textContent=value||'—';el.classList.toggle('school-id-preview-placeholder',!value)}
-   /* Keep labels visible in the editor preview; saved/printed cards still omit empty fields. */
-   if(row)row.style.display='';
-  });
+  const d=readFields(),orientation=d.orientation==='portrait'?'portrait':'landscape',preview=byId('schoolIdCardPreview'),labels=cardLabels(d.language);if(!preview)return;
+  preview.classList.toggle('school-id-portrait',orientation==='portrait');preview.classList.toggle('school-id-landscape',orientation==='landscape');
+  const rows={studentName:d.studentName,fatherName:d.fatherName,motherName:d.motherName,className:d.className,section:d.section,rollNumber:d.rollNumber,dob:d.dob,schoolPhone:d.schoolPhone,phone:d.phone,academicYear:d.academicYear};
+  const ids={studentName:'sidPreviewName',fatherName:'sidPreviewFather',motherName:'sidPreviewMother',className:'sidPreviewClass',section:'sidPreviewSection',rollNumber:'sidPreviewRoll',dob:'sidPreviewDob',schoolPhone:'sidPreviewSchoolPhone',phone:'sidPreviewPhone',academicYear:'sidPreviewYear'};
+  Object.entries(ids).forEach(([key,id])=>{const el=byId(id),row=el?.closest('[data-preview-row]'),value=String(rows[key]||'').trim();if(el){el.textContent=value||'—';el.classList.toggle('school-id-preview-placeholder',!value)}if(row)row.style.display=''});
+  document.querySelectorAll('[data-preview-label]').forEach(el=>{const key=el.dataset.previewLabel;el.textContent=(labels[key]||key)+':'});
   const schoolTitle=byId('sidPreviewSchool'),address=byId('sidPreviewAddress');
-  if(schoolTitle){schoolTitle.textContent=d.schoolName||'SCHOOL NAME';schoolTitle.style.display='';schoolTitle.classList.toggle('school-id-preview-placeholder',!d.schoolName)}
-  if(address){address.textContent=d.schoolAddress||'School address';address.style.display='';address.classList.toggle('school-id-preview-placeholder',!d.schoolAddress)}
-  const photo=byId('sidPreviewPhoto'),logo=byId('sidPreviewLogo');
+  if(schoolTitle){schoolTitle.textContent=d.schoolName||(d.language==='en'?'SCHOOL NAME':'विद्यालय का नाम');schoolTitle.classList.toggle('school-id-preview-placeholder',!d.schoolName)}
+  if(address){address.textContent=d.schoolAddress||(d.language==='en'?'School Address':'विद्यालय का पता');address.classList.toggle('school-id-preview-placeholder',!d.schoolAddress)}
+  const photo=byId('sidPreviewPhoto'),photoPlaceholder=byId('sidPreviewPhotoPlaceholder'),logo=byId('sidPreviewLogo');
   if(photo){if(studentPhoto){photo.src=studentPhoto;photo.classList.remove('hidden')}else{photo.removeAttribute('src');photo.classList.add('hidden')}}
+  if(photoPlaceholder){photoPlaceholder.textContent=labels.photoSlot;photoPlaceholder.classList.toggle('hidden',!!studentPhoto)}
   if(logo){if(schoolLogo){logo.src=schoolLogo;logo.classList.remove('hidden')}else{logo.removeAttribute('src');logo.classList.add('hidden')}}
-  const template=cardTemplates[orientation]||'',mapping=templatePositions[orientation]||{};
-  preview.classList.toggle('has-template',!!template);
-  preview.style.backgroundImage=template?'url("'+template+'")':'';
-  const layer=byId('sidTemplateLayer'),content=byId('sidDefaultCardContent');
-  if(content)content.classList.toggle('hidden',!!template);
-  if(layer){
-   layer.innerHTML=template?renderTemplateLayer(d,orientation,mapping,templateMappingMode):'';
-   layer.classList.toggle('hidden',!template);
-  }
+  const template=cardTemplates[orientation]||'',mapping=templatePositions[orientation]||{};preview.classList.toggle('has-template',!!template);preview.style.backgroundImage=template?'url("'+template+'")':'';
+  const layer=byId('sidTemplateLayer'),content=byId('sidDefaultCardContent');if(content)content.classList.toggle('hidden',!!template);
+  if(layer){layer.innerHTML=template?renderTemplateLayer(d,orientation,mapping,templateMappingMode):'';layer.classList.toggle('hidden',!template)}
+  byId('sidPreviewFooter').textContent=labels.footer;
  }
  function compressImage(file,maxBytes,maxSide){
   return new Promise((resolve,reject)=>{
@@ -1416,10 +1397,10 @@ $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Ke
   try{
    const orientation=currentOrientation();
    cardTemplates[orientation]=isPdf?await pdfTemplateToImage(file):await compressImage(file,240000,1400);
-   templatePositions[orientation]={};
+   templatePositions[orientation]=defaultTemplatePositions(orientation);
    templateMappingMode=true;
    byId('sidTemplateMapToggle').textContent='जगह तय करना बंद करें';
-   templateNotice((isPdf?'PDF का पहला पेज कार्ड डिज़ाइन बनाया गया। ':'डिज़ाइन अपलोड हुआ। ')+'फ़ील्ड चुनें और कार्ड प्रीव्यू पर क्लिक करके उसकी जगह सेट करें।',true);
+   templateNotice((isPdf?'PDF का पहला पेज कार्ड डिज़ाइन बनाया गया। ':'डिज़ाइन अपलोड हुआ। ')+'जानकारी और फोटो अपने-आप व्यवस्थित कर दिए गए हैं। जरूरत हो तो फ़ील्ड चुनकर प्रीव्यू पर क्लिक से जगह बदलें, फिर डिज़ाइन सेव करें।',true);
    updateCardPreview();
   }catch(e){templateNotice(e.message||'Design upload नहीं हुआ।');input.value=''}
  }
@@ -1536,6 +1517,8 @@ async function addSchool(){
   loadSelectedSchoolDesign(getSchool(selectedSchoolId));
   Object.entries(fields).filter(([field])=>field!=='sidOrientation').forEach(([field,key])=>byId(field).value=d[key]||'');
   byId('sidOrientation').value=d.orientation||'landscape';
+  byId('sidLanguage').value=d.language==='en'?'en':'hi';
+  updateTemplateFieldOptions(val('sidLanguage'));
   const school=getSchool(selectedSchoolId);
   if(!id&&school){
    byId('sidSchoolName').value=school.name||'';
@@ -1600,21 +1583,21 @@ async function addSchool(){
   return '<div class="print-card '+design.orientation+' custom" style="background-image:url(&quot;'+escapeHtml(design.template)+'&quot;)">'+renderTemplateLayer(d,design.orientation,design.mapping,false)+'</div>';
  }
  function defaultCardHTML(d){
-  const orientation=d.orientation==='portrait'?'portrait':'landscape';
-  const row=(label,value)=>String(value||'').trim()?'<div><b>'+label+':</b> '+escapeHtml(value)+'</div>':'';
+  const orientation=d.orientation==='portrait'?'portrait':'landscape',labels=cardLabels(d.language);
+  const row=(key,value)=>String(value||'').trim()?'<div><b>'+escapeHtml(labels[key])+':</b> '+escapeHtml(value)+'</div>':'';
   const logo=d.schoolLogo?'<img class="school-logo" src="'+escapeHtml(d.schoolLogo)+'" alt="">':'';
-  const photo=d.studentPhoto?'<img class="photo" src="'+escapeHtml(d.studentPhoto)+'" alt="">':'';
+  const photo=d.studentPhoto?'<img class="photo-image" src="'+escapeHtml(d.studentPhoto)+'" alt="Student photo">':'<div class="photo-placeholder">'+escapeHtml(labels.photoSlot)+'</div>';
   const title=d.schoolName?'<h3>'+escapeHtml(d.schoolName)+'</h3>':'';
   const address=d.schoolAddress?'<div class="address">'+escapeHtml(d.schoolAddress)+'</div>':'';
-  const details=row('Name',d.studentName)+row('Student ID',d.studentId)+row('Father',d.fatherName)+row('Mother',d.motherName)+row('Class',d.className)+row('Section',d.section)+row('Roll No',d.rollNumber)+row('DOB',d.dob)+row('School Phone',d.schoolPhone)+row('Parent Mobile',d.phone)+row('Session',d.academicYear);
-  return '<div class="print-card '+orientation+'"><div class="accent"></div>'+logo+title+address+'<div class="body">'+photo+'<div class="details">'+details+'</div></div><div class="footer">School Identity Card</div></div>';
+  const details=row('studentName',d.studentName)+row('fatherName',d.fatherName)+row('motherName',d.motherName)+row('className',d.className)+row('section',d.section)+row('rollNumber',d.rollNumber)+row('dob',d.dob)+row('schoolPhone',d.schoolPhone)+row('phone',d.phone)+row('academicYear',d.academicYear);
+  return '<div class="print-card '+orientation+'"><div class="accent"></div>'+logo+title+address+'<div class="body"><div class="details">'+details+'</div><div class="photo-slot">'+photo+'</div></div><div class="footer">'+escapeHtml(labels.footer)+'</div></div>';
  }
  function printableCardHTML(d,useCurrent=false){
   const design=getCardDesign(d,useCurrent);
   return design.template?templateCardHTML(d,design):defaultCardHTML(d);
  }
  function printCardCSS(){
-  return '*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}html,body{margin:0;padding:0;background:#fff;font-family:Arial,sans-serif;color:#17253b}.print-card{position:relative;overflow:hidden;flex-shrink:0;color:#f5f7fb;background:linear-gradient(145deg,#1d3b63,#142744 58%,#0e1c33);border:.35mm solid #5ce0c0;padding:3mm}.print-card:before{content:"";position:absolute;inset:1.5mm;border:.25mm solid #d6b66d;pointer-events:none}.print-card.landscape{width:85.6mm;height:54mm}.print-card.portrait{width:54mm;height:85.6mm}.print-card.custom{padding:0;border:0;background-size:100% 100%;background-position:center;background-repeat:no-repeat}.print-card.custom:before{display:none}.print-card .accent{position:absolute;left:0;top:0;bottom:0;width:1.2mm;background:linear-gradient(#5ce0c0,#f2bd59)}.print-card .school-logo{position:absolute;top:3mm;left:3mm;width:8mm;height:8mm;object-fit:contain;border-radius:1mm}.print-card h3{font-size:10pt;text-align:center;margin:0 0 1mm;color:#f2bd59;padding:0 8mm 1.2mm;border-bottom:.5mm solid #5ce0c0;overflow-wrap:anywhere}.print-card .address{text-align:center;font-size:7pt;margin:1mm 0 2mm;color:#c3d4ea;max-height:8mm;overflow:hidden}.print-card .body{display:flex;gap:2.5mm;align-items:flex-start}.print-card .photo{width:19mm;height:24mm;object-fit:cover;border:.3mm solid #5ce0c0;flex-shrink:0}.print-card .details{min-width:0;flex:1;font-size:7pt;line-height:1.12;overflow:hidden;overflow-wrap:anywhere;padding:1mm;border:.2mm solid #456284;border-radius:1mm;background:rgba(7,18,36,.72);color:#f5f7fb;max-height:33mm}.print-card .details b{color:#5ce0c0}.print-card .footer{position:absolute;bottom:1.8mm;left:2mm;right:2mm;border-top:.2mm solid #496484;padding-top:.6mm;font-size:6pt;text-align:center;color:#f2bd59;background:transparent}.print-card.portrait h3{font-size:9pt;padding-top:7mm}.print-card.portrait .body{flex-direction:column;align-items:center;gap:1.5mm}.print-card.portrait .photo{width:17mm;height:20mm}.print-card.portrait .details{width:100%;font-size:7pt;line-height:1.12;max-height:49mm}.print-card.custom .school-id-template-item{font-size:6.5pt;padding:0;text-shadow:0 0 .5mm #fff9}.print-card.custom .school-id-template-item.hint{display:none}.print-card.custom .school-id-template-item.image{box-shadow:0 0 0 .2mm #ffffff80}.print-card.custom .school-id-template-item img{width:100%;height:100%;display:block}.sid-sheet{width:196mm;height:283mm;display:grid;justify-content:center;align-content:center;gap:3mm;page-break-after:always;break-after:page;overflow:hidden}.sid-sheet:last-child{page-break-after:auto;break-after:auto}.sid-sheet.landscape.count8{grid-template-columns:repeat(2,85.6mm);grid-template-rows:repeat(4,54mm)}.sid-sheet.landscape.count10{grid-template-columns:repeat(2,85.6mm);grid-template-rows:repeat(5,54mm);align-content:space-between}.sid-sheet.portrait{grid-template-columns:repeat(3,54mm);grid-template-rows:repeat(3,85.6mm)}.sid-sheet .print-card{break-inside:avoid;page-break-inside:avoid}@media screen{body{padding:10px}.sid-sheet{margin:10px auto;background:#fff;box-shadow:0 1px 6px #888}}';
+  return '*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}html,body{margin:0;padding:0;background:#fff;font-family:Arial,sans-serif;color:#17253b}.print-card{position:relative;overflow:hidden;flex-shrink:0;color:#f5f7fb;background:linear-gradient(145deg,#1d3b63,#142744 58%,#0e1c33);border:.35mm solid #5ce0c0;padding:3mm}.print-card:before{content:"";position:absolute;inset:1.5mm;border:.25mm solid #d6b66d;pointer-events:none}.print-card.landscape{width:85.6mm;height:54mm}.print-card.portrait{width:54mm;height:85.6mm}.print-card.custom{padding:0;border:0;background-size:100% 100%;background-position:center;background-repeat:no-repeat}.print-card.custom:before{display:none}.print-card .accent{position:absolute;left:0;top:0;bottom:0;width:1.2mm;background:linear-gradient(#5ce0c0,#f2bd59)}.print-card .school-logo{position:absolute;top:2.5mm;left:2.5mm;width:8mm;height:8mm;object-fit:contain;border-radius:1mm;z-index:2}.print-card h3{font-size:10pt;text-align:center;margin:0 0 1mm;color:#f2bd59;padding:0 8mm 1.2mm;border-bottom:.5mm solid #5ce0c0;overflow-wrap:anywhere}.print-card .address{text-align:center;font-size:7pt;margin:1mm 0 2mm;color:#c3d4ea;max-height:8mm;overflow:hidden}.print-card .body{display:grid;grid-template-columns:minmax(0,1fr) 20mm;grid-template-areas:"details photo";gap:2mm;align-items:stretch;width:100%;min-height:30mm}.print-card .details{grid-area:details;min-width:0;width:100%;font-size:6.4pt;line-height:1.12;overflow:hidden;overflow-wrap:anywhere;padding:1mm;border:.2mm solid #456284;border-radius:1mm;background:rgba(7,18,36,.82);color:#f5f7fb;align-self:stretch}.print-card .details>div{margin:0 0 .45mm}.print-card .details b{color:#5ce0c0}.print-card .photo-slot{grid-area:photo;position:relative;align-self:center;width:20mm;height:26mm;border:.3mm solid #5ce0c0;border-radius:1mm;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#173b66,#0e1c33);color:#c3d4ea;text-align:center;font-size:6pt;font-weight:bold;overflow-wrap:anywhere}.print-card .photo-image{display:block;width:100%;height:100%;object-fit:cover}.print-card .photo-placeholder{font-size:6pt;line-height:1.2;padding:1mm;color:#c3d4ea}.print-card .footer{position:absolute;bottom:1.8mm;left:2mm;right:2mm;border-top:.2mm solid #496484;padding-top:.6mm;font-size:6pt;text-align:center;color:#f2bd59;background:transparent}.print-card.portrait h3{font-size:9pt;padding-top:7mm}.print-card.portrait .body{grid-template-columns:minmax(0,1fr);grid-template-rows:20mm 1fr;grid-template-areas:"photo" "details";gap:1.5mm;min-height:55mm}.print-card.portrait .photo-slot{width:17mm;height:20mm;justify-self:center;align-self:center}.print-card.portrait .details{font-size:6.4pt;line-height:1.15;max-height:49mm}.print-card.custom .school-id-template-item{font-size:6.5pt;padding:.6mm 1mm;text-shadow:0 1px 1px #000;background:rgba(5,18,36,.82);border:.2mm solid #5ce0c0;border-radius:.5mm;color:#fff;font-weight:bold;line-height:1.1}.print-card.custom .school-id-template-item.hint{display:none}.print-card.custom .school-id-template-item.image{padding:0;background:#102744;border:.3mm solid #5ce0c0;display:flex;align-items:center;justify-content:center}.print-card.custom .school-id-template-item.image img{width:100%;height:100%;display:block;object-fit:cover}.print-card.custom .school-id-template-item.logo img{object-fit:contain}.print-card.custom .school-id-template-item.photo-placeholder span{font-size:6pt;text-align:center;color:#d8e6f4;padding:1mm}.sid-sheet{width:196mm;height:283mm;display:grid;justify-content:center;align-content:center;gap:3mm;page-break-after:always;break-after:page;overflow:hidden}.sid-sheet:last-child{page-break-after:auto;break-after:auto}.sid-sheet.landscape.count8{grid-template-columns:repeat(2,85.6mm);grid-template-rows:repeat(4,54mm)}.sid-sheet.landscape.count10{grid-template-columns:repeat(2,85.6mm);grid-template-rows:repeat(5,54mm);align-content:space-between}.sid-sheet.portrait{grid-template-columns:repeat(3,54mm);grid-template-rows:repeat(3,85.6mm)}.sid-sheet .print-card{break-inside:avoid;page-break-inside:avoid}@media screen{body{padding:10px}.sid-sheet{margin:10px auto;background:#fff;box-shadow:0 1px 6px #888}}';
  }
  async function waitForPrintAssets(w){
   try{
@@ -1754,6 +1737,7 @@ async function addSchool(){
   updateCardPreview();
  });
  byId('schoolIdForm').addEventListener('input',updateCardPreview);
+ byId('sidLanguage').addEventListener('change',()=>{updateTemplateFieldOptions(val('sidLanguage'));updateCardPreview()});
  byId('sidOrientation').addEventListener('change',()=>{
   byId('sidCardTemplateFile').value='';templateMappingMode=false;
   byId('sidTemplateMapToggle').textContent='फ़ील्ड की जगह तय करें';updateCardPreview();

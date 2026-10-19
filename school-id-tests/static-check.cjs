@@ -28,14 +28,21 @@ assert.deepEqual(missingIds, [], 'School ID handler refers to missing elements')
 assert.equal((html.match(/Hamjapur Pathan/g) || []).length, 2, 'Contact and receipt address spelling should be corrected exactly twice');
 assert.equal(html.includes('Hamjapur Patahan'), false, 'Old address spelling must be gone');
 assert.ok(html.includes('schoolIdSchools'), 'School registry functionality is required');
-assert.ok(html.includes('id="cscKendraNav"'), 'Public menu must include CSC Kendra');
+const publicNav = getBetween(html, '<nav class="nav">', '</nav>');
+assert.equal(publicNav.includes('cscKendraNav'), false, 'CSC Kendra must not be shown in the public header');
+assert.ok(html.includes('<button id="cscKendraNav" type="button"'), 'CSC Kendra must be in the logged-in workspace menu');
 assert.ok(html.includes('id="cscKendraWebsiteName"') && html.includes('id="cscKendraWebsiteUrl"'), 'Admin must be able to edit the external website name and URL');
 assert.ok(html.includes("doc(db,'publicSiteConfig','cscKendra')"), 'CSC Kendra settings should use a dedicated config document');
-assert.ok(html.includes("link.href=url||'#csc-kendra-unconfigured'"), 'CSC Kendra menu should redirect to the saved external URL');
+assert.ok(html.includes('window.location.assign(url)'), 'CSC Kendra should navigate to the saved external URL in the same tab');
+assert.equal(html.includes('target="_blank" rel="noopener noreferrer" aria-label="CSC Kendra website"'), false, 'CSC Kendra must not open a new tab');
+assert.ok(html.includes("if(admin()){") && html.includes("showPage('settings');"), 'Admin should be taken to full Settings page when CSC link is missing');
 assert.ok(html.includes("['http:','https:'].includes(u.protocol)"), 'External links must be restricted to http(s)');
 assert.ok(html.includes("if(!admin()||!user)return toast('CSC Kendra लिंक केवल Admin सेव कर सकता है।')"), 'Only admin may save the CSC Kendra URL');
 
 assert.ok(html.includes('sidCardTemplateFile'), 'Custom card image upload should exist');
+assert.ok(html.includes('background:linear-gradient(145deg,#1d3b63 0%,#142744 58%,#0e1c33 100%)'), 'School ID preview must use the site dark theme');
+assert.ok(html.includes("el.textContent=value||'—'"), 'Empty editor preview must show preview-only label placeholders');
+assert.ok(html.includes('background:linear-gradient(145deg,#1d3b63,#142744 58%,#0e1c33)'), 'Printed default cards must use high-contrast theme colors');
 assert.ok(html.includes('accept="image/*,application/pdf"') && html.includes('pdfTemplateToImage'), 'Custom card PDF upload should rasterize the first page');
 assert.ok(html.includes('templatePositions'), 'Custom template field positions should be configurable and reusable');
 assert.ok(html.includes('schoolIdBulkPrintBtn'), 'Bulk print control should exist');

@@ -44,8 +44,15 @@ assert.ok(html.includes("if(!admin()||!user)return toast('लिंक सेव
 assert.ok(html.includes('id="schoolIdSchoolEditForm"') && html.includes('id="schoolIdEditName"'), 'School registry must offer an explicit name-edit form');
 assert.ok(html.includes('स्कूल नाम/विवरण सुधार'), 'School edits should propagate to connected card records and audit history');
 assert.ok(html.includes('max-width:520px;aspect-ratio:1.586/1'), 'Landscape editor preview should be wider');
-assert.ok(html.includes('font-size:12px;line-height:1.35;overflow-wrap:anywhere;flex:1;min-width:0;width:100%'), 'Preview details should fill the card width with larger text');
-assert.ok(html.includes('font-size:7pt;line-height:1.12'), 'Printed card text should be larger');
+assert.ok(html.includes('grid-template-areas:"details photo"'), 'Landscape card details and student photo must use separate columns');
+assert.ok(html.includes('id="sidPreviewPhotoSlot"'), 'Card preview must reserve a visible photo slot');
+assert.ok(html.includes('school-id-card-preview .school-id-details{grid-area:details;display:flex'), 'Card information must fill the body area');
+assert.ok(html.includes('id="sidLanguage"') && html.includes("sidLanguage:'language'"), 'Card language selector must save the selected language');
+assert.ok(!html.includes('id="sidStudentId"') && !html.includes('Student ID'), 'Student ID must be removed from School ID form and labels');
+assert.ok(html.includes("templatePositions[orientation]=defaultTemplatePositions(orientation)"), 'Uploaded design must get automatic field positions');
+assert.ok(html.includes('function defaultTemplatePositions(orientation'), 'Landscape and portrait templates need separate default layouts');
+assert.ok(html.includes("d.studentId=''"), 'Preserve legacy database shape without showing Student ID');
+assert.ok(html.includes('font-size:6.4pt;line-height:1.12'), 'Printed card text should fit CR80 dimensions with readable sizing');
 assert.ok(html.includes('sidCardTemplateFile'), 'Custom card image upload should exist');
 assert.ok(html.includes('background:linear-gradient(145deg,#1d3b63 0%,#142744 58%,#0e1c33 100%)'), 'School ID preview must use the site dark theme');
 assert.ok(html.includes("el.textContent=value||'—'"), 'Empty editor preview must show preview-only label placeholders');
@@ -54,8 +61,8 @@ assert.ok(html.includes('accept="image/*,application/pdf"') && html.includes('pd
 assert.ok(html.includes('templatePositions'), 'Custom template field positions should be configurable and reusable');
 assert.ok(html.includes('schoolIdBulkPrintBtn'), 'Bulk print control should exist');
 assert.ok(html.includes('printSchoolIdCardsBulk'), 'Bulk printing should use one print job');
-assert.ok(html.includes("row('School Phone',d.schoolPhone)"), 'School phone must have a separate labeled row');
-assert.ok(html.includes("row('Parent Mobile',d.phone)"), 'Parent mobile must have a separate labeled row');
+assert.ok(html.includes("row('schoolPhone',d.schoolPhone)"), 'School phone must have a separate labeled row');
+assert.ok(html.includes("row('phone',d.phone)"), 'Parent mobile must have a separate labeled row');
 assert.ok(!script.includes('d.phone||d.schoolPhone'), 'Phone numbers must not be appended to the footer');
 
 const printCss = getBetween(script, 'function printCardCSS(){', 'async function waitForPrintAssets');

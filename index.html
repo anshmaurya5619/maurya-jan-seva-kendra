@@ -1206,7 +1206,8 @@ $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Ke
  function getSchool(id){return schools.find(s=>s.id===id)||null}
  function loadSelectedSchoolDesign(school){
   cardTemplates={landscape:school?.cardTemplateLandscape||'',portrait:school?.cardTemplatePortrait||''};
-  templatePositions={landscape:school?.templateMappingLandscape||{},portrait:school?.templateMappingPortrait||{}};
+  const cleanMapping=value=>{const map={...(value||{})};delete map.studentId;return map};
+  templatePositions={landscape:cleanMapping(school?.templateMappingLandscape),portrait:cleanMapping(school?.templateMappingPortrait)};
   updateCardPreview();
  }
  function populateSchoolSelects(){
@@ -1718,7 +1719,8 @@ async function addSchool(){
   const rect=byId('schoolIdCardPreview').getBoundingClientRect();
   if(!rect.width||!rect.height)return;
   const key=val('sidTemplateField'),x=Math.round(Math.max(0,Math.min(100,(e.clientX-rect.left)/rect.width*100))*100)/100,y=Math.round(Math.max(0,Math.min(100,(e.clientY-rect.top)/rect.height*100))*100)/100;
-  templatePositions[orientation]={...templatePositions[orientation],[key]:{x:x,y:y}};
+  const previous=safePosition(templatePositions[orientation]?.[key],orientation,key);
+  templatePositions[orientation]={...templatePositions[orientation],[key]:{...previous,x:x,y:y}};
   templateNotice(templateLabels[key]+' की जगह सेट हो गई। अगला फ़ील्ड चुनकर उसी तरह रखें।',true);
   updateCardPreview();
  });

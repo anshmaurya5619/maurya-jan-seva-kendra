@@ -1,0 +1,15 @@
+{
+  "name": "mjk-school-id-tests",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "test": "node static-check.cjs && mocha --timeout 20000 rules.test.cjs",
+    "test:rules": "mocha --timeout 20000 rules.test.cjs"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^4.0.1",
+    "firebase": "^11.0.0",
+    "firebase-tools": "^13.29.2",
+    "mocha": "^10.8.2"
+  }
+}

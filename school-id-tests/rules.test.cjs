@@ -140,12 +140,10 @@ describe('School ID Firestore rules', function () {
     const db = dbFor();
     const schoolRef = doc(db, 'schoolIdSchools', 'school-to-correct');
     const cardRef = doc(db, 'schoolIdCards', 'card-to-correct');
-    const initial = writeBatch(db);
-    initial.set(schoolRef, schoolData('admin-user', 'Wrong School'));
-    initial.set(cardRef, cardData('admin-user', 'school-to-correct', {
+    await assertSucceeds(setDoc(schoolRef, schoolData('admin-user', 'Wrong School')));
+    await assertSucceeds(setDoc(cardRef, cardData('admin-user', 'school-to-correct', {
       studentName:'Test Student', schoolName:'Wrong School', schoolAddress:'Old address', schoolPhone:'111'
-    }));
-    await assertSucceeds(initial.commit());
+    })));
 
     const change = writeBatch(db);
     change.update(schoolRef, {

@@ -147,14 +147,14 @@ service cloud.firestore {
 
       allow create: if active()
         && request.resource.data.keys().hasAll([
-          'studentName','studentId','fatherName','motherName','schoolId',
+          'studentName','studentId','fatherName','motherName','schoolId','language',
           'schoolName','schoolAddress','schoolPhone','className',
           'section','rollNumber','dob','phone','academicYear',
           'studentPhoto','schoolLogo','orientation','createdByUid','createdByName',
           'createdAt','updatedAt','updatedByUid','updatedByName','deleted'
         ])
         && request.resource.data.keys().hasOnly([
-          'studentName','studentId','fatherName','motherName','schoolId',
+          'studentName','studentId','fatherName','motherName','schoolId','language',
           'schoolName','schoolAddress','schoolPhone','className',
           'section','rollNumber','dob','phone','academicYear',
           'studentPhoto','schoolLogo','orientation','createdByUid','createdByName',
@@ -174,6 +174,8 @@ service cloud.firestore {
         && request.resource.data.motherName is string
         && request.resource.data.schoolName is string
         && request.resource.data.schoolName.size() <= 150
+        && request.resource.data.language is string
+        && request.resource.data.language in ['hi', 'en']
         && request.resource.data.schoolAddress is string
         && request.resource.data.className is string
         && request.resource.data.section is string
@@ -198,7 +200,7 @@ service cloud.firestore {
 
       allow update: if active()
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
-          'studentName','studentId','fatherName','motherName','schoolId',
+          'studentName','studentId','fatherName','motherName','schoolId','language',
           'schoolName','schoolAddress','schoolPhone','className',
           'section','rollNumber','dob','phone','academicYear',
           'studentPhoto','schoolLogo','orientation','updatedAt','updatedByUid',
@@ -218,6 +220,9 @@ service cloud.firestore {
         && (!('orientation' in request.resource.data)
           || (request.resource.data.orientation is string
             && request.resource.data.orientation in ['landscape', 'portrait']))
+        && (!('language' in request.resource.data)
+          || (request.resource.data.language is string
+            && request.resource.data.language in ['hi', 'en']))
         && request.resource.data.studentPhoto is string
         && request.resource.data.studentPhoto.size() < 400000
         && request.resource.data.schoolLogo is string

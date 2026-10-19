@@ -287,31 +287,31 @@ body {
 .school-id-card-preview{
   width:100%;max-width:430px;aspect-ratio:1.586/1;margin:12px auto;
   padding:14px;border-radius:10px;
-  background:linear-gradient(145deg,#fff 0%,#f5f8fc 68%,#e9f0f8 100%);
-  color:#17253b;border:1px solid #b8c7d8;
+  background:linear-gradient(145deg,#1d3b63 0%,#142744 58%,#0e1c33 100%);
+  color:#f5f7fb;border:1px solid #5ce0c0;
   box-shadow:0 10px 26px #071b3526;overflow:hidden;position:relative;
 }
 .school-id-card-preview:before{
-  content:"";position:absolute;inset:5px;border:1px solid #d6b66d;
+  content:"";position:absolute;inset:5px;border:1px solid rgba(242,189,89,.9);
   border-radius:6px;pointer-events:none;
 }
 .school-id-card-preview:after{
   content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
-  background:linear-gradient(#173b66,#2b6795,#d6b66d);
+  background:linear-gradient(#5ce0c0,#2b6795,#f2bd59);
 }
 .school-id-card-preview h3{
-  border-bottom:2px solid #173b66;padding:0 30px 7px;
+  border-bottom:2px solid #5ce0c0;padding:0 30px 7px;
   letter-spacing:.35px;text-transform:uppercase;
 }
 .school-id-card-preview .school-id-subtitle{
-  border-bottom:1px solid #d4dce6;padding:0 8px 6px;
+  border-bottom:1px solid #496484;padding:0 8px 6px;
 }
 .school-id-card-preview .school-id-details{
-  padding:7px 9px;border:1px solid #d9e1eb;border-radius:5px;
-  background:#ffffffc9;position:relative;z-index:1;
+  padding:7px 9px;border:1px solid #456284;border-radius:5px;
+  background:rgba(7,18,36,.72);color:#f5f7fb;position:relative;z-index:1;
 }
 .school-id-card-preview #sidPreviewName{
-  display:inline-block;min-width:80px;border-bottom:1px solid #526b89;
+  display:inline-block;min-width:80px;border-bottom:1px solid #f2bd59;
   font-weight:700;padding:0 2px 1px;
 }
 .school-id-card-preview.school-id-portrait{
@@ -329,14 +329,15 @@ body {
 }
 .school-id-card-preview.school-id-portrait .school-id-footer{margin-top:6px}
 
-.school-id-card-preview h3{font-size:15px;text-align:center;margin:0 0 4px;color:#173b66}
-.school-id-card-preview .school-id-subtitle{text-align:center;font-size:9px;margin-bottom:9px;color:#52627a}
+.school-id-card-preview h3{font-size:15px;text-align:center;margin:0 0 4px;color:#f2bd59}
+.school-id-card-preview .school-id-subtitle{text-align:center;font-size:9px;margin-bottom:9px;color:#c3d4ea}
 .school-id-card-preview .school-id-card-body{display:flex;gap:12px;align-items:flex-start}
-.school-id-card-preview .school-id-student-photo{width:82px;height:100px;object-fit:cover;border:1px solid #9aa9b8;border-radius:5px;background:#e2e8ef;flex-shrink:0}
+.school-id-card-preview .school-id-student-photo{width:82px;height:100px;object-fit:cover;border:1px solid #5ce0c0;border-radius:5px;background:#1b3556;flex-shrink:0}
 .school-id-card-preview .school-id-logo{width:34px;height:34px;object-fit:contain;position:absolute;top:12px;left:12px}
 .school-id-card-preview .school-id-details{font-size:10px;line-height:1.55;overflow-wrap:anywhere}
-.school-id-card-preview .school-id-details b{color:#183d67}
-.school-id-card-preview .school-id-footer{border-top:1px solid #cbd5df;margin-top:8px;padding-top:5px;font-size:8px;display:flex;justify-content:space-between;gap:8px}
+.school-id-card-preview .school-id-preview-placeholder{color:#a9bfd8;font-style:italic;font-weight:500}
+.school-id-card-preview .school-id-details b{color:#5ce0c0}
+.school-id-card-preview .school-id-footer{border-top:1px solid #496484;margin-top:8px;padding-top:5px;font-size:8px;color:#f2bd59;display:flex;justify-content:space-between;gap:8px}
 @media(max-width:900px){.school-id-layout{grid-template-columns:1fr}}
 @media(max-width:580px){.school-id-photo-row{grid-template-columns:1fr}.school-id-card-preview{padding:12px}.school-id-card-preview .school-id-student-photo{width:72px;height:88px}.school-id-card-preview .school-id-details{font-size:9px}}
 
@@ -363,19 +364,18 @@ body {
 .school-id-card-preview .school-id-student-photo.hidden{display:none!important}
 @media(max-width:700px){.school-id-school-tools{grid-template-columns:1fr}.school-id-bulk-tools{align-items:stretch;flex-direction:column}.school-id-bulk-tools label{justify-content:space-between}}
 /* END MJK SCHOOL ID CARD UPDATE V2 */
-#cscKendraNav{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 10px;text-decoration:none;font-weight:750;white-space:nowrap}
-#cscKendraNav:hover{background:#ffffff12}
+
 
 
 </style></head><body>
-<header class="topbar"><div class="topinner"><a class="brand" href="#home" id="brandHome"><span class="logo">MJ</span><span>Maurya Jan Seva Kendra<small>DIGITAL SERVICE • TRUST • CARE</small></span></a><nav class="nav"><a class="nav-link" href="#services">सेवाएँ</a><a class="nav-link" href="#contact">संपर्क</a><a class="nav-link" id="cscKendraNav" href="#csc-kendra-unconfigured" target="_blank" rel="noopener noreferrer" aria-label="CSC Kendra website">CSC Kendra</a><button class="gold" id="openLogin">Admin Login</button><button type="button" class="language-toggle" id="languageToggle" aria-label="Switch language">हिंदी | English</button></nav></div></header>
+<header class="topbar"><div class="topinner"><a class="brand" href="#home" id="brandHome"><span class="logo">MJ</span><span>Maurya Jan Seva Kendra<small>DIGITAL SERVICE • TRUST • CARE</small></span></a><nav class="nav"><a class="nav-link" href="#services">सेवाएँ</a><a class="nav-link" href="#contact">संपर्क</a><button class="gold" id="openLogin">Admin Login</button><button type="button" class="language-toggle" id="languageToggle" aria-label="Switch language">हिंदी | English</button></nav></div></header>
 <main id="publicSite">
 <section class="wrap hero" id="home"><div class="hero-copy"><div class="eyebrow">आपकी अपनी डिजिटल सेवा केंद्र</div><h1>हर ज़रूरी सेवा,<br><span>एक ही जगह।</span></h1><p class="lead">ऑनलाइन फॉर्म, दस्तावेज़ सहायता, प्रिंट, बिल और डिजिटल सेवाओं की जानकारी। साफ़ रिकॉर्ड और भरोसेमंद सहायता के लिए हमसे संपर्क करें।</p><div class="actions"><a href="https://wa.me/919076855003" target="_blank" rel="noopener"><button class="gold">WhatsApp संपर्क</button></a><a href="#services"><button class="secondary">सेवाएँ देखें</button></a></div><div class="notice">अपना Aadhaar नंबर, OTP, पासवर्ड या मूल दस्तावेज़ की फोटो सार्वजनिक वेबसाइट पर साझा न करें।</div><p class="small muted">यह एक निजी सेवा केंद्र है, सरकारी विभाग की आधिकारिक वेबसाइट नहीं। सेवा और शुल्क की पुष्टि केंद्र से करें।</p></div>
 <aside class="login-card" id="loginPanel"><div class="eyebrow">सुरक्षित प्रवेश</div><h2>Admin / Staff Login</h2><p class="muted small">केवल अधिकृत खाते से लॉगिन करें।</p><form id="loginForm"><div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required></div><div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div><div id="loginMsg" aria-live="polite"></div><div class="login-actions"><button class="gold" id="loginBtn" type="submit">Login करें</button><button class="outline" id="resetBtn" type="button">Password reset</button></div></form><div class="notice" data-hi="केवल अधिकृत कर्मचारी लॉगिन कर सकते हैं।" data-en="Login is available to authorized staff only.">केवल अधिकृत कर्मचारी लॉगिन कर सकते हैं।</div></aside></section>
 <section class="wrap section" id="services"><div class="section-head"><div><div class="eyebrow">Our services</div><h2>हमारी सेवाएँ</h2><p class="muted">अपनी जरूरत बताइए—सेवा उपलब्धता और शुल्क केंद्र से पुष्टि करें।</p></div></div><div class="services">
 <article class="service"><div class="ico" aria-hidden="true">📝</div><h3 data-hi="ऑनलाइन फॉर्म" data-en="Online Forms">ऑनलाइन फॉर्म</h3><div class="service-en" aria-hidden="true">Online Forms</div><p data-hi="ऑनलाइन आवेदन और फॉर्म भरने में सहायता।" data-en="Help with online forms and applications.">ऑनलाइन आवेदन और फॉर्म भरने में सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🖨️</div><h3 data-hi="प्रिंट और स्कैन" data-en="Print & Scan">प्रिंट और स्कैन</h3><div class="service-en" aria-hidden="true">Print & Scan</div><p data-hi="दस्तावेज़ प्रिंट, स्कैन और डिजिटल कॉपी।" data-en="Print, scan and digitize documents.">दस्तावेज़ प्रिंट, स्कैन और डिजिटल कॉपी।</p></article><article class="service"><div class="ico" aria-hidden="true">📄</div><h3 data-hi="दस्तावेज़ सहायता" data-en="Document Help">दस्तावेज़ सहायता</h3><div class="service-en" aria-hidden="true">Document Help</div><p data-hi="आवेदन के लिए जरूरी दस्तावेज़ों की सूची में मदद।" data-en="Guidance on documents needed for applications.">आवेदन के लिए जरूरी दस्तावेज़ों की सूची में मदद।</p></article><article class="service"><div class="ico" aria-hidden="true">🧾</div><h3 data-hi="बिल और रसीद" data-en="Bills & Receipts">बिल और रसीद</h3><div class="service-en" aria-hidden="true">Bills & Receipts</div><p data-hi="सेवा शुल्क, भुगतान और बाकी रकम का रिकॉर्ड।" data-en="Track service charges, payments and balances.">सेवा शुल्क, भुगतान और बाकी रकम का रिकॉर्ड।</p></article><article class="service"><div class="ico" aria-hidden="true">🔎</div><h3 data-hi="आवेदन मार्गदर्शन" data-en="Application Help">आवेदन मार्गदर्शन</h3><div class="service-en" aria-hidden="true">Application Help</div><p data-hi="उपलब्ध ऑनलाइन सेवाओं की प्रक्रिया समझने में सहायता।" data-en="Guidance on available online service procedures.">उपलब्ध ऑनलाइन सेवाओं की प्रक्रिया समझने में सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🤝</div><h3 data-hi="ग्राहक सहायता" data-en="Customer Support">ग्राहक सहायता</h3><div class="service-en" aria-hidden="true">Customer Support</div><p data-hi="सेवा और स्थिति की जानकारी के लिए संपर्क करें।" data-en="Contact us for service information and updates.">सेवा और स्थिति की जानकारी के लिए संपर्क करें।</p></article><article class="service"><div class="ico" aria-hidden="true">🪪</div><h3 data-hi="आधार सहायता" data-en="Aadhaar Help">आधार सहायता</h3><div class="service-en" aria-hidden="true">Aadhaar Help</div><p data-hi="उपलब्ध आधार-संबंधित सेवाओं की जानकारी और मार्गदर्शन।" data-en="Information about available Aadhaar services.">उपलब्ध आधार-संबंधित सेवाओं की जानकारी और मार्गदर्शन।</p></article><article class="service"><div class="ico" aria-hidden="true">📑</div><h3 data-hi="PAN और प्रमाणपत्र" data-en="PAN & Certificates">PAN और प्रमाणपत्र</h3><div class="service-en" aria-hidden="true">PAN & Certificates</div><p data-hi="PAN कार्ड और उपलब्ध प्रमाणपत्र सेवाओं के लिए सहायता।" data-en="Help with PAN cards and certificate services.">PAN कार्ड और उपलब्ध प्रमाणपत्र सेवाओं के लिए सहायता।</p></article><article class="service"><div class="ico" aria-hidden="true">🎫</div><h3 data-hi="टिकट बुकिंग" data-en="Ticket Booking">टिकट बुकिंग</h3><div class="service-en" aria-hidden="true">Ticket Booking</div><p data-hi="उपलब्ध टिकट बुकिंग सेवाओं की जानकारी।" data-en="Information about available ticket-booking services.">उपलब्ध टिकट बुकिंग सेवाओं की जानकारी।</p></article><article class="service"><div class="ico" aria-hidden="true">🎓</div><h3 data-hi="स्कूल ID कार्ड" data-en="School ID Card">स्कूल ID कार्ड</h3><div class="service-en" aria-hidden="true">School ID Card</div><p data-hi="स्कूल ID कार्ड सेवा की जानकारी के लिए संपर्क करें।" data-en="Contact us for school ID card service information.">स्कूल ID कार्ड सेवा की जानकारी के लिए संपर्क करें।</p></article></div></section>
 <section class="wrap section" id="contact"><div class="section-head"><div><div class="eyebrow">Get in touch</div><h2>केंद्र से संपर्क करें</h2></div></div><div class="contact-grid"><div class="contact-card"><h3>संपर्क विवरण</h3><div class="contact-row"><span>केंद्र संपर्क</span><b>Rajkumar Maurya</b></div><div class="contact-row"><span>फोन</span><a href="tel:9076855003">9076855003</a> · <a href="tel:6392526277">6392526277</a></div><div class="contact-row"><span>Email</span><a href="mailto:mauryarajkumar7398@gmail.com">mauryarajkumar7398@gmail.com</a></div><div class="contact-row"><span>पता</span>Hamjapur Pathan, Kadipur, Sultanpur, Uttar Pradesh — 228145</div><div class="actions"><a href="https://wa.me/919076855003" target="_blank" rel="noopener"><button class="gold">WhatsApp करें</button></a></div></div><div class="contact-card"><div class="eyebrow">Customer care</div><h3>अपनी जरूरत बताइए</h3><p class="muted">किस सेवा की जानकारी चाहिए? नीचे लिखकर WhatsApp पर भेजें।</p><div class="field"><label for="serviceChoice">सेवा चुनें</label><select id="serviceChoice"><option>ऑनलाइन फॉर्म</option><option>प्रिंट और स्कैन</option><option>दस्तावेज़ सहायता</option><option>बिल और रसीद</option><option>आवेदन मार्गदर्शन</option><option>अन्य</option></select></div><div class="field"><label for="serviceQuestion">आपका सवाल</label><textarea id="serviceQuestion" rows="3" maxlength="250" placeholder="अपनी जरूरत लिखें"></textarea></div><button class="gold" id="sendService">WhatsApp पर भेजें</button></div></div></section></main>
-<section class="wrap app-shell hidden" id="appShell"><aside class="sidebar"><div class="user-mini"><img id="sidePhoto" class="avatar" alt="Profile photo" src="" onerror="this.style.display='none';document.getElementById('sideInitial').style.display='grid'"><div id="sideInitial" class="avatar" style="display:none">MJ</div><div style="min-width:0"><b id="sideName">User</b><div id="sideRole" class="muted small">ADMIN</div></div></div><div class="menu-label">WORKSPACE</div><div class="menu"><button class="active" data-page="dashboard">▦ Dashboard</button><button data-page="school-cards">🪪 School ID Card</button><button data-page="school-card-history">📋 ID Card History</button><button data-page="billing">▤ नया बिल</button><button data-page="bills">▣ बिल रिकॉर्ड</button><button data-page="deleted-history" id="deletedHistoryMenu">▤ Deleted Bills History</button><button data-page="customers">⌕ ग्राहक / बिल खोजें</button><button data-page="expenses">₹ खर्च दर्ज करें</button><button data-page="workers" id="workersMenu">♙ Worker जोड़ें</button></div><div class="menu-label">ACCOUNT</div><div class="menu"><button data-page="profile">◉ Profile</button><button data-page="settings">⚙ Settings</button><button class="logout" id="logoutBtn">↪ Logout</button></div></aside>
+<section class="wrap app-shell hidden" id="appShell"><aside class="sidebar"><div class="user-mini"><img id="sidePhoto" class="avatar" alt="Profile photo" src="" onerror="this.style.display='none';document.getElementById('sideInitial').style.display='grid'"><div id="sideInitial" class="avatar" style="display:none">MJ</div><div style="min-width:0"><b id="sideName">User</b><div id="sideRole" class="muted small">ADMIN</div></div></div><div class="menu-label">WORKSPACE</div><div class="menu"><button class="active" data-page="dashboard">▦ Dashboard</button><button data-page="school-cards">🪪 School ID Card</button><button data-page="school-card-history">📋 ID Card History</button><button id="cscKendraNav" type="button" aria-label="Open CSC Kendra website">🌐 CSC Kendra</button><button data-page="billing">▤ नया बिल</button><button data-page="bills">▣ बिल रिकॉर्ड</button><button data-page="deleted-history" id="deletedHistoryMenu">▤ Deleted Bills History</button><button data-page="customers">⌕ ग्राहक / बिल खोजें</button><button data-page="expenses">₹ खर्च दर्ज करें</button><button data-page="workers" id="workersMenu">♙ Worker जोड़ें</button></div><div class="menu-label">ACCOUNT</div><div class="menu"><button data-page="profile">◉ Profile</button><button data-page="settings">⚙ Settings</button><button class="logout" id="logoutBtn">↪ Logout</button></div></aside>
 <div class="workspace"><div class="page-head"><div><div class="eyebrow">Private workspace</div><h1 id="pageTitle">Dashboard</h1><div class="muted small" id="welcomeName"></div></div><div class="row"><button type="button" class="language-toggle" id="appLanguageToggle">हिंदी | English</button><button class="outline no-print" id="publicBtn">Home Page</button></div></div><div id="appMsg" aria-live="polite"></div>
 <div class="stats" id="dashboardStats"><div class="stat"><span>कुल बिल</span><strong id="statBills">0</strong></div><div class="stat"><span>कुल बिल रकम</span><strong id="statTotal">₹0</strong></div><div class="stat"><span>प्राप्त भुगतान</span><strong id="statPaid">₹0</strong></div><div class="stat"><span>ग्राहकों से बाकी</span><strong id="statDue">₹0</strong></div><div class="stat"><span>इस महीने प्राप्त</span><strong id="monthPaid">₹0</strong></div><div class="stat"><span>इस महीने खर्च</span><strong id="monthExpense">₹0</strong></div><div class="stat"><span>इस महीने शुद्ध</span><strong id="monthNet">₹0</strong></div><div class="stat"><span>आज प्राप्त</span><strong id="todayPaid">₹0</strong></div></div>
 <section class="page" id="page-dashboard"><div class="panel"><div class="section-head"><div><h2>आज का काम</h2><p class="muted small">ग्राहक का नया रिकॉर्ड बनाने के बजाय बिल बनाकर उसका हिसाब रखें।</p></div><button class="gold" data-go="billing">+ नया बिल</button></div><div class="split"><div class="result"><div class="eyebrow">QUICK ACTION</div><h3>ग्राहक का बिल जोड़ें</h3><p class="muted small">नाम या मोबाइल से ग्राहक खोजें, सेवा और रकम भरें, फिर रसीद प्रिंट/WhatsApp करें।</p><button class="gold" data-go="billing">बिल बनाएँ</button></div><div class="result"><div class="eyebrow">PAYMENT TRACKING</div><h3>बाकी भुगतान</h3><p class="muted small">कुल, जमा और बाकी रकम की जाँच करें और भुगतान इतिहास रखें।</p><button class="secondary" data-go="bills">बिल रिकॉर्ड देखें</button></div></div></div><div class="panel"><h2>हाल के बिल</h2><div id="recentBills" class="muted small">लॉगिन के बाद बिल रिकॉर्ड लोड होंगे।</div></div>
@@ -401,7 +401,7 @@ body {
 
 </div></section>
 <section class="page hidden" id="page-profile"><div class="panel"><h2>आपकी Profile</h2><div class="profile-top"><img class="profile-photo" id="profilePhoto" alt="Profile photo" src=""><div><b id="profileEmail"></b><div id="profileRole" class="muted small"></div><div class="field"><label for="photoFile">अपनी फोटो चुनें</label><input type="file" id="photoFile" accept="image/*"></div></div></div><form id="profileForm" class="formgrid"><div class="field"><label for="profileName">नाम</label><input id="profileName" required maxlength="100"></div><div class="field"><label for="profilePhone">मोबाइल नंबर</label><input id="profilePhone" type="tel" inputmode="tel" maxlength="15" placeholder="अपना मोबाइल नंबर"></div><div class="field"><label>Email (बदलने के लिए अलग प्रक्रिया आवश्यक है)</label><input id="profileEmailRead" readonly></div><div class="field full"><button class="gold" type="submit">Profile सेव करें</button></div></form><p class="muted small">फोटो को इस ब्राउज़र में छोटा करके प्रोफ़ाइल में सेव किया जाएगा। फोटो का बैकअप अलग से रखें।</p></div></section>
-<section class="page hidden" id="page-settings"><div class="panel"><h2>Settings</h2><p class="muted small">पासवर्ड बदलने के लिए आपके ईमेल पर सुरक्षित Password Reset लिंक भेजा जाएगा।</p><div class="result"><b id="settingsEmail"></b><p class="muted small">Email inbox में दिए गए निर्देशों से नया पासवर्ड सेट करें।</p><button class="gold" id="settingsReset">Password reset email भेजें</button></div><div class="result hidden" id="cscKendraAdminSettings"><h3>CSC Kendra वेबसाइट लिंक</h3><p class="muted small">यहाँ दूसरी वेबसाइट का नाम और पूरा लिंक डालें। सेव होने के बाद सार्वजनिक मेन्यू में CSC Kendra पर क्लिक करने से वही वेबसाइट नए टैब में खुलेगी।</p><div class="field"><label for="cscKendraWebsiteName">दूसरी वेबसाइट का नाम</label><input id="cscKendraWebsiteName" maxlength="100" placeholder="जैसे Client CSC Website"></div><div class="field"><label for="cscKendraWebsiteUrl">वेबसाइट लिंक (https:// के साथ)</label><input id="cscKendraWebsiteUrl" type="url" maxlength="500" placeholder="https://example.com"></div><div id="cscKendraSettingsMsg" aria-live="polite"></div><button class="gold" id="cscKendraSaveBtn" type="button">CSC Kendra लिंक सेव करें</button></div><div class="result"><h3>सुरक्षा</h3><p class="muted small">पासवर्ड किसी के साथ साझा न करें। काम पूरा होने पर Logout करें।</p><button class="danger" id="settingsLogout">Logout</button></div></div></section>
+<section class="page hidden" id="page-settings"><div class="panel"><h2>Settings</h2><p class="muted small">पासवर्ड बदलने के लिए आपके ईमेल पर सुरक्षित Password Reset लिंक भेजा जाएगा।</p><div class="result"><b id="settingsEmail"></b><p class="muted small">Email inbox में दिए गए निर्देशों से नया पासवर्ड सेट करें।</p><button class="gold" id="settingsReset">Password reset email भेजें</button></div><div class="result hidden" id="cscKendraAdminSettings"><h3>CSC Kendra वेबसाइट लिंक</h3><p class="muted small">यहाँ दूसरी वेबसाइट का नाम और पूरा लिंक डालें। सेव होने के बाद लॉगिन के बाद बाएँ मेन्यू में CSC Kendra पर क्लिक करने से वही वेबसाइट इसी टैब में पूरी खुलेगी।</p><div class="field"><label for="cscKendraWebsiteName">दूसरी वेबसाइट का नाम</label><input id="cscKendraWebsiteName" maxlength="100" placeholder="जैसे Client CSC Website"></div><div class="field"><label for="cscKendraWebsiteUrl">वेबसाइट लिंक (https:// के साथ)</label><input id="cscKendraWebsiteUrl" type="url" maxlength="500" placeholder="https://example.com"></div><div id="cscKendraSettingsMsg" aria-live="polite"></div><button class="gold" id="cscKendraSaveBtn" type="button">CSC Kendra लिंक सेव करें</button></div><div class="result"><h3>सुरक्षा</h3><p class="muted small">पासवर्ड किसी के साथ साझा न करें। काम पूरा होने पर Logout करें।</p><button class="danger" id="settingsLogout">Logout</button></div></div></section>
 <section class="page hidden" id="page-editbill">
 <div class="panel">
 <h2>बिल की जानकारी Edit करें</h2>
@@ -554,10 +554,11 @@ function applyCscKendraConfig(data={}){
  const link=$('cscKendraNav');
  if(!link)return;
  const url=safeCscWebsiteUrl(data.websiteUrl);
+ const websiteName=String(data.websiteName||'').trim().slice(0,100);
  link.dataset.websiteUrl=url;
- link.href=url||'#csc-kendra-unconfigured';
- link.title=data.websiteName?('CSC Kendra: '+String(data.websiteName).slice(0,100)):'CSC Kendra वेबसाइट अभी सेट नहीं है';
- link.setAttribute('aria-label',data.websiteName?('CSC Kendra — '+String(data.websiteName).slice(0,100)):'CSC Kendra');
+ link.dataset.websiteName=websiteName;
+ link.title=websiteName?('CSC Kendra: '+websiteName):'CSC Kendra वेबसाइट अभी सेट नहीं है';
+ link.setAttribute('aria-label',websiteName?('CSC Kendra — '+websiteName):'CSC Kendra');
  link.setAttribute('aria-disabled',url?'false':'true');
  link.classList.toggle('csc-kendra-unconfigured',!url);
 }
@@ -597,10 +598,26 @@ async function saveCscKendraConfig(){
   toast('CSC Kendra लिंक सेव नहीं हुआ। Firebase Rules deploy हुए हैं या नहीं, जाँचें।');
  }finally{if(button)button.disabled=false}
 }
-$('cscKendraNav').addEventListener('click',e=>{
+$('cscKendraNav').addEventListener('click',async()=>{
  const url=safeCscWebsiteUrl($('cscKendraNav').dataset.websiteUrl);
- if(!url){e.preventDefault();toast('CSC Kendra का वेबसाइट लिंक अभी Admin Settings में सेट नहीं है।');return}
- $('cscKendraNav').href=url;
+ if(url){
+  window.location.assign(url);
+  return;
+ }
+ if(admin()){
+  showPage('settings');
+  await loadCscKendraConfig(true);
+  const message=$('cscKendraSettingsMsg');
+  if(message)message.textContent='CSC Kendra वेबसाइट लिंक सेट नहीं है। नीचे पूरा URL (https:// के साथ) लिखकर सेव करें; फिर इसी मेनू से पूरी वेबसाइट खुलेगी।';
+  $('cscKendraWebsiteUrl').focus();
+  return;
+ }
+ showPage('dashboard');
+ const message=$('appMsg');
+ if(message){
+  message.className='msg';
+  message.textContent='CSC Kendra वेबसाइट लिंक अभी सेट नहीं है। कृपया Admin से Settings में वेबसाइट का URL सेव करवाएँ।';
+ }
 });
 $('cscKendraSaveBtn').addEventListener('click',saveCscKendraConfig);
 loadCscKendraConfig(false);
@@ -1157,12 +1174,13 @@ $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Ke
   const ids={studentName:'sidPreviewName',studentId:'sidPreviewId',fatherName:'sidPreviewFather',motherName:'sidPreviewMother',className:'sidPreviewClass',section:'sidPreviewSection',rollNumber:'sidPreviewRoll',dob:'sidPreviewDob',schoolPhone:'sidPreviewSchoolPhone',phone:'sidPreviewPhone',academicYear:'sidPreviewYear'};
   Object.entries(ids).forEach(([key,id])=>{
    const el=byId(id),row=el?.closest('[data-preview-row]'),value=String(rows[key]||'').trim();
-   if(el)el.textContent=value;
-   if(row)row.style.display=value?'':'none';
+   if(el){el.textContent=value||'—';el.classList.toggle('school-id-preview-placeholder',!value)}
+   /* Keep labels visible in the editor preview; saved/printed cards still omit empty fields. */
+   if(row)row.style.display='';
   });
   const schoolTitle=byId('sidPreviewSchool'),address=byId('sidPreviewAddress');
-  if(schoolTitle){schoolTitle.textContent=d.schoolName||'';schoolTitle.style.display=d.schoolName?'':'none'}
-  if(address){address.textContent=d.schoolAddress||'';address.style.display=d.schoolAddress?'':'none'}
+  if(schoolTitle){schoolTitle.textContent=d.schoolName||'SCHOOL NAME';schoolTitle.style.display='';schoolTitle.classList.toggle('school-id-preview-placeholder',!d.schoolName)}
+  if(address){address.textContent=d.schoolAddress||'School address';address.style.display='';address.classList.toggle('school-id-preview-placeholder',!d.schoolAddress)}
   const photo=byId('sidPreviewPhoto'),logo=byId('sidPreviewLogo');
   if(photo){if(studentPhoto){photo.src=studentPhoto;photo.classList.remove('hidden')}else{photo.removeAttribute('src');photo.classList.add('hidden')}}
   if(logo){if(schoolLogo){logo.src=schoolLogo;logo.classList.remove('hidden')}else{logo.removeAttribute('src');logo.classList.add('hidden')}}
@@ -1394,7 +1412,7 @@ $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Ke
   return design.template?templateCardHTML(d,design):defaultCardHTML(d);
  }
  function printCardCSS(){
-  return '*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}html,body{margin:0;padding:0;background:#fff;font-family:Arial,sans-serif;color:#17253b}.print-card{position:relative;overflow:hidden;flex-shrink:0;color:#17253b;background:linear-gradient(145deg,#fff,#f0f5fa);border:.35mm solid #b8c7d8;padding:3mm}.print-card:before{content:"";position:absolute;inset:1.5mm;border:.25mm solid #d6b66d;pointer-events:none}.print-card.landscape{width:85.6mm;height:54mm}.print-card.portrait{width:54mm;height:85.6mm}.print-card.custom{padding:0;border:0;background-size:100% 100%;background-position:center;background-repeat:no-repeat}.print-card.custom:before{display:none}.print-card .accent{position:absolute;left:0;top:0;bottom:0;width:1.2mm;background:#173b66}.print-card .school-logo{position:absolute;top:3mm;left:3mm;width:8mm;height:8mm;object-fit:contain}.print-card h3{font-size:10pt;text-align:center;margin:0 0 1mm;color:#173b66;padding:0 8mm 1.2mm;border-bottom:.5mm solid #173b66;overflow-wrap:anywhere}.print-card .address{text-align:center;font-size:6pt;margin:1mm 0 2mm;color:#52627a;max-height:8mm;overflow:hidden}.print-card .body{display:flex;gap:2.5mm;align-items:flex-start}.print-card .photo{width:19mm;height:24mm;object-fit:cover;border:.3mm solid #9aa9b8;flex-shrink:0}.print-card .details{min-width:0;flex:1;font-size:6pt;line-height:1.18;overflow:hidden;overflow-wrap:anywhere;padding:1mm;border:.2mm solid #d9e1eb;border-radius:1mm;background:#ffffffd9;max-height:32mm}.print-card .details b{color:#183d67}.print-card .footer{position:absolute;bottom:1.8mm;left:2mm;right:2mm;border-top:.2mm solid #cbd5df;padding-top:.6mm;font-size:5.2pt;text-align:center;background:transparent}.print-card.portrait h3{font-size:9pt;padding-top:7mm}.print-card.portrait .body{flex-direction:column;align-items:center;gap:1.5mm}.print-card.portrait .photo{width:17mm;height:20mm}.print-card.portrait .details{width:100%;font-size:6pt;max-height:47mm}.print-card.custom .school-id-template-item{font-size:6.5pt;padding:0;text-shadow:0 0 .5mm #fff9}.print-card.custom .school-id-template-item.hint{display:none}.print-card.custom .school-id-template-item.image{box-shadow:0 0 0 .2mm #ffffff80}.print-card.custom .school-id-template-item img{width:100%;height:100%;display:block}.sid-sheet{width:196mm;height:283mm;display:grid;justify-content:center;align-content:center;gap:3mm;page-break-after:always;break-after:page;overflow:hidden}.sid-sheet:last-child{page-break-after:auto;break-after:auto}.sid-sheet.landscape.count8{grid-template-columns:repeat(2,85.6mm);grid-template-rows:repeat(4,54mm)}.sid-sheet.landscape.count10{grid-template-columns:repeat(2,85.6mm);grid-template-rows:repeat(5,54mm);align-content:space-between}.sid-sheet.portrait{grid-template-columns:repeat(3,54mm);grid-template-rows:repeat(3,85.6mm)}.sid-sheet .print-card{break-inside:avoid;page-break-inside:avoid}@media screen{body{padding:10px}.sid-sheet{margin:10px auto;background:#fff;box-shadow:0 1px 6px #888}}';
+  return '*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}html,body{margin:0;padding:0;background:#fff;font-family:Arial,sans-serif;color:#17253b}.print-card{position:relative;overflow:hidden;flex-shrink:0;color:#f5f7fb;background:linear-gradient(145deg,#1d3b63,#142744 58%,#0e1c33);border:.35mm solid #5ce0c0;padding:3mm}.print-card:before{content:"";position:absolute;inset:1.5mm;border:.25mm solid #d6b66d;pointer-events:none}.print-card.landscape{width:85.6mm;height:54mm}.print-card.portrait{width:54mm;height:85.6mm}.print-card.custom{padding:0;border:0;background-size:100% 100%;background-position:center;background-repeat:no-repeat}.print-card.custom:before{display:none}.print-card .accent{position:absolute;left:0;top:0;bottom:0;width:1.2mm;background:linear-gradient(#5ce0c0,#f2bd59)}.print-card .school-logo{position:absolute;top:3mm;left:3mm;width:8mm;height:8mm;object-fit:contain;border-radius:1mm}.print-card h3{font-size:10pt;text-align:center;margin:0 0 1mm;color:#f2bd59;padding:0 8mm 1.2mm;border-bottom:.5mm solid #5ce0c0;overflow-wrap:anywhere}.print-card .address{text-align:center;font-size:6pt;margin:1mm 0 2mm;color:#c3d4ea;max-height:8mm;overflow:hidden}.print-card .body{display:flex;gap:2.5mm;align-items:flex-start}.print-card .photo{width:19mm;height:24mm;object-fit:cover;border:.3mm solid #5ce0c0;flex-shrink:0}.print-card .details{min-width:0;flex:1;font-size:6pt;line-height:1.18;overflow:hidden;overflow-wrap:anywhere;padding:1mm;border:.2mm solid #456284;border-radius:1mm;background:rgba(7,18,36,.72);color:#f5f7fb;max-height:32mm}.print-card .details b{color:#5ce0c0}.print-card .footer{position:absolute;bottom:1.8mm;left:2mm;right:2mm;border-top:.2mm solid #496484;padding-top:.6mm;font-size:5.2pt;text-align:center;color:#f2bd59;background:transparent}.print-card.portrait h3{font-size:9pt;padding-top:7mm}.print-card.portrait .body{flex-direction:column;align-items:center;gap:1.5mm}.print-card.portrait .photo{width:17mm;height:20mm}.print-card.portrait .details{width:100%;font-size:6pt;max-height:47mm}.print-card.custom .school-id-template-item{font-size:6.5pt;padding:0;text-shadow:0 0 .5mm #fff9}.print-card.custom .school-id-template-item.hint{display:none}.print-card.custom .school-id-template-item.image{box-shadow:0 0 0 .2mm #ffffff80}.print-card.custom .school-id-template-item img{width:100%;height:100%;display:block}.sid-sheet{width:196mm;height:283mm;display:grid;justify-content:center;align-content:center;gap:3mm;page-break-after:always;break-after:page;overflow:hidden}.sid-sheet:last-child{page-break-after:auto;break-after:auto}.sid-sheet.landscape.count8{grid-template-columns:repeat(2,85.6mm);grid-template-rows:repeat(4,54mm)}.sid-sheet.landscape.count10{grid-template-columns:repeat(2,85.6mm);grid-template-rows:repeat(5,54mm);align-content:space-between}.sid-sheet.portrait{grid-template-columns:repeat(3,54mm);grid-template-rows:repeat(3,85.6mm)}.sid-sheet .print-card{break-inside:avoid;page-break-inside:avoid}@media screen{body{padding:10px}.sid-sheet{margin:10px auto;background:#fff;box-shadow:0 1px 6px #888}}';
  }
  async function waitForPrintAssets(w){
   try{

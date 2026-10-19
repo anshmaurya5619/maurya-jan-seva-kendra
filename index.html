@@ -489,7 +489,7 @@ body {
     <h2>कार्ड प्रीव्यू</h2>
     <p class="muted small">आड़ा कार्ड 85.6 × 54 mm और खड़ा कार्ड 54 × 85.6 mm होगा। कस्टम डिज़ाइन पर क्लिक करके फ़ील्ड की जगह तय कर सकते हैं।</p>
     <div class="school-id-template-tools" id="sidTemplateTools">
-      <div class="field"><label for="sidCardTemplateFile">कस्टम कार्ड डिज़ाइन अपलोड करें (Image)</label><input id="sidCardTemplateFile" type="file" accept="image/*"><p class="small">PNG/JPG चुनें। हर दिशा का डिज़ाइन अलग सेव हो सकता है; एक बार जगहें तय करके उसी स्कूल के कई छात्रों पर इस्तेमाल करें।</p></div>
+      <div class="field"><label for="sidCardTemplateFile">कस्टम कार्ड डिज़ाइन अपलोड करें (Image)</label><input id="sidCardTemplateFile" type="file" accept="image/*,application/pdf"><p class="small">PNG/JPG या PDF चुनें (PDF का पहला पेज इस्तेमाल होगा)। हर दिशा का डिज़ाइन अलग सेव हो सकता है; एक बार जगहें तय करके उसी स्कूल के कई छात्रों पर इस्तेमाल करें।</p></div>
       <div class="field"><label for="sidTemplateField">किस फ़ील्ड की जगह तय करें?</label><select id="sidTemplateField">
         <option value="schoolName">School name</option><option value="schoolAddress">School address</option><option value="studentName">Student name</option><option value="studentId">Student ID</option><option value="fatherName">Father name</option><option value="motherName">Mother name</option><option value="className">Class</option><option value="section">Section</option><option value="rollNumber">Roll number</option><option value="dob">Date of birth</option><option value="schoolPhone">School phone</option><option value="phone">Parent mobile</option><option value="academicYear">Academic year</option><option value="studentPhoto">Student photo</option><option value="schoolLogo">School logo</option>
       </select></div>
@@ -1146,18 +1146,54 @@ $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Ke
    updateCardPreview();
   }catch(e){toast(e.message||'Image compress नहीं हुई।');input.value=''}
  }
+ let pdfJsPromise=null;
+ function loadPdfJs(){
+  if(window.pdfjsLib)return Promise.resolve(window.pdfjsLib);
+  if(!pdfJsPromise)pdfJsPromise=new Promise((resolve,reject)=>{
+   const tag=document.createElement('script');
+   tag.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+   tag.onload=()=>{
+    if(window.pdfjsLib){
+     window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+     resolve(window.pdfjsLib);
+    }else reject(Error('PDF reader load नहीं हुआ। PNG/JPG image चुनें।'));
+   };
+   tag.onerror=()=>reject(Error('PDF reader load नहीं हुआ। PNG/JPG image चुनें।'));
+   document.head.appendChild(tag);
+  });
+  return pdfJsPromise;
+ }
+ async function pdfTemplateToImage(file){
+  const pdfjs=await loadPdfJs();
+  pdfjs.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const pdf=await pdfjs.getDocument({data:new Uint8Array(await file.arrayBuffer())}).promise;
+  if(!pdf.numPages)throw Error('PDF में कोई पेज नहीं है।');
+  const page=await pdf.getPage(1),original=page.getViewport({scale:1});
+  const scale=Math.min(2,1400/Math.max(original.width,original.height));
+  const viewport=page.getViewport({scale});
+  const canvas=document.createElement('canvas');
+  canvas.width=Math.max(1,Math.ceil(viewport.width));
+  canvas.height=Math.max(1,Math.ceil(viewport.height));
+  const context=canvas.getContext('2d',{alpha:false});
+  if(!context)throw Error('PDF canvas तैयार नहीं हुआ।');
+  context.fillStyle='#ffffff';context.fillRect(0,0,canvas.width,canvas.height);
+  await page.render({canvasContext:context,viewport}).promise;
+  const blob=await new Promise((resolve,reject)=>canvas.toBlob(value=>value?resolve(value):reject(Error('PDF image में convert नहीं हुई।')),'image/jpeg',.9));
+  return compressImage(new File([blob],'school-id-template.jpg',{type:'image/jpeg'}),240000,1400);
+ }
  async function setCardTemplate(){
   const input=byId('sidCardTemplateFile'),file=input.files?.[0];
   if(!file)return;
-  if(!file.type.startsWith('image/')){templateNotice('PNG/JPG image चुनें।');input.value='';return}
-  if(file.size>8*1024*1024){templateNotice('Design image 8 MB से छोटी रखें।');input.value='';return}
+  const isPdf=file.type==='application/pdf'||/\.pdf$/i.test(file.name||'');
+  if(!isPdf&&!file.type.startsWith('image/')){templateNotice('PNG/JPG या PDF फ़ाइल चुनें।');input.value='';return}
+  if(file.size>8*1024*1024){templateNotice('Design file 8 MB से छोटी रखें।');input.value='';return}
   try{
    const orientation=currentOrientation();
-   cardTemplates[orientation]=await compressImage(file,240000,1400);
+   cardTemplates[orientation]=isPdf?await pdfTemplateToImage(file):await compressImage(file,240000,1400);
    templatePositions[orientation]={};
    templateMappingMode=true;
    byId('sidTemplateMapToggle').textContent='जगह तय करना बंद करें';
-   templateNotice('डिज़ाइन अपलोड हुआ। फ़ील्ड चुनें और कार्ड प्रीव्यू पर क्लिक करके उसकी जगह सेट करें।',true);
+   templateNotice((isPdf?'PDF का पहला पेज कार्ड डिज़ाइन बनाया गया। ':'डिज़ाइन अपलोड हुआ। ')+'फ़ील्ड चुनें और कार्ड प्रीव्यू पर क्लिक करके उसकी जगह सेट करें।',true);
    updateCardPreview();
   }catch(e){templateNotice(e.message||'Design upload नहीं हुआ।');input.value=''}
  }

@@ -1648,8 +1648,6 @@ async function addSchool(){
   const d=readFields();
   if(studentPhoto.length>=400000)return notice('छात्र की फोटो बड़ी है। छोटी फोटो चुनें।');
   if(schoolLogo&&schoolLogo.length>=200000)return notice('School logo बड़ी है। छोटी image चुनें।');
-  const duplicate=d.studentId?records.find(r=>!r.deleted&&r.id!==editingId&&(r.studentId||'').trim().toLowerCase()===d.studentId.trim().toLowerCase()&&(r.schoolId?r.schoolId===d.schoolId:String(r.schoolName||'').trim().toLowerCase()===String(d.schoolName||'').trim().toLowerCase())):null;
-  if(duplicate)return notice('इस स्कूल में यह Student ID पहले से मौजूद है।');
   const btn=byId('schoolIdForm').querySelector('[type="submit"]');
   if(btn)btn.disabled=true;
   try{

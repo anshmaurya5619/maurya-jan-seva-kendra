@@ -1,9 +1,6 @@
 name: School ID Card Checks
 
 on:
-  push:
-    branches:
-      - school-id-card-fixes-2026-10-19
   pull_request:
     branches:
       - main

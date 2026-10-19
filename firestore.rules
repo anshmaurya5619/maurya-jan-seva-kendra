@@ -335,6 +335,41 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // Public menu link is readable by visitors; only an active admin can change it.
+    match /publicSiteConfig/{configId} {
+      allow read: if configId == 'cscKendra';
+      allow create: if configId == 'cscKendra' && admin()
+        && request.resource.data.keys().hasAll(['websiteName','websiteUrl','updatedAt','updatedByUid','updatedByName'])
+        && request.resource.data.keys().hasOnly(['websiteName','websiteUrl','updatedAt','updatedByUid','updatedByName'])
+        && request.resource.data.websiteName is string
+        && request.resource.data.websiteName.size() > 0
+        && request.resource.data.websiteName.size() <= 100
+        && request.resource.data.websiteUrl is string
+        && request.resource.data.websiteUrl.size() > 0
+        && request.resource.data.websiteUrl.size() <= 500
+        && (request.resource.data.websiteUrl.matches('https?://.*'))
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedByUid == request.auth.uid
+        && request.resource.data.updatedByName is string
+        && request.resource.data.updatedByName.size() <= 100;
+      allow update: if configId == 'cscKendra' && admin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['websiteName','websiteUrl','updatedAt','updatedByUid','updatedByName'])
+        && request.resource.data.keys().hasAll(['websiteName','websiteUrl','updatedAt','updatedByUid','updatedByName'])
+        && request.resource.data.keys().hasOnly(['websiteName','websiteUrl','updatedAt','updatedByUid','updatedByName'])
+        && request.resource.data.websiteName is string
+        && request.resource.data.websiteName.size() > 0
+        && request.resource.data.websiteName.size() <= 100
+        && request.resource.data.websiteUrl is string
+        && request.resource.data.websiteUrl.size() > 0
+        && request.resource.data.websiteUrl.size() <= 500
+        && request.resource.data.websiteUrl.matches('https?://.*')
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedByUid == request.auth.uid
+        && request.resource.data.updatedByName is string
+        && request.resource.data.updatedByName.size() <= 100;
+      allow delete: if false;
+    }
+
     match /{document=**} { allow read, write: if false; }
   }
 }

@@ -91,4 +91,12 @@ assert.ok(html.includes('id="sidCardTopColor"') && html.includes('id="sidCardBot
 assert.ok(schoolRules.includes("'cardTopColor','cardBottomColor'"), 'Firestore rules must allow custom card colors');
 assert.ok(rules.includes("'createdAtLocal'"), 'Firestore rules must allow the local bill timestamp');
 
+
+const storedDateSource = getBetween(html, 'function storedDateKey(value){', '\\nfunction activityDateTime(value){');
+const storedDateKey = new Function(storedDateSource + '; return storedDateKey;')();
+assert.equal(storedDateKey('2026-10-20'), '2026-10-20');
+assert.equal(storedDateKey('20/10/2026'), '2026-10-20');
+assert.equal(storedDateKey('31-02-2026'), '');
+assert.equal(storedDateKey('20'), '', 'Do not invent month/year when an old bill only has a day number');
+
 console.log('PASS: School ID static checks');

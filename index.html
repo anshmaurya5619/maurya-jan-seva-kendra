@@ -627,6 +627,7 @@ body {
 </div></section>
 <footer class="wrap footer" id="footer">© <span id="year"></span> Maurya Jan Seva Kendra · Private service centre, not a government website.</footer><div id="toast" class="toast hidden" role="status"></div>
 <script>
+window.actornam=window.actornam||function(){return String(window.__mjkActorName||'Staff').slice(0,100)};
 window.addEventListener('error',function(e){var p=document.getElementById('loginMsg');if(p){var detail=(e&&e.message?String(e.message):'Script load error');var source=e&&e.filename?String(e.filename).split('/').pop():'';var line=e&&e.lineno?':'+e.lineno:'';p.innerHTML='<div class="msg">वेबसाइट स्क्रिप्ट Error: '+detail.replace(/[&<>"]/g,function(s){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]})+(source?' ('+source+line+')':'')+'. यदि Firebase CDN लोड नहीं हुआ तो इंटरनेट/ब्राउज़र जाँचें।</div>';}});
 window.addEventListener('unhandledrejection',function(e){var p=document.getElementById('loginMsg');if(p){var m=e.reason&&e.reason.message?e.reason.message:'अनजान त्रुटि';p.innerHTML='<div class="msg">वेबसाइट शुरू नहीं हो पाई: '+String(m).replace(/[&<>"]/g,function(s){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]})+'</div>'; }});
 </script>
@@ -1172,7 +1173,7 @@ $('expenseForm').onsubmit=async e=>{e.preventDefault();if(!staff())return;const 
 let receiptStampData='',receiptBgData='',pendingStampData='',pendingBgData='';
 function readReceiptImage(file){return new Promise((resolve,reject)=>{if(!file)return resolve('');if(!['image/png','image/jpeg','image/webp'].includes(file.type))return reject(Error('PNG, JPG या WEBP फोटो चुनें।'));if(file.size>220000)return reject(Error('फोटो 220 KB से छोटी रखें।'));const reader=new FileReader();reader.onload=()=>resolve(String(reader.result));reader.onerror=()=>reject(Error('फोटो पढ़ नहीं पाए।'));reader.readAsDataURL(file)})}
 async function loadReceiptDesign(){try{$('saveReceiptDesign').parentElement.classList.toggle('hidden',!admin());const snap=await getDoc(doc(db,'receiptSettings','design'));if(snap.exists()){receiptStampData=snap.data().stampData||'';receiptBgData=snap.data().backgroundData||''}const stamp=$('receiptStampPreview'),bg=$('receiptBgPreview'),status=$('receiptDesignStatus');stamp.src=receiptStampData;stamp.classList.toggle('hidden',!receiptStampData);bg.src=receiptBgData;bg.classList.toggle('hidden',!receiptBgData);status.textContent='';status.classList.add('hidden');}catch(e){const status=$('receiptDesignStatus');status.textContent='';status.classList.add('hidden');console.error('Receipt design settings unavailable',e)}}
-$('receiptStampUpload').addEventListener('change',async e=>{try{pendingStampData=await readReceiptImage(e.target.files[0]);$('receiptStampPreview').src=pendingStampData;$('receiptStampPreview').classList.toggle('hidden',!pendingStampData)}catch(err){toast(err.message)}});
+$('receiptStampUpload').addEventListener('change',async e=>{try{const file=e.target.files&&e.target.files[0];if(!file)return;pendingStampData=await readReceiptImage(file);$('receiptStampPreview').src=pendingStampData;$('receiptStampPreview').classList.toggle('hidden',!pendingStampData);const status=$('receiptDesignStatus');status.textContent='नई मोहर चुनी गई है — पुरानी मोहर बदलने के लिए “मोहर / बैकग्राउंड सेव करें” दबाएँ।';status.classList.remove('hidden')}catch(err){toast(err.message)}});
 $('receiptBgUpload').addEventListener('change',async e=>{try{pendingBgData=await readReceiptImage(e.target.files[0]);$('receiptBgPreview').src=pendingBgData;$('receiptBgPreview').classList.toggle('hidden',!pendingBgData)}catch(err){toast(err.message)}});
 $('saveReceiptDesign').addEventListener('click',async()=>{if(!admin()||!user)return toast('Admin लॉगिन करके सेव करें।');try{const stamp=pendingStampData||receiptStampData,bg=pendingBgData||receiptBgData;if(!stamp&&!bg)return toast('पहले मोहर या बैकग्राउंड चुनें।');await setDoc(doc(db,'receiptSettings','design'),{stampData:stamp,backgroundData:bg,updatedAt:serverTimestamp(),updatedByUid:user.uid,updatedByName:actorName()});receiptStampData=stamp;receiptBgData=bg;pendingStampData='';pendingBgData='';$('receiptStampUpload').value='';$('receiptBgUpload').value='';await loadReceiptDesign();toast('रसीद डिज़ाइन सेव हो गया।')}catch(e){toast('सेव नहीं हुआ: '+e.message)}});
 function renderReceipt(b){
@@ -1328,10 +1329,10 @@ $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Ke
  function notice(text,ok=false){const el=byId('schoolIdFormNotice');if(el)el.innerHTML=text?'<div class="msg '+(ok?'ok':'')+'">'+escapeHtml(text)+'</div>':''}
  function historyNotice(text){const el=byId('schoolIdHistoryNotice');if(el)el.textContent=text||''}
  function templateNotice(text,ok=false){const el=byId('sidTemplateNotice');if(el){el.textContent=text||'';el.style.color=ok?'#5ce0c0':''}}
- function actorName(){return String(profile?.name||user?.email||'Staff').slice(0,100)}
+ function actorName(){const n=String(profile?.name||user?.email||'Staff').slice(0,100);window.__mjkActorName=n;return n}
  function actornam(){return actorName()}
  // Compatibility alias for any legacy bill/ID-card handlers that call the old lowercase helper.
- window.actornam=()=>String(profile?.name||user?.email||'Staff').slice(0,100);
+ window.actornam=()=>actorName();
  function currentOrientation(){return val('sidOrientation')==='portrait'?'portrait':'landscape'}
  function getSchool(id){return schools.find(s=>s.id===id)||null}
  function defaultTemplatePositions(orientation='landscape'){

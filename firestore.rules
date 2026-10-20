@@ -150,7 +150,7 @@ service cloud.firestore {
           'studentName','studentId','fatherName','motherName','schoolId','language',
           'schoolName','schoolAddress','schoolPhone','className',
           'section','rollNumber','dob','phone','academicYear',
-          'studentPhoto','schoolLogo','orientation','createdByUid','createdByName',
+          'studentPhoto','schoolLogo','orientation','cardTheme','createdByUid','createdByName',
           'createdAt','updatedAt','updatedByUid','updatedByName','deleted'
         ])
         && request.resource.data.keys().hasOnly([
@@ -170,6 +170,7 @@ service cloud.firestore {
         && (request.resource.data.schoolId == '' || exists(/databases/$(database)/documents/schoolIdSchools/$(request.resource.data.schoolId)))
         && request.resource.data.orientation is string
         && request.resource.data.orientation in ['landscape', 'portrait']
+        && (!('cardTheme' in request.resource.data) || (request.resource.data.cardTheme is string && request.resource.data.cardTheme in ['navy','black','blue','green','purple','mix']))
         && request.resource.data.fatherName is string
         && request.resource.data.motherName is string
         && request.resource.data.schoolName is string
@@ -203,7 +204,7 @@ service cloud.firestore {
           'studentName','studentId','fatherName','motherName','schoolId','language',
           'schoolName','schoolAddress','schoolPhone','className',
           'section','rollNumber','dob','phone','academicYear',
-          'studentPhoto','schoolLogo','orientation','updatedAt','updatedByUid',
+          'studentPhoto','schoolLogo','orientation','cardTheme','updatedAt','updatedByUid',
           'updatedByName','deleted','deletedAt','deletedByUid','deletedByName'
         ])
         && request.resource.data.updatedAt == request.time
@@ -220,6 +221,7 @@ service cloud.firestore {
         && (!('orientation' in request.resource.data)
           || (request.resource.data.orientation is string
             && request.resource.data.orientation in ['landscape', 'portrait']))
+        && (!('cardTheme' in request.resource.data) || (request.resource.data.cardTheme is string && request.resource.data.cardTheme in ['navy','black','blue','green','purple','mix']))
         && (!('language' in request.resource.data)
           || (request.resource.data.language is string
             && request.resource.data.language in ['hi', 'en']))

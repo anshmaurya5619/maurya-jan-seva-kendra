@@ -394,6 +394,18 @@ body {
 
 
 
+/* Receipt design panel stays consistent with the dark navy/teal/gold site theme */
+.receipt-design-panel{background:linear-gradient(145deg,#1b3150,#14223c)!important;border:1px solid #3a5578!important;color:#f5f7fb!important;box-shadow:0 12px 30px #02081744}
+.receipt-design-panel h3{color:#ffc96b!important;font-size:19px;letter-spacing:.2px}
+.receipt-design-panel p,.receipt-design-panel .small{color:#c7d5e8!important}
+.receipt-design-panel .field label{color:#5ce0c0!important;font-size:13px;font-weight:800}
+.receipt-design-panel input[type=file]{background:#09172b!important;color:#f7f8fc!important;border:1px solid #3a5578!important;padding:12px!important;min-height:48px}
+.receipt-design-panel input[type=file]::file-selector-button{background:linear-gradient(135deg,#ffc96b,#f5a93e);color:#172039;border:0;border-radius:7px;padding:8px 12px;font-weight:800;margin-right:10px;cursor:pointer}
+.receipt-design-panel #receiptDesignStatus{color:#5ce0c0!important;font-weight:700}
+.contact-card{background:linear-gradient(145deg,#1b3150ed,#14223ced)!important;color:#f5f7fb!important}
+.contact-card h3,.contact-card h4{color:#f5f7fb}
+.contact-card p,.contact-card label,.contact-card .muted{color:#c7d5e8!important}
+.contact-card input,.contact-card select,.contact-card textarea{background:#09172b!important;color:#f7f8fc!important;border-color:#38516f!important}
 </style></head><body>
 <header class="topbar"><div class="topinner"><a class="brand" href="#home" id="brandHome"><span class="logo">MJ</span><span>Maurya Jan Seva Kendra<small>DIGITAL SERVICE • TRUST • CARE</small></span></a><nav class="nav"><a class="nav-link" href="#services">सेवाएँ</a><a class="nav-link" href="#contact">संपर्क</a><button class="gold" id="openLogin">Admin Login</button><button type="button" class="language-toggle" id="languageToggle" aria-label="Switch language">हिंदी | English</button></nav></div></header>
 <main id="publicSite">
@@ -410,7 +422,7 @@ body {
 <div class="split"><div class="result"><span class="muted small">आज की वसूली</span><h3 id="activityTodayPaid">₹0</h3></div><div class="result"><span class="muted small">आज का खर्च</span><h3 id="activityTodayExpense">₹0</h3></div></div>
 <div style="overflow-x:auto;margin-top:14px"><table><thead><tr><th>तारीख और समय (IST)</th><th>गतिविधि</th><th>विवरण</th><th>रकम</th></tr></thead><tbody id="activityRows"><tr><td colspan="4">डेटा लोड होने की प्रतीक्षा है।</td></tr></tbody></table></div>
 <p class="muted small" id="activitySummary">लॉगिन के बाद गतिविधियाँ दिखाई देंगी।</p></div></section>
-<section class="page hidden" id="page-billing"><div class="panel"><h2>नया बिल बनाएँ</h2><p class="muted small">अलग ग्राहक रजिस्ट्रेशन नहीं। हर बिल पर ग्राहक की जानकारी और काम का रिकॉर्ड सेव होगा; पुराने बिल खोजकर उसी ग्राहक का अगला काम भी जोड़ सकते हैं।</p><div class="panel" style="margin:14px 0;background:linear-gradient(135deg,#edf4ff,#fff6e5);border:1px solid #c7d7ee;color:#18365d">
+<section class="page hidden" id="page-billing"><div class="panel"><h2>नया बिल बनाएँ</h2><p class="muted small">अलग ग्राहक रजिस्ट्रेशन नहीं। हर बिल पर ग्राहक की जानकारी और काम का रिकॉर्ड सेव होगा; पुराने बिल खोजकर उसी ग्राहक का अगला काम भी जोड़ सकते हैं।</p><div class="panel receipt-design-panel" style="margin:14px 0">
 <h3 style="margin:0 0 8px;color:#244b85">रसीद का डिज़ाइन</h3><p class="small" style="color:#526783">मोहर और हल्का बैकग्राउंड एक बार सेव करें। हर नई रसीद में अपने-आप आएगा।</p>
 <div class="formgrid"><div class="field"><label>मोहर की फोटो</label><input id="receiptStampUpload" type="file" accept="image/png,image/jpeg,image/webp"><img id="receiptStampPreview" class="hidden" alt="मोहर" style="width:80px;height:80px;object-fit:contain"></div>
 <div class="field"><label>बिल का हल्का बैकग्राउंड</label><input id="receiptBgUpload" type="file" accept="image/png,image/jpeg,image/webp"><img id="receiptBgPreview" class="hidden" alt="बैकग्राउंड" style="width:140px;height:80px;object-fit:cover;opacity:.6"></div></div>

@@ -150,7 +150,7 @@ service cloud.firestore {
           'studentName','studentId','fatherName','motherName','schoolId','language',
           'schoolName','schoolAddress','schoolPhone','className',
           'section','rollNumber','dob','phone','academicYear',
-          'studentPhoto','schoolLogo','orientation','cardTheme','createdByUid','createdByName',
+          'studentPhoto','schoolLogo','orientation','cardTheme','cardTopColor','cardBottomColor','createdByUid','createdByName',
           'createdAt','updatedAt','updatedByUid','updatedByName','deleted'
         ])
         && request.resource.data.keys().hasOnly([
@@ -206,7 +206,7 @@ service cloud.firestore {
           'studentName','studentId','fatherName','motherName','schoolId','language',
           'schoolName','schoolAddress','schoolPhone','className',
           'section','rollNumber','dob','phone','academicYear',
-          'studentPhoto','schoolLogo','orientation','cardTheme','updatedAt','updatedByUid',
+          'studentPhoto','schoolLogo','orientation','cardTheme','cardTopColor','cardBottomColor','updatedAt','updatedByUid',
           'updatedByName','deleted','deletedAt','deletedByUid','deletedByName'
         ])
         && request.resource.data.updatedAt == request.time

@@ -81,4 +81,12 @@ assert.equal(schoolRules.includes('request.resource.data.schoolName.size() > 0')
 assert.ok(schoolRules.includes('allow delete: if false;'), 'Permanent card deletion must remain denied');
 assert.ok(rules.includes('match /{document=**} { allow read, write: if false; }'), 'Default-deny rule must remain');
 
+assert.ok(html.includes("createdAtLocal:createdAtLocal"), 'Bill creation must persist the already-serialized local ISO timestamp');
+assert.equal(html.includes('createdAtLocal.toISOString()'), false, 'Do not call toISOString on the local ISO timestamp string');
+assert.ok(html.includes("तारीख: '+date+' · समय (IST): '+time"), 'Bill lists must show explicit full date and time');
+assert.ok(html.includes("activityDateTime(b.createdAt)||activityDateTime(b.createdAtLocal)"), 'Activity and receipt views must fall back to the local timestamp');
+assert.ok(html.includes('id="sidCardTopColor"') && html.includes('id="sidCardBottomColor"'), 'School ID cards must support independent top/bottom colors');
+assert.ok(schoolRules.includes("'cardTopColor','cardBottomColor'"), 'Firestore rules must allow custom card colors');
+assert.ok(rules.includes("'createdAtLocal'"), 'Firestore rules must allow the local bill timestamp');
+
 console.log('PASS: School ID static checks');

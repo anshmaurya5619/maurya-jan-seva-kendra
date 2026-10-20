@@ -54,7 +54,7 @@ function cardData(uid, schoolId='', overrides={}) {
     studentName:'', studentId:'', fatherName:'', motherName:'',
     schoolId, schoolName:'', schoolAddress:'', schoolPhone:'', language:'hi',
     className:'', section:'', rollNumber:'', dob:'', phone:'', academicYear:'',
-    studentPhoto:'', schoolLogo:'', orientation:'landscape',
+    studentPhoto:'', schoolLogo:'', orientation:'landscape', cardTheme:'navy', cardTopColor:'#1d3b63', cardBottomColor:'#ffffff',
     createdByUid:uid, createdByName:'Test Admin',
     createdAt:serverTimestamp(), updatedAt:serverTimestamp(),
     updatedByUid:uid, updatedByName:'Test Admin', deleted:false,

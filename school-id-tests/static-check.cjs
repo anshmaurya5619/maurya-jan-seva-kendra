@@ -82,6 +82,7 @@ assert.ok(schoolRules.includes('allow delete: if false;'), 'Permanent card delet
 assert.ok(rules.includes('match /{document=**} { allow read, write: if false; }'), 'Default-deny rule must remain');
 
 assert.ok(html.includes("createdAtLocal:createdAtLocal"), 'Bill creation must persist the already-serialized local ISO timestamp');
+assert.ok(html.includes('function dateInputValue()') && !html.includes("new Date().toLocaleDateString('en-CA')"), 'HTML date inputs must use a stable YYYY-MM-DD date in India time');
 assert.equal(html.includes('createdAtLocal.toISOString()'), false, 'Do not call toISOString on the local ISO timestamp string');
 assert.ok(html.includes("तारीख: '+date+' · समय (IST): '+time"), 'Bill lists must show explicit full date and time');
 assert.ok(html.includes("activityDateTime(b.createdAt)||activityDateTime(b.createdAtLocal)"), 'Activity and receipt views must fall back to the local timestamp');

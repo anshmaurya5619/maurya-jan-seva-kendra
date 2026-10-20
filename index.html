@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- MJK_BUILD_VERSION: 2026-10-20-1317 -->
+<!-- MJK_BUILD_VERSION: 2026-10-20-camera-page -->
 <html lang="hi">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101a33">
@@ -411,7 +411,7 @@ body {
 .contact-card input,.contact-card select,.contact-card textarea{background:#09172b!important;color:#ffffff!important;border-color:#527092!important}
 .contact-card input::placeholder,.contact-card textarea::placeholder{color:#c2d0e3!important;opacity:1!important}
 .contact-card button{color:#172039!important;font-weight:850!important}
-</style></head><body>
+.sid-camera-page{position:fixed;inset:0;z-index:1000;background:linear-gradient(145deg,#091426,#142b49);padding:clamp(14px,3vw,28px);display:flex;flex-direction:column;gap:16px}.sid-camera-page.hidden{display:none!important}.sid-camera-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.sid-camera-head h2{margin:0 0 6px}.sid-camera-view{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:#02050a;border:1px solid #3a5575;border-radius:16px;overflow:hidden}.sid-camera-view video{display:block;width:100%;height:100%;max-height:calc(100dvh - 190px);object-fit:contain}.sid-camera-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.sid-camera-actions button{min-width:145px}@media(max-width:580px){.sid-camera-page{padding:12px}.sid-camera-head h2{font-size:20px}.sid-camera-view video{max-height:calc(100dvh - 170px)}}</style></head><body>
 <header class="topbar"><div class="topinner"><a class="brand" href="#home" id="brandHome"><span class="logo">MJ</span><span>Maurya Jan Seva Kendra<small>DIGITAL SERVICE • TRUST • CARE</small></span></a><nav class="nav"><a class="nav-link" href="#services">सेवाएँ</a><a class="nav-link" href="#contact">संपर्क</a><button class="gold" id="openLogin">Admin Login</button><button type="button" class="language-toggle" id="languageToggle" aria-label="Switch language">हिंदी | English</button></nav></div></header>
 <main id="publicSite">
 <section class="wrap hero" id="home"><div class="hero-copy"><div class="eyebrow">आपकी अपनी डिजिटल सेवा केंद्र</div><h1>हर ज़रूरी सेवा,<br><span>एक ही जगह।</span></h1><p class="lead">ऑनलाइन फॉर्म, दस्तावेज़ सहायता, प्रिंट, बिल और डिजिटल सेवाओं की जानकारी। साफ़ रिकॉर्ड और भरोसेमंद सहायता के लिए हमसे संपर्क करें।</p><div class="actions"><a href="https://wa.me/919076855003" target="_blank" rel="noopener"><button class="gold">WhatsApp संपर्क</button></a><a href="#services"><button class="secondary">सेवाएँ देखें</button></a></div><div class="notice">अपना Aadhaar नंबर, OTP, पासवर्ड या मूल दस्तावेज़ की फोटो सार्वजनिक वेबसाइट पर साझा न करें।</div><p class="small muted">यह एक निजी सेवा केंद्र है, सरकारी विभाग की आधिकारिक वेबसाइट नहीं। सेवा और शुल्क की पुष्टि केंद्र से करें।</p></div>
@@ -554,7 +554,7 @@ body {
       <div class="field full"><label for="sidSchoolSelect">स्कूल चुनें (रिकॉर्ड इसी स्कूल के अंतर्गत रहेगा)</label><select id="sidSchoolSelect"><option value="">स्कूल चुनें या खाली छोड़ें</option></select><small class="muted">नया स्कूल पहले ऊपर रिकॉर्ड सूची से जोड़ें। सभी छात्र विवरण वैकल्पिक हैं।</small></div>
       <div class="field"><label for="sidOrientation">कार्ड की दिशा चुनें</label><select id="sidOrientation"><option value="landscape">Horizontal — आड़ा कार्ड</option><option value="portrait">Vertical — खड़ा कार्ड</option></select></div>
       <div class="formgrid">
-        <div class="field"><label for="sidStudentName">छात्र का पूरा नाम</label><input id="sidStudentName" maxlength="100"></div><div class="field full"><label for="sidDocumentReadFile">दस्तावेज़ से जानकारी अपने-आप पढ़ें (फोटो / PDF)</label><input id="sidDocumentReadFile" type="file" accept="image/*,application/pdf"><p class="muted small">दस्तावेज़ चुनें; नाम, पिता का नाम, कक्षा, रोल नंबर और जन्म तिथि जैसे उपलब्ध फ़ील्ड पढ़कर भरने की कोशिश होगी। OCR गलत पढ़ सकता है, सेव करने से पहले जाँच लें। फ़ाइल आपके ब्राउज़र में प्रोसेस होगी।</p><div id="sidDocumentReadStatus" class="muted small" aria-live="polite"></div></div><div class="school-id-photo-row full"><div class="school-id-upload"><label for="sidStudentPhoto">छात्र की फोटो (वैकल्पिक)</label><input id="sidStudentPhoto" type="file" accept="image/*"><div class="row" style="flex-wrap:wrap;margin-top:8px"><button class="secondary" id="sidOpenCamera" type="button">📷 कैमरा खोलें</button><button class="gold hidden" id="sidCapturePhoto" type="button">फोटो खींचें</button><button class="outline hidden" id="sidCloseCamera" type="button">कैमरा बंद करें</button></div><video id="sidStudentCamera" class="hidden" autoplay playsinline muted style="width:100%;max-width:320px;border-radius:12px;margin-top:8px;background:#000"></video><canvas id="sidStudentCameraCanvas" class="hidden"></canvas><p id="sidCameraStatus" class="muted small" aria-live="polite">मोबाइल या लैपटॉप का कैमरा इस्तेमाल कर सकते हैं; ब्राउज़र अनुमति माँगेगा।</p><img id="sidStudentPhotoPreview" alt="छात्र की फोटो का प्रीव्यू" class="hidden"></div><div class="school-id-upload"><label for="sidSchoolLogo">स्कूल का लोगो / फोटो (वैकल्पिक)</label><input id="sidSchoolLogo" type="file" accept="image/*"><img id="sidSchoolLogoPreview" alt="स्कूल लोगो का प्रीव्यू" class="hidden"></div></div>
+        <div class="field"><label for="sidStudentName">छात्र का पूरा नाम</label><input id="sidStudentName" maxlength="100"></div><div class="field full"><label for="sidDocumentReadFile">दस्तावेज़ से जानकारी अपने-आप पढ़ें (फोटो / PDF)</label><input id="sidDocumentReadFile" type="file" accept="image/*,application/pdf"><p class="muted small">दस्तावेज़ चुनें; नाम, पिता का नाम, कक्षा, रोल नंबर और जन्म तिथि जैसे उपलब्ध फ़ील्ड पढ़कर भरने की कोशिश होगी। OCR गलत पढ़ सकता है, सेव करने से पहले जाँच लें। फ़ाइल आपके ब्राउज़र में प्रोसेस होगी।</p><div id="sidDocumentReadStatus" class="muted small" aria-live="polite"></div></div><div class="school-id-photo-row full"><div class="school-id-upload"><label for="sidStudentPhoto">छात्र की फोटो</label><input id="sidStudentPhoto" type="file" accept="image/*"><button class="secondary" id="sidOpenCamera" type="button" style="margin-top:8px;width:100%">📷 कैमरा खोलें</button><img id="sidStudentPhotoPreview" alt="छात्र की फोटो का प्रीव्यू" class="hidden"></div><div class="school-id-upload"><label for="sidSchoolLogo">स्कूल का लोगो / फोटो</label><input id="sidSchoolLogo" type="file" accept="image/*"><button class="secondary" id="sidOpenLogoCamera" type="button" style="margin-top:8px;width:100%">📷 कैमरा खोलें</button><img id="sidSchoolLogoPreview" alt="स्कूल लोगो का प्रीव्यू" class="hidden"></div></div>
         <div class="field"><label for="sidLanguage">कार्ड की भाषा / Card language</label><select id="sidLanguage"><option value="hi">हिन्दी — Hindi</option><option value="en">English</option></select></div>
         <div class="field"><label for="sidFather">पिता का नाम</label><input id="sidFather" maxlength="100"></div>
         <div class="field"><label for="sidMother">माता का नाम</label><input id="sidMother" maxlength="100"></div>
@@ -625,7 +625,7 @@ body {
 
 <section class="page hidden" id="page-receipt"><div class="panel no-print"><div class="row"><button class="secondary" data-go="bills">← बिल रिकॉर्ड</button><button class="gold" id="printReceipt">Print / PDF</button><button class="secondary" id="shareReceipt">WhatsApp शेयर</button></div></div><div id="receiptContent"></div></section>
 </div></section>
-<footer class="wrap footer" id="footer">© <span id="year"></span> Maurya Jan Seva Kendra · Private service centre, not a government website.</footer><div id="toast" class="toast hidden" role="status"></div>
+<footer class="wrap footer" id="footer">© <span id="year"></span> Maurya Jan Seva Kendra · Private service centre, not a government website.</footer><div id="toast" class="toast hidden" role="status"></div><section id="sidCameraPage" class="sid-camera-page hidden" role="dialog" aria-modal="true" aria-labelledby="sidCameraPageTitle"><header class="sid-camera-head"><div><h2 id="sidCameraPageTitle">छात्र की फोटो खींचें</h2><p id="sidCameraStatus" class="muted small" aria-live="polite">कैमरा शुरू हो रहा है…</p></div><button id="sidCameraPageClose" class="outline" type="button">✕ बंद करें</button></header><div class="sid-camera-view"><video id="sidStudentCamera" autoplay playsinline muted></video><canvas id="sidStudentCameraCanvas" class="hidden"></canvas></div><div class="sid-camera-actions"><button class="gold" id="sidCapturePhoto" type="button">📸 फोटो खींचें</button><button class="secondary" type="button" id="sidCloseCamera">वापस जाएँ</button></div></section>
 <script>
 window.__mjkActorName=window.__mjkActorName||'Staff';var actornam=function(){return String(window.__mjkActorName||'Staff').slice(0,100)};window.actornam=actornam;var actorName=window.actorName||actornam;window.actorName=actorName;
 window.addEventListener('error',function(e){var p=document.getElementById('loginMsg');if(p){var detail=(e&&e.message?String(e.message):'Script load error');var source=e&&e.filename?String(e.filename).split('/').pop():'';var line=e&&e.lineno?':'+e.lineno:'';p.innerHTML='<div class="msg">वेबसाइट स्क्रिप्ट Error: '+detail.replace(/[&<>"]/g,function(s){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]})+(source?' ('+source+line+')':'')+'. यदि Firebase CDN लोड नहीं हुआ तो इंटरनेट/ब्राउज़र जाँचें।</div>';}});
@@ -1868,33 +1868,41 @@ async function loadSchoolIdCardHistory(){
   }catch(e){historyNotice('History नहीं लोड हुई: '+e.message)}
  }
 
- let studentCameraStream=null;
+ let studentCameraStream=null,cameraTarget='student';
  function stopStudentCamera(){
   if(studentCameraStream){studentCameraStream.getTracks().forEach(track=>track.stop());studentCameraStream=null}
-  const video=byId('sidStudentCamera');if(video){video.pause();video.srcObject=null;video.classList.add('hidden')}
-  byId('sidCapturePhoto').classList.add('hidden');byId('sidCloseCamera').classList.add('hidden');
+  const video=byId('sidStudentCamera');if(video){video.pause();video.srcObject=null}
+  byId('sidCameraPage').classList.add('hidden');
  }
- byId('sidOpenCamera').addEventListener('click',async()=>{
-  const status=byId('sidCameraStatus');
+ async function openStudentCamera(target){
+  cameraTarget=target;
+  byId('sidCameraPageTitle').textContent=target==='student'?'छात्र की फोटो खींचें':'स्कूल का लोगो / फोटो खींचें';
+  const status=byId('sidCameraStatus');status.textContent='कैमरा शुरू हो रहा है…';
+  byId('sidCameraPage').classList.remove('hidden');
   if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){status.textContent='इस ब्राउज़र में कैमरा उपलब्ध नहीं है। HTTPS वेबसाइट खोलें या फोटो अपलोड करें।';return}
   try{
-   stopStudentCamera();
+   if(studentCameraStream)studentCameraStream.getTracks().forEach(track=>track.stop());
+   studentCameraStream=null;
    studentCameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});
-   const video=byId('sidStudentCamera');video.srcObject=studentCameraStream;video.classList.remove('hidden');
-   await video.play();byId('sidCapturePhoto').classList.remove('hidden');byId('sidCloseCamera').classList.remove('hidden');
-   status.textContent='कैमरा चालू है। बच्चे को फ्रेम में रखकर “फोटो खींचें” दबाएँ।';
-  }catch(e){stopStudentCamera();status.textContent='कैमरा नहीं खुला: '+(e.name==='NotAllowedError'?'ब्राउज़र में Camera permission Allow करें।':e.message||'कैमरा अनुमति/डिवाइस जाँचें।')}
- });
+   const video=byId('sidStudentCamera');video.srcObject=studentCameraStream;await video.play();
+   status.textContent='फ्रेम ठीक करके “फोटो खींचें” दबाएँ।';
+  }catch(e){stopStudentCamera();byId('sidCameraPage').classList.remove('hidden');status.textContent='कैमरा नहीं खुला: '+(e.name==='NotAllowedError'?'ब्राउज़र में Camera permission Allow करें।':e.message||'कैमरा अनुमति/डिवाइस जाँचें।')}
+ }
+ byId('sidOpenCamera').addEventListener('click',()=>openStudentCamera('student'));
+ byId('sidOpenLogoCamera').addEventListener('click',()=>openStudentCamera('logo'));
  byId('sidCapturePhoto').addEventListener('click',()=>{
   const video=byId('sidStudentCamera'),canvas=byId('sidStudentCameraCanvas'),status=byId('sidCameraStatus');
   if(!video.videoWidth||!video.videoHeight){status.textContent='कैमरा तैयार नहीं है; एक पल बाद फिर कोशिश करें।';return}
   const scale=Math.min(1,600/Math.max(video.videoWidth,video.videoHeight));canvas.width=Math.round(video.videoWidth*scale);canvas.height=Math.round(video.videoHeight*scale);
   canvas.getContext('2d').drawImage(video,0,0,canvas.width,canvas.height);
-  studentPhoto=canvas.toDataURL('image/jpeg',0.78);
-  const preview=byId('sidStudentPhotoPreview');preview.src=studentPhoto;preview.classList.remove('hidden');
-  byId('sidStudentPhoto').value='';stopStudentCamera();status.textContent='फोटो कैप्चर हो गई। कार्ड सेव करने से पहले प्रीव्यू देख लें।';updateCardPreview();
+  const data=canvas.toDataURL('image/jpeg',0.78),which=cameraTarget;
+  if(which==='student')studentPhoto=data;else schoolLogo=data;
+  const preview=byId(which==='student'?'sidStudentPhotoPreview':'sidSchoolLogoPreview');preview.src=data;preview.classList.remove('hidden');
+  byId(which==='student'?'sidStudentPhoto':'sidSchoolLogo').value='';
+  stopStudentCamera();updateCardPreview();
  });
- byId('sidCloseCamera').addEventListener('click',()=>{stopStudentCamera();byId('sidCameraStatus').textContent='कैमरा बंद है। जरूरत पर दोबारा खोलें।'});
+ byId('sidCloseCamera').addEventListener('click',stopStudentCamera);
+ byId('sidCameraPageClose').addEventListener('click',stopStudentCamera);
  byId('sidStudentPhoto').addEventListener('change',()=>setImage('sidStudentPhoto','sidStudentPhotoPreview','student'));
  byId('sidSchoolLogo').addEventListener('change',()=>setImage('sidSchoolLogo','sidSchoolLogoPreview','logo'));
  byId('sidCardTemplateFile').addEventListener('change',setCardTemplate);

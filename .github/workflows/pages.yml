@@ -21,6 +21,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Validate inline JavaScript syntax
+        run: |
+          node --input-type=commonjs <<'NODE'
+          const fs = require('fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)];
+          if (!scripts.length) throw new Error('No inline scripts found in index.html');
+          let checked = 0;
+          for (const [index, match] of scripts.entries()) {
+            const code = match[1].trim();
+            if (!code) continue;
+            new Function(code);
+            checked++;
+          }
+          if (!checked) throw new Error('No non-empty scripts were validated');
+          console.log(`Validated syntax for ${checked} inline scripts.`);
+          NODE
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload website

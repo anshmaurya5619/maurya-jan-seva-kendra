@@ -78,7 +78,7 @@ assert.ok(rules.includes('match /history/{historyId}'), 'Immutable school and we
 assert.ok(schoolRules.includes("request.resource.data.schoolId is string"), 'Cards should be associated with a school');
 assert.equal(schoolRules.includes('request.resource.data.studentName.size() > 0'), false, 'Student name must be optional');
 assert.equal(schoolRules.includes('request.resource.data.schoolName.size() > 0'), false, 'School name must be optional');
-assert.ok(schoolRules.includes('allow delete: if false;'), 'Permanent card deletion must remain denied');
+assert.ok(schoolRules.includes('allow delete: if admin() && resource.data.deleted == true;'), 'Only admins may permanently delete already soft-deleted cards');
 assert.ok(rules.includes('match /{document=**} { allow read, write: if false; }'), 'Default-deny rule must remain');
 
 assert.ok(html.includes("createdAtLocal:createdAtLocal"), 'Bill creation must persist the already-serialized local ISO timestamp');

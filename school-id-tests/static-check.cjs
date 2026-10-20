@@ -92,7 +92,7 @@ assert.ok(schoolRules.includes("'cardTopColor','cardBottomColor'"), 'Firestore r
 assert.ok(rules.includes("'createdAtLocal'"), 'Firestore rules must allow the local bill timestamp');
 
 
-const storedDateSource = getBetween(html, 'function storedDateKey(value){', '\\nfunction activityDateTime(value){');
+const storedDateSource = getBetween(html, 'function storedDateKey(value){', 'function activityDateTime(value){');
 const storedDateKey = new Function(storedDateSource + '; return storedDateKey;')();
 assert.equal(storedDateKey('2026-10-20'), '2026-10-20');
 assert.equal(storedDateKey('20/10/2026'), '2026-10-20');

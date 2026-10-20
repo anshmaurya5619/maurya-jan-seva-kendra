@@ -616,7 +616,32 @@ import{getFirestore,doc,getDoc,setDoc,updateDoc,deleteDoc,writeBatch,collection,
 const cfg={apiKey:'AIzaSyARVksls_K3TwXGIBcltzcUYbwgh3_dhYc',authDomain:'maurya-jan-seva-kendra.firebaseapp.com',projectId:'maurya-jan-seva-kendra',storageBucket:'maurya-jan-seva-kendra.firebasestorage.app',messagingSenderId:'340620457116',appId:'1:340620457116:web:d7c2a099603500d12d2959',measurementId:'G-JX4PRTGSZ9'};
 const app=getApps().find(a=>a.name==='[DEFAULT]')||initializeApp(cfg),auth=getAuth(app),db=getFirestore(app),$=id=>document.getElementById(id),money=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:2}).format(Number(n||0)),escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let user=null,profile=null,bills=[],customers=[],chosenCustomer=null,receiptData=null,photoData='',expenses=[];$('year').textContent=new Date().getFullYear();$('billDate').value=dateInputValue();$('expenseDate').value=dateInputValue();
-function msg(id,t,ok=false){$(id).innerHTML=t?`<div class="msg ${ok?'ok':''}">${escapeHtml(t)}</div>`:''}function toast(t){$('toast').textContent=t;$('toast').classList.remove('hidden');setTimeout(()=> $('toast').classList.add('hidden'),3500)}function staff(){return !!profile&&profile.status==='active'&&['admin','worker'].includes(profile.role)}function admin(){return !!profile&&profile.status==='active'&&profile.role==='admin'}
+function msg(id,t,ok=false){$(id).innerHTML=t?`<div class="msg ${ok?'ok':''}">${escapeHtml(t)}</div>`:''}// Early independent login handler with visible Firebase diagnostics.
+const earlyLoginForm=$('loginForm');
+if(earlyLoginForm&&!earlyLoginForm.dataset.earlyLoginBound){
+ earlyLoginForm.dataset.earlyLoginBound='1';
+ earlyLoginForm.addEventListener('submit',async ev=>{
+  ev.preventDefault();ev.stopImmediatePropagation();
+  const btn=$('loginBtn'),email=$('email').value.trim(),password=$('password').value;
+  btn.disabled=true;msg('loginMsg','लॉगिन जाँच रहे हैं…');
+  try{
+   if(!email||!password)throw Object.assign(new Error('Email और Password दोनों भरें।'),{code:'input/missing'});
+   await Promise.race([signInWithEmailAndPassword(auth,email,password),new Promise((_,reject)=>setTimeout(()=>reject(Object.assign(new Error('Firebase से 15 सेकंड में जवाब नहीं आया।'),{code:'timeout'})),15000))]);
+   msg('loginMsg','लॉगिन सफल हुआ; Staff Profile लोड हो रही है…',true);
+  }catch(err){
+   console.error('MJK early login diagnostic',err.code,err.message);
+   let message='लॉगिन नहीं हुआ ('+(err.code||'unknown')+'): '+(err.message||'दोबारा कोशिश करें।');
+   if(['auth/invalid-credential','auth/wrong-password','auth/user-not-found','auth/invalid-email'].includes(err.code))message='Email या Password सही नहीं है।';
+   if(err.code==='auth/unauthorized-domain')message='Firebase Console → Authentication → Settings → Authorized domains में maurya5619.github.io जोड़ें।';
+   if(err.code==='auth/operation-not-allowed')message='Firebase Console → Authentication → Sign-in method में Email/Password चालू करें।';
+   if(err.code==='auth/network-request-failed'||err.code==='timeout')message='Firebase से कनेक्शन नहीं बन रहा। इंटरनेट और Firebase Authentication जाँचें। ('+err.code+')';
+   if(err.code==='auth/too-many-requests')message='बहुत बार कोशिश हुई है। कुछ देर रुककर फिर प्रयास करें।';
+   msg('loginMsg',message);
+  }finally{btn.disabled=false}
+  return false;
+ },true);
+}
+function toast(t){$('toast').textContent=t;$('toast').classList.remove('hidden');setTimeout(()=> $('toast').classList.add('hidden'),3500)}function staff(){return !!profile&&profile.status==='active'&&['admin','worker'].includes(profile.role)}function admin(){return !!profile&&profile.status==='active'&&profile.role==='admin'}
 
 let cscKendraLinks=[];
 let cscLegacyFallback=false;

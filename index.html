@@ -1606,7 +1606,7 @@ async function addSchool(){
   }else selectedSchoolId=previousSchoolId;
   populateSchoolSelects();
   loadSelectedSchoolDesign(getSchool(selectedSchoolId));
-  Object.entries(fields).filter(([field])=>field!=='sidOrientation').forEach(([field,key])=>byId(field).value=d[key]||'');
+  Object.entries(fields).filter(([field])=>field!=='sidOrientation').forEach(([field,key])=>byId(field).value=d[key]||'');byId('sidCardTopColor').value=d.cardTopColor||'#1d3b63';byId('sidCardBottomColor').value=d.cardBottomColor||'#ffffff';
   byId('sidOrientation').value=d.orientation||'landscape';
   byId('sidLanguage').value=d.language==='en'?'en':'hi';
   updateTemplateFieldOptions(val('sidLanguage'));

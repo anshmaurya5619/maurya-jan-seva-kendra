@@ -533,7 +533,7 @@ body {
       <div class="field full"><label for="sidSchoolSelect">स्कूल चुनें (रिकॉर्ड इसी स्कूल के अंतर्गत रहेगा)</label><select id="sidSchoolSelect"><option value="">स्कूल चुनें या खाली छोड़ें</option></select><small class="muted">नया स्कूल पहले ऊपर रिकॉर्ड सूची से जोड़ें। सभी छात्र विवरण वैकल्पिक हैं।</small></div>
       <div class="field"><label for="sidOrientation">कार्ड की दिशा चुनें</label><select id="sidOrientation"><option value="landscape">Horizontal — आड़ा कार्ड</option><option value="portrait">Vertical — खड़ा कार्ड</option></select></div>
       <div class="formgrid">
-        <div class="field"><label for="sidStudentName">छात्र का पूरा नाम</label><input id="sidStudentName" maxlength="100"></div><div class="school-id-photo-row full"><div class="school-id-upload"><label for="sidStudentPhoto">छात्र की फोटो (वैकल्पिक)</label><input id="sidStudentPhoto" type="file" accept="image/*"><img id="sidStudentPhotoPreview" alt="छात्र की फोटो का प्रीव्यू" class="hidden"></div><div class="school-id-upload"><label for="sidSchoolLogo">स्कूल का लोगो / फोटो (वैकल्पिक)</label><input id="sidSchoolLogo" type="file" accept="image/*"><img id="sidSchoolLogoPreview" alt="स्कूल लोगो का प्रीव्यू" class="hidden"></div></div>
+        <div class="field"><label for="sidStudentName">छात्र का पूरा नाम</label><input id="sidStudentName" maxlength="100"></div><div class="field full"><label for="sidDocumentReadFile">दस्तावेज़ से जानकारी अपने-आप पढ़ें (फोटो / PDF)</label><input id="sidDocumentReadFile" type="file" accept="image/*,application/pdf"><p class="muted small">दस्तावेज़ चुनें; नाम, पिता का नाम, कक्षा, रोल नंबर और जन्म तिथि जैसे उपलब्ध फ़ील्ड पढ़कर भरने की कोशिश होगी। OCR गलत पढ़ सकता है, सेव करने से पहले जाँच लें। फ़ाइल आपके ब्राउज़र में प्रोसेस होगी।</p><div id="sidDocumentReadStatus" class="muted small" aria-live="polite"></div></div><div class="school-id-photo-row full"><div class="school-id-upload"><label for="sidStudentPhoto">छात्र की फोटो (वैकल्पिक)</label><input id="sidStudentPhoto" type="file" accept="image/*"><img id="sidStudentPhotoPreview" alt="छात्र की फोटो का प्रीव्यू" class="hidden"></div><div class="school-id-upload"><label for="sidSchoolLogo">स्कूल का लोगो / फोटो (वैकल्पिक)</label><input id="sidSchoolLogo" type="file" accept="image/*"><img id="sidSchoolLogoPreview" alt="स्कूल लोगो का प्रीव्यू" class="hidden"></div></div>
         <div class="field"><label for="sidLanguage">कार्ड की भाषा / Card language</label><select id="sidLanguage"><option value="hi">हिन्दी — Hindi</option><option value="en">English</option></select></div>
         <div class="field"><label for="sidFather">पिता का नाम</label><input id="sidFather" maxlength="100"></div>
         <div class="field"><label for="sidMother">माता का नाम</label><input id="sidMother" maxlength="100"></div>
@@ -1390,6 +1390,60 @@ $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Ke
   const blob=await new Promise((resolve,reject)=>canvas.toBlob(value=>value?resolve(value):reject(Error('PDF image में convert नहीं हुई।')),'image/jpeg',.9));
   return compressImage(new File([blob],'school-id-template.jpg',{type:'image/jpeg'}),240000,1400);
  }
+ let tesseractPromise=null;
+ function loadTesseract(){
+  if(window.Tesseract)return Promise.resolve(window.Tesseract);
+  if(!tesseractPromise)tesseractPromise=new Promise((resolve,reject)=>{
+   const script=document.createElement('script');script.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';script.async=true;
+   script.onload=()=>window.Tesseract?resolve(window.Tesseract):reject(Error('OCR लाइब्रेरी लोड नहीं हुई।'));
+   script.onerror=()=>reject(Error('OCR लाइब्रेरी लोड नहीं हुई। इंटरनेट कनेक्शन जाँचें।'));
+   document.head.appendChild(script);
+  });
+  return tesseractPromise;
+ }
+ function ocrValue(text,patterns){
+  for(const pattern of patterns){
+   const re=new RegExp('(?:^|[\\n\\r])\\s*(?:'+pattern+')\\s*[:：\\-]?\\s*([^\\n\\r]{2,100})','im');
+   const m=text.match(re);if(m&&m[1]){const v=m[1].replace(/[|_]+/g,' ').replace(/\s{2,}/g,' ').trim();if(v)return v}
+  }
+  return '';
+ }
+ async function readStudentDocumentOCR(){
+  const input=byId('sidDocumentReadFile'),file=input.files?.[0],status=byId('sidDocumentReadStatus');
+  if(!file)return;
+  if(file.size>12*1024*1024){status.textContent='फ़ाइल 12 MB से छोटी रखें।';input.value='';return}
+  const btn=byId('schoolIdForm')?.querySelector('button[type="submit"]');if(btn)btn.disabled=true;
+  status.textContent='OCR तैयार हो रहा है… पहली बार भाषा डेटा डाउनलोड होने में समय लग सकता है।';
+  let worker;
+  try{
+   const lib=await loadTesseract();
+   worker=await lib.createWorker('eng+hin',1,{logger:m=>{if(m.status==='recognizing text')status.textContent='दस्तावेज़ पढ़ रहे हैं… '+Math.round((m.progress||0)*100)+'%'}});
+   let source=file;
+   if(file.type==='application/pdf'||/\.pdf$/i.test(file.name||''))source=await pdfTemplateToImage(file);
+   const result=await worker.recognize(source),text=result?.data?.text||'';
+   if(!text.trim())throw Error('दस्तावेज़ से पढ़ने योग्य टेक्स्ट नहीं मिला। साफ़ और सीधी फोटो आज़माएँ।');
+   const fields=[
+    ['sidStudentName',ocrValue(text,['student\\s*name','name\\s*of\\s*student','student','छात्र\\s*का\\s*नाम','विद्यार्थी\\s*का\\s*नाम','नाम'])],
+    ['sidFather',ocrValue(text,['father(?:\\x27s)?\\s*name','father','पिता\\s*का\\s*नाम','पिता'])],
+    ['sidMother',ocrValue(text,['mother(?:\\x27s)?\\s*name','mother','माता\\s*का\\s*नाम','माता'])],
+    ['sidClass',ocrValue(text,['class','कक्षा'])],
+    ['sidSection',ocrValue(text,['section','सेक्शन'])],
+    ['sidRoll',ocrValue(text,['roll\\s*(?:no|number)?','रोल\\s*(?:नंबर|संख्या)?'])],
+    ['sidDob',ocrValue(text,['date\\s*of\\s*birth','dob','जन्म\\s*तिथि','जन्म\\s*दिनांक'])],
+    ['sidPhone',ocrValue(text,['parent(?:s)?\\s*mobile','mobile\\s*(?:no|number)?','phone','मोबाइल','फोन'])]
+   ];
+   let count=0;
+   for(const [id,value] of fields){const el=byId(id);if(el&&value){el.value=value.slice(0,el.maxLength>0?el.maxLength:250);count++}}
+   if(!byId('sidStudentName').value.trim()){
+    const candidate=text.split(/\r?\n/).map(s=>s.replace(/[|:：]/g,' ').trim()).find(s=>s.length>=3&&s.length<=55&&!/(school|विद्यालय|student|father|mother|class|roll|date|birth|mobile|phone|address|नाम|पिता|माता|कक्षा|रोल|जन्म|मोबाइल|विद्यालय)/i.test(s));
+    if(candidate){byId('sidStudentName').value=candidate;count++}
+   }
+   updateCardPreview();
+   status.textContent=count?'पढ़ने की कोशिश पूरी: '+count+' फ़ील्ड भरे गए। सभी जानकारी जाँचकर ही सेव करें।':'टेक्स्ट पढ़ा गया, लेकिन पहचानने योग्य फ़ील्ड नहीं मिले। जानकारी हाथ से भरें।';
+  }catch(e){status.textContent='दस्तावेज़ नहीं पढ़ पाए: '+(e.message||'OCR त्रुटि')+' — जानकारी हाथ से भी भर सकते हैं।'}
+  finally{if(worker)try{await worker.terminate()}catch{}if(btn)btn.disabled=false}
+ }
+ byId('sidDocumentReadFile')?.addEventListener('change',readStudentDocumentOCR);
  async function setCardTemplate(){
   const input=byId('sidCardTemplateFile'),file=input.files?.[0];
   if(!file)return;

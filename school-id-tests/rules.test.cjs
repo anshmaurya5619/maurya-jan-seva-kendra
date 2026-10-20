@@ -219,6 +219,21 @@ describe('School ID Firestore rules', function () {
       cardData('admin-user', '', {language:'fr'})));
   });
 
+  it('persists custom top and bottom ID card colors and rejects malformed colors', async function () {
+    const db = dbFor();
+    const ref = doc(db, 'schoolIdCards', 'card-custom-colors');
+    await assertSucceeds(setDoc(ref, cardData('admin-user', '', {
+      cardTheme:'custom', cardTopColor:'#123456', cardBottomColor:'#ffffff'
+    })));
+    const saved = await assertSucceeds(getDoc(ref));
+    assert.equal(saved.data().cardTheme, 'custom');
+    assert.equal(saved.data().cardTopColor, '#123456');
+    assert.equal(saved.data().cardBottomColor, '#ffffff');
+    await assertFails(setDoc(doc(db, 'schoolIdCards', 'card-bad-color'), cardData('admin-user', '', {
+      cardTheme:'custom', cardTopColor:'blue', cardBottomColor:'#ffffff'
+    })));
+  });
+
   it('preserves soft-delete and restore for legacy cards without a language field', async function () {
     await env.withSecurityRulesDisabled(async context => {
       const legacy = cardData('admin-user', '', {studentName:'Legacy Student'});

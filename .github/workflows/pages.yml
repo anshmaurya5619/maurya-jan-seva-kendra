@@ -21,6 +21,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Validate JavaScript and show exact syntax errors
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const os = require('os');
+          const path = require('path');
+          const { spawnSync } = require('child_process');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)];
+          if (!scripts.length) throw new Error('No scripts found in index.html');
+          let checked = 0;
+          let failed = false;
+          for (const [index, match] of scripts.entries()) {
+            const code = match[1].trim();
+            if (!code) continue;
+            const file = path.join(os.tmpdir(), `mjk-script-${index}.mjs`);
+            fs.writeFileSync(file, code);
+            const result = spawnSync(process.execPath, ['--check', file], { encoding: 'utf8' });
+            console.log(`Checking inline script ${index + 1}...`);
+            if (result.status !== 0) {
+              failed = true;
+              console.error(result.stderr || result.stdout || 'Unknown syntax error');
+            } else checked++;
+          }
+          console.log(`Successfully checked ${checked} inline scripts.`);
+          if (failed) process.exit(1);
+          NODE
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload website

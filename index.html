@@ -1833,6 +1833,33 @@ async function addSchool(){
   }catch(e){historyNotice('History नहीं लोड हुई: '+e.message)}
  }
 
+ let studentCameraStream=null;
+ function stopStudentCamera(){
+  if(studentCameraStream){studentCameraStream.getTracks().forEach(track=>track.stop());studentCameraStream=null}
+  const video=byId('sidStudentCamera');if(video){video.pause();video.srcObject=null;video.classList.add('hidden')}
+  byId('sidCapturePhoto').classList.add('hidden');byId('sidCloseCamera').classList.add('hidden');
+ }
+ byId('sidOpenCamera').addEventListener('click',async()=>{
+  const status=byId('sidCameraStatus');
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){status.textContent='इस ब्राउज़र में कैमरा उपलब्ध नहीं है। HTTPS वेबसाइट खोलें या फोटो अपलोड करें।';return}
+  try{
+   stopStudentCamera();
+   studentCameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});
+   const video=byId('sidStudentCamera');video.srcObject=studentCameraStream;video.classList.remove('hidden');
+   await video.play();byId('sidCapturePhoto').classList.remove('hidden');byId('sidCloseCamera').classList.remove('hidden');
+   status.textContent='कैमरा चालू है। बच्चे को फ्रेम में रखकर “फोटो खींचें” दबाएँ।';
+  }catch(e){stopStudentCamera();status.textContent='कैमरा नहीं खुला: '+(e.name==='NotAllowedError'?'ब्राउज़र में Camera permission Allow करें।':e.message||'कैमरा अनुमति/डिवाइस जाँचें।')}
+ });
+ byId('sidCapturePhoto').addEventListener('click',()=>{
+  const video=byId('sidStudentCamera'),canvas=byId('sidStudentCameraCanvas'),status=byId('sidCameraStatus');
+  if(!video.videoWidth||!video.videoHeight){status.textContent='कैमरा तैयार नहीं है; एक पल बाद फिर कोशिश करें।';return}
+  const scale=Math.min(1,600/Math.max(video.videoWidth,video.videoHeight));canvas.width=Math.round(video.videoWidth*scale);canvas.height=Math.round(video.videoHeight*scale);
+  canvas.getContext('2d').drawImage(video,0,0,canvas.width,canvas.height);
+  studentPhoto=canvas.toDataURL('image/jpeg',0.78);
+  const preview=byId('sidStudentPhotoPreview');preview.src=studentPhoto;preview.classList.remove('hidden');
+  byId('sidStudentPhoto').value='';stopStudentCamera();status.textContent='फोटो कैप्चर हो गई। कार्ड सेव करने से पहले प्रीव्यू देख लें।';updateCardPreview();
+ });
+ byId('sidCloseCamera').addEventListener('click',()=>{stopStudentCamera();byId('sidCameraStatus').textContent='कैमरा बंद है। जरूरत पर दोबारा खोलें।'});
  byId('sidStudentPhoto').addEventListener('change',()=>setImage('sidStudentPhoto','sidStudentPhotoPreview','student'));
  byId('sidSchoolLogo').addEventListener('change',()=>setImage('sidSchoolLogo','sidSchoolLogoPreview','logo'));
  byId('sidCardTemplateFile').addEventListener('change',setCardTemplate);

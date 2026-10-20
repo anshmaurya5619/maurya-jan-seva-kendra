@@ -1330,6 +1330,8 @@ $('sendService').onclick=()=>{const text=`नमस्ते, Maurya Jan Seva Ke
  function templateNotice(text,ok=false){const el=byId('sidTemplateNotice');if(el){el.textContent=text||'';el.style.color=ok?'#5ce0c0':''}}
  function actorName(){return String(profile?.name||user?.email||'Staff').slice(0,100)}
  function actornam(){return actorName()}
+ // Compatibility alias for any legacy bill/ID-card handlers that call the old lowercase helper.
+ window.actornam=()=>String(profile?.name||user?.email||'Staff').slice(0,100);
  function currentOrientation(){return val('sidOrientation')==='portrait'?'portrait':'landscape'}
  function getSchool(id){return schools.find(s=>s.id===id)||null}
  function defaultTemplatePositions(orientation='landscape'){

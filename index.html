@@ -606,7 +606,7 @@ body {
 </div></section>
 <footer class="wrap footer" id="footer">© <span id="year"></span> Maurya Jan Seva Kendra · Private service centre, not a government website.</footer><div id="toast" class="toast hidden" role="status"></div>
 <script>
-window.addEventListener('error',function(e){var p=document.getElementById('loginMsg');if(p){p.innerHTML='<div class="msg">वेबसाइट की स्क्रिप्ट में त्रुटि हुई। पेज को दोबारा खोलें।</div>';}});
+window.addEventListener('error',function(e){var p=document.getElementById('loginMsg');if(p){var detail=(e&&e.message?String(e.message):'Script load error');var source=e&&e.filename?String(e.filename).split('/').pop():'';var line=e&&e.lineno?':'+e.lineno:'';p.innerHTML='<div class="msg">वेबसाइट स्क्रिप्ट Error: '+detail.replace(/[&<>"]/g,function(s){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]})+(source?' ('+source+line+')':'')+'. यदि Firebase CDN लोड नहीं हुआ तो इंटरनेट/ब्राउज़र जाँचें।</div>';}});
 window.addEventListener('unhandledrejection',function(e){var p=document.getElementById('loginMsg');if(p){var m=e.reason&&e.reason.message?e.reason.message:'अनजान त्रुटि';p.innerHTML='<div class="msg">वेबसाइट शुरू नहीं हो पाई: '+String(m).replace(/[&<>"]/g,function(s){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]})+'</div>'; }});
 </script>
 <script type="module">

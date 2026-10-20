@@ -58,7 +58,7 @@ service cloud.firestore {
     match /bills/{billId} {
       allow read: if active();
       allow create: if active()
-        && request.resource.data.keys().hasOnly(['invoiceId','customerDocId','customerUid','customerId','customerName','phone','address','service','workNote','workStatus','billDate','dueDate','paymentMode','total','paid','due','payments','createdByUid','createdByEmail','createdByName','createdByPhone','createdAt','updatedAt'])
+        && request.resource.data.keys().hasOnly(['invoiceId','customerDocId','customerUid','customerId','customerName','phone','address','service','workNote','workStatus','billDate','dueDate','paymentMode','total','paid','due','payments','createdByUid','createdByEmail','createdByName','createdByPhone','createdAt','createdAtLocal','updatedAt'])
         && request.resource.data.invoiceId is string && request.resource.data.invoiceId.size() > 0
         && request.resource.data.customerName is string && request.resource.data.customerName.size() > 0
         && request.resource.data.phone is string && request.resource.data.phone.size() > 0
@@ -74,7 +74,7 @@ service cloud.firestore {
         && request.resource.data.createdByUid == request.auth.uid
         && request.resource.data.createdByName is string && request.resource.data.createdByName.size() > 0 && request.resource.data.createdByName.size() <= 100
         && request.resource.data.createdByPhone is string && request.resource.data.createdByPhone.size() <= 15
-        && request.resource.data.createdAt == request.time && request.resource.data.updatedAt == request.time;
+        && request.resource.data.createdAt == request.time && request.resource.data.createdAtLocal is string && request.resource.data.createdAtLocal.size() >= 20 && request.resource.data.createdAtLocal.size() <= 40 && request.resource.data.updatedAt == request.time;
       // Edit bill details only; money and payment history must remain unchanged.
       allow update: if (active()
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['customerName','phone','service','workNote','workStatus','billDate','dueDate','paymentMode','updatedAt','updatedByUid'])
@@ -157,7 +157,7 @@ service cloud.firestore {
           'studentName','studentId','fatherName','motherName','schoolId','language',
           'schoolName','schoolAddress','schoolPhone','className',
           'section','rollNumber','dob','phone','academicYear',
-          'studentPhoto','schoolLogo','orientation','createdByUid','createdByName',
+          'studentPhoto','schoolLogo','orientation','cardTheme','cardTopColor','cardBottomColor','createdByUid','createdByName',
           'createdAt','updatedAt','updatedByUid','updatedByName',
           'deleted','deletedAt','deletedByUid','deletedByName'
         ])
@@ -170,7 +170,9 @@ service cloud.firestore {
         && (request.resource.data.schoolId == '' || exists(/databases/$(database)/documents/schoolIdSchools/$(request.resource.data.schoolId)))
         && request.resource.data.orientation is string
         && request.resource.data.orientation in ['landscape', 'portrait']
-        && (!('cardTheme' in request.resource.data) || (request.resource.data.cardTheme is string && request.resource.data.cardTheme in ['navy','black','blue','green','purple','mix']))
+                && (!('cardTopColor' in request.resource.data) || (request.resource.data.cardTopColor is string && request.resource.data.cardTopColor.matches('^#[0-9a-fA-F]{6}$')))
+        && (!('cardBottomColor' in request.resource.data) || (request.resource.data.cardBottomColor is string && request.resource.data.cardBottomColor.matches('^#[0-9a-fA-F]{6}$')))
+&& (!('cardTheme' in request.resource.data) || (request.resource.data.cardTheme is string && request.resource.data.cardTheme in ['navy','black','blue','green','purple','mix','custom']))
         && request.resource.data.fatherName is string
         && request.resource.data.motherName is string
         && request.resource.data.schoolName is string
@@ -221,7 +223,7 @@ service cloud.firestore {
         && (!('orientation' in request.resource.data)
           || (request.resource.data.orientation is string
             && request.resource.data.orientation in ['landscape', 'portrait']))
-        && (!('cardTheme' in request.resource.data) || (request.resource.data.cardTheme is string && request.resource.data.cardTheme in ['navy','black','blue','green','purple','mix']))
+        && (!('cardTheme' in request.resource.data) || (request.resource.data.cardTheme is string && request.resource.data.cardTheme in ['navy','black','blue','green','purple','mix','custom']))
         && (!('language' in request.resource.data)
           || (request.resource.data.language is string
             && request.resource.data.language in ['hi', 'en']))

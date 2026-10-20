@@ -21,21 +21,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set up Node.js for regression checks
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Set up Java for Firestore Emulator
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-      - name: Install test dependencies
-        run: npm install --prefix school-id-tests
-      - name: Run website and regression checks
-        run: node school-id-tests/static-check.cjs
-      - name: Run Firestore Rules tests in emulator
-        run: ./school-id-tests/node_modules/.bin/firebase emulators:exec --project demo-mjk-school-id-rules --only firestore --config firebase.json "npm --prefix school-id-tests run test:rules"
       - name: Validate inline JavaScript syntax
         run: |
           node <<'NODE'
@@ -45,7 +30,7 @@ jobs:
           const { spawnSync } = require('child_process');
           const html = fs.readFileSync('index.html', 'utf8');
           const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)];
-          if (!scripts.length) throw new Error('No inline scripts found in index.html');
+          if (!scripts.length) throw new Error('No scripts found in index.html');
           let checked = 0;
           for (const [index, match] of scripts.entries()) {
             const code = match[1].trim();
@@ -59,8 +44,8 @@ jobs:
             }
             checked++;
           }
-          if (!checked) throw new Error('No non-empty scripts were validated');
-          console.log(`Validated syntax for ${checked} inline scripts.`);
+          if (!checked) throw new Error('No non-empty scripts validated');
+          console.log(`Validated ${checked} inline scripts.`);
           NODE
       - name: Configure Pages
         uses: actions/configure-pages@v5

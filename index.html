@@ -880,6 +880,7 @@ function renderActivity(){
  });
  items.sort((a,b)=>(b.time?.getTime()||0)-(a.time?.getTime()||0));
  const visible=items.filter(x=>!filter||(x.time&&activityDateKey(x.time)===filter));
+ if(todayPaid===0){todayPaid=bills.filter(b=>(activityDateKey(b.createdAt)||activityDateKey(b.createdAtLocal)||storedDateKey(b.billDate))===today).reduce((n,b)=>n+Math.max(0,Number(b.paid)||0),0)}
  $("activityTodayPaid").textContent=money(todayPaid);
  $("activityTodayExpense").textContent=money(todayExpense);
  $("activityRows").innerHTML=visible.slice(0,150).map(x=>`<tr><td>${activityTime(x.time)}</td><td>${escapeHtml(x.type)}</td><td>${escapeHtml(x.detail)}</td><td>${money(x.amount)}</td></tr>`).join("")||'<tr><td colspan="4">इस तारीख के लिए कोई रिकॉर्ड नहीं मिला।</td></tr>';

@@ -1825,7 +1825,7 @@ async function addSchool(){
   templateNotice(templateLabels[key]+' की जगह सेट हो गई। अगला फ़ील्ड चुनकर उसी तरह रखें।',true);
   updateCardPreview();
  });
- byId('schoolIdForm').addEventListener('input',updateCardPreview);byId('sidCardTheme')?.addEventListener('change',updateCardPreview);byId('sidCardTopColor')?.addEventListener('input',()=>{byId('sidCardTheme').value='custom';updateCardPreview()});byId('sidCardBottomColor')?.addEventListener('input',()=>{byId('sidCardTheme').value='custom';updateCardPreview()});
+ byId('schoolIdForm').addEventListener('input',updateCardPreview);byId('sidCardTheme')?.addEventListener('change',updateCardPreview);byId('sidCardTopColor')?.addEventListener('input',()=>{byId('sidCardTheme').value='custom';updateCardPreview()});byId('sidCardBottomColor')?.addEventListener('input',()=>{byId('sidCardTheme').value='custom';updateCardPreview()});byId('sidCardTopColor')?.addEventListener('input',()=>{byId('sidCardTheme').value='custom';updateCardPreview()});byId('sidCardBottomColor')?.addEventListener('input',()=>{byId('sidCardTheme').value='custom';updateCardPreview()});
  byId('sidLanguage').addEventListener('change',()=>{updateTemplateFieldOptions(val('sidLanguage'));updateCardPreview()});
  byId('sidOrientation').addEventListener('change',()=>{
   byId('sidCardTemplateFile').value='';templateMappingMode=false;

@@ -86,6 +86,20 @@ describe('School ID Firestore rules', function () {
     await seedUser('inactive-user', 'worker', 'inactive');
   });
 
+  it('allows active staff to create bills with server timestamps and local ISO timestamps', async function () {
+    const db = dbFor('worker-user');
+    const now = new Date().toISOString();
+    await assertSucceeds(setDoc(doc(db, 'bills', 'bill-local-time'), {
+      invoiceId:'MJK-BILL-123456789', customerDocId:'', customerUid:null,
+      customerId:'MJK-BILL-123456789', customerName:'Test Customer', phone:'9876543210',
+      address:'', service:'Test Service', workNote:'', workStatus:'pending',
+      billDate:'2026-10-20', dueDate:'', paymentMode:'cash', total:100, paid:0, due:100,
+      payments:[], createdByUid:'worker-user', createdByEmail:'worker-user@example.test',
+      createdByName:'Test worker', createdByPhone:'', createdAt:serverTimestamp(),
+      createdAtLocal:now, updatedAt:serverTimestamp()
+    }));
+  });
+
   it('allows anonymous visitors to read only the public CSC Kendra config path', async function () {
     await env.withSecurityRulesDisabled(async context => {
       await setDoc(doc(context.firestore(), 'publicSiteConfig', 'cscKendra'), cscConfig('admin-user'));

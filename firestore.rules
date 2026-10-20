@@ -499,7 +499,7 @@ service cloud.firestore {
     }
 
     match /receiptSettings/{settingId} {
-      allow read: if signedIn() && activeWorker();
+      allow read: if signedIn() && active();
       allow create, update: if settingId == 'design' && admin()
         && request.resource.data.keys().hasAll(['stampData','backgroundData','updatedAt','updatedByUid'])
         && request.resource.data.keys().hasOnly(['stampData','backgroundData','updatedAt','updatedByUid','updatedByName'])

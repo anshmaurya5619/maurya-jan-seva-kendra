@@ -394,14 +394,15 @@ body {
 
 
 
-/* Receipt design panel stays consistent with the dark navy/teal/gold site theme */
-.receipt-design-panel{background:linear-gradient(145deg,#1b3150,#14223c)!important;border:1px solid #3a5578!important;color:#f5f7fb!important;box-shadow:0 12px 30px #02081744}
-.receipt-design-panel h3{color:#ffc96b!important;font-size:19px;letter-spacing:.2px}
-.receipt-design-panel p,.receipt-design-panel .small{color:#c7d5e8!important}
-.receipt-design-panel .field label{color:#5ce0c0!important;font-size:13px;font-weight:800}
-.receipt-design-panel input[type=file]{background:#09172b!important;color:#f7f8fc!important;border:1px solid #3a5578!important;padding:12px!important;min-height:48px}
-.receipt-design-panel input[type=file]::file-selector-button{background:linear-gradient(135deg,#ffc96b,#f5a93e);color:#172039;border:0;border-radius:7px;padding:8px 12px;font-weight:800;margin-right:10px;cursor:pointer}
-.receipt-design-panel #receiptDesignStatus{color:#5ce0c0!important;font-weight:700}
+/* Receipt design uploader: match the site theme and keep text readable */
+.receipt-design-panel,.receipt-design-panel.panel{background:linear-gradient(135deg,#172b49 0%,#10223b 58%,#17374c 100%)!important;border:1px solid #385779!important;border-radius:16px!important;color:#f5f7fb!important;box-shadow:0 14px 34px #02081755!important}
+.receipt-design-panel h3{color:#ffd27b!important;font-size:20px!important;font-weight:850!important}
+.receipt-design-panel p,.receipt-design-panel .small{color:#d2deef!important;opacity:1!important}
+.receipt-design-panel .field label{color:#6ce8cd!important;font-size:13px!important;font-weight:850!important}
+.receipt-design-panel input[type=file]{display:block;width:100%;max-width:100%;background:#09172b!important;color:#fff!important;border:1px solid #466487!important;border-radius:10px!important;padding:12px!important;min-height:50px!important}
+.receipt-design-panel input[type=file]::file-selector-button{background:linear-gradient(135deg,#ffd27b,#f5a93e)!important;color:#172039!important;border:0!important;border-radius:7px!important;padding:9px 12px!important;font-weight:850!important;margin-right:10px!important;cursor:pointer}
+.receipt-design-panel #saveReceiptDesign{background:linear-gradient(135deg,#ffd27b,#f5a93e)!important;color:#172039!important;font-weight:850!important}
+.receipt-design-panel #receiptDesignStatus{color:#6ce8cd!important;font-weight:800!important}
 .contact-card{background:linear-gradient(145deg,#1b3150ed,#14223ced)!important;color:#f5f7fb!important}
 .contact-card h3,.contact-card h4{color:#f5f7fb}
 .contact-card p,.contact-card label,.contact-card .muted{color:#c7d5e8!important}

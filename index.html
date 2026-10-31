@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- MJK_BUILD_VERSION: 2026-10-31-large-bill-print -->
+<!-- MJK_BUILD_VERSION: 2026-10-31-worker-bill-report -->
 <html lang="hi">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101a33">
@@ -1258,10 +1258,12 @@ async function loadWorkerList(){
         </div>
         <p class="muted small">Email: ${escapeHtml(w.email||'—')}<br>मोबाइल: ${escapeHtml(w.phone||'—')}<br>Worker ID: ${escapeHtml(w.uid||w.id||'—')}<br>बनाने वाले Admin: ${escapeHtml(creator.name||'जानकारी उपलब्ध नहीं')}<br>Admin Email: ${escapeHtml(creator.email||'—')}<br>Admin UID: ${escapeHtml(w.createdByUid||'—')}<br>Role: ${escapeHtml(w.role||'—')}<br>बनाया गया: ${w.createdAt&&w.createdAt.toDate?escapeHtml(w.createdAt.toDate().toLocaleString("hi-IN",{timeZone:"Asia/Kolkata",dateStyle:"medium",timeStyle:"short"})):'समय उपलब्ध नहीं'}</p>
         <div class="row" style="gap:8px;flex-wrap:wrap">
-
+          <button type="button" class="secondary workerBillsBtn" data-worker="${escapeHtml(w.uid||w.id||'')}" data-worker-name="${escapeHtml(w.name||w.email||'Worker')}">इस Worker के बिल देखें</button>
           ${status !== 'deleted' ? `<button type="button" class="secondary workerStatusBtn" data-worker="${escapeHtml(w.uid||w.id||'')}" data-status="${status === 'active' ? 'inactive' : 'active'}">${status === 'active' ? 'Inactive करें' : 'Active करें'}</button>
           <button type="button" class="danger workerRemoveBtn" data-worker="${escapeHtml(w.uid||w.id||'')}">Remove Worker</button>` : '<span class="muted small">Worker हटाया गया है</span>'}
         </div>
+        <div class="worker-bill-details hidden" id="workerBills-${escapeHtml(w.uid||w.id||'')}" style="margin-top:12px"></div>
+      </div>`;
       </div>`;
     }).join('');
 
@@ -1306,6 +1308,37 @@ async function loadWorkerList(){
   }
 }
 $('refreshWorkersBtn').onclick=loadWorkerList;
+
+let workerBillDetailsCache=null,workerBillDetailsPromise=null;
+async function getWorkerBillDetailsData(){
+ if(workerBillDetailsCache)return workerBillDetailsCache;
+ if(workerBillDetailsPromise)return workerBillDetailsPromise;
+ workerBillDetailsPromise=(async()=>{
+  const [billSnap,archiveSnap]=await Promise.all([getDocs(collection(db,'bills')),getDocs(collection(db,'billArchive'))]);
+  const archived=new Set(archiveSnap.docs.map(d=>d.id));
+  workerBillDetailsCache=billSnap.docs.filter(d=>!archived.has(d.id)).map(d=>({id:d.id,...d.data()}));
+  return workerBillDetailsCache;
+ })();
+ try{return await workerBillDetailsPromise}finally{workerBillDetailsPromise=null}
+}
+async function showWorkerBillDetails(btn){
+ if(!admin())return toast('केवल Admin Worker के बिल देख सकता है।');
+ const uid=btn.dataset.worker,box=$('workerBills-'+uid);
+ if(!uid||!box)return;
+ if(!box.classList.contains('hidden')){box.classList.add('hidden');btn.textContent='इस Worker के बिल देखें';return}
+ box.classList.remove('hidden');box.innerHTML='<p class="muted small">Worker के बिल लोड हो रहे हैं…</p>';btn.disabled=true;
+ try{
+  const all=await getWorkerBillDetailsData();
+  const rows=all.filter(b=>b.createdByUid===uid).sort((a,b)=>(activityDateTime(b.createdAt)||activityDateTime(b.createdAtLocal)||new Date(0))-(activityDateTime(a.createdAt)||activityDateTime(a.createdAtLocal)||new Date(0)));
+  const total=rows.reduce((n,b)=>n+Number(b.total||0),0),paid=rows.reduce((n,b)=>n+Number(b.paid||0),0),due=rows.reduce((n,b)=>n+Number(b.due||0),0);
+  box.innerHTML=`<div class="result"><b>${escapeHtml(btn.dataset.workerName||'Worker')} — बिल रिपोर्ट</b><div class="split" style="margin-top:10px"><div><span class="muted small">कुल बिल</span><h3>${rows.length}</h3></div><div><span class="muted small">कुल बिल रकम</span><h3>${money(total)}</h3></div><div><span class="muted small">वास्तविक जमा</span><h3>${money(paid)}</h3></div><div><span class="muted small">बाकी रकम</span><h3>${money(due)}</h3></div></div></div>`+
+  (rows.length?`<div class="table-wrap" style="margin-top:10px"><table><thead><tr><th>बिल / तारीख</th><th>ग्राहक</th><th>सेवा</th><th>कुल</th><th>जमा</th><th>बाकी</th></tr></thead><tbody>${rows.map(b=>`<tr><td>${escapeHtml(b.invoiceId||b.id)}<br><span class="muted small">${escapeHtml(billDateTimeLabel(b))}</span></td><td>${escapeHtml(b.customerName||'—')}<br><span class="muted small">${escapeHtml(b.phone||'')}</span></td><td>${escapeHtml(b.service||'—')}</td><td>${money(b.total)}</td><td>${money(b.paid)}</td><td>${money(b.due)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="muted small">इस Worker के नाम से कोई उपलब्ध बिल नहीं मिला। पुराने बिलों में Worker ID दर्ज न होने पर वे इस सूची में नहीं दिखेंगे।')+
+  '<p class="muted small">नोट: बिल की कुल रकम और प्राप्त भुगतान अलग-अलग गिने गए हैं। केवल इस Worker के createdByUid से जुड़े बिल शामिल हैं।</p>';
+ }catch(e){box.innerHTML='<p class="muted">Worker के बिल नहीं पढ़ पाए: '+escapeHtml(e.message)+'</p>'}
+ finally{btn.disabled=false;btn.textContent='बिल विवरण छिपाएँ'}
+}
+
+$('workerList').addEventListener('click',e=>{const btn=e.target.closest('.workerBillsBtn');if(btn)showWorkerBillDetails(btn)});
 
 
 $('workerForm').onsubmit=async e=>{e.preventDefault();if(!admin())return toast('केवल Admin Worker बना सकता है।');const name=$('workerName').value.trim(),email=$('workerEmail').value.trim().toLowerCase(),password=$('workerPassword').value,phone=$('workerPhone').value.trim();if(password.length<6)return msg('workerMsg','पासवर्ड कम से कम 6 अक्षर का हो।');$('workerCreateBtn').disabled=true;let secondary=null;try{secondary=initializeApp(cfg,'worker-creation-'+Date.now());const secondaryAuth=getAuth(secondary);const cred=await createUserWithEmailAndPassword(secondaryAuth,email,password);await setDoc(doc(db,'users',cred.user.uid),{uid:cred.user.uid,name,email,phone,role:'worker',status:'active',createdByUid:user.uid,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});await signOut(secondaryAuth);await deleteApp(secondary);msg('workerMsg',`Worker बनाया गया: ${email}. अस्थायी पासवर्ड सुरक्षित तरीके से दें।` ,true);$('workerForm').reset();await loadWorkerList()}catch(e){msg('workerMsg','Worker नहीं बना: '+e.message)}finally{if(secondary){try{await deleteApp(secondary)}catch(_){}}$('workerCreateBtn').disabled=false}}
